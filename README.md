@@ -4,6 +4,18 @@ Within AWS there are a variety of services that can be used to secure your envir
 
 ![Components](./images/security-components.png "Categorization of AWS Security Services")
 
+## Components
+
+* **Identity** - Define, enforce, and audit user permissions across AWS services, actions and resources.
+
+* **Detective Control** - Gain the visibility you need to spot issues before they impact the business, improve your security posture, and reduce the risk profile of your environment.
+
+* **Infrastructure Security** - Reduce surface area to manage and increase privacy for and control of your overall infrastructure on AWS.
+
+* **Data Protection** - In addition to our automatic data encryption and management services, employ more features for data protection.
+
+* **Incident Response** - During an incident, containing the event and returning to a known good state are important elements of a response plan. AWS provides the following tools to automate aspects of this best practice.
+
 ## License Summary
 
 This sample code is made available under a modified MIT license. See the LICENSE file.
