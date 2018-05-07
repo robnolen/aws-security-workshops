@@ -22,6 +22,14 @@ Within AWS there are a variety of services that can be used to secure your envir
 
 - [**Threat Detection and Remediation**](https://code.amazon.com/packages/Aws-security-workshops/trees/mainline/--/threat-detection) - This workshop demonstrates how you can use AWS Security services such Amazon GuardDuty and Amazon Macie to detect malicious and unauthorized threats in an environment. You'll learn how to setup detective controls in your environment, investigate a variety of findings, and put in place automated remediations using Lambda.
 
+## Prerequisites
+
+### AWS Account
+
+In order to complete this workshop you'll need an AWS Account, and an AWS IAM user in that account with at Admin permissions.
+
+> **Use Your Own Account**: The code and instructions in this workshop assume only one student is using a given AWS account at a time. If you try sharing an account with another student, you'll run into naming conflicts for certain resources. Use a personal account or create a new AWS account for this workshop rather than using an organization’s account to ensure you have full access to the necessary services and to ensure you do not leave behind any resources from the workshop.
+
 ## License Summary
 
 This sample code is made available under a modified MIT license. See the LICENSE file.
