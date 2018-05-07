@@ -16,6 +16,13 @@ Within AWS there are a variety of services that can be used to secure your envir
 
 * **Incident Response** - During an incident, containing the event and returning to a known good state are important elements of a response plan. AWS provides the following tools to automate aspects of this best practice.
 
+## Workshops
+
+> Please review and complete all Prerequisites before attempting these workshops.
+
+- [**Threat Detection and Remediation**](https://code.amazon.com/packages/Aws-security-workshops/trees/mainline/--/threat-detection) - This workshop demonstrates how you can use AWS Security services such Amazon GuardDuty and Amazon Macie to detect malicious and unauthorized threats in an environment. You'll learn how to setup detective controls in your environment, investigate a variety of findings, and put in place automated remediations using Lambda.
+
+
 ## License Summary
 
 This sample code is made available under a modified MIT license. See the LICENSE file.
