@@ -30,6 +30,14 @@ In order to complete this workshop you'll need an AWS Account, and an AWS IAM us
 
 > **Use Your Own Account**: The code and instructions in this workshop assume only one student is using a given AWS account at a time. If you try sharing an account with another student, you'll run into naming conflicts for certain resources. Use a personal account or create a new AWS account for this workshop rather than using an organization’s account to ensure you have full access to the necessary services and to ensure you do not leave behind any resources from the workshop.
 
+### Browser
+
+We recommend you use the latest version of Chrome or Firefox to complete this workshop.
+
+### Text Editor
+
+For any workshop module that requires use of the AWS Command Line Interface (see above), you also will need a **plain text** editor for writing scripts. Any editor that inserts Windows or other special characters potentially will cause scripts to fail.
+
 ## License Summary
 
 This sample code is made available under a modified MIT license. See the LICENSE file.
