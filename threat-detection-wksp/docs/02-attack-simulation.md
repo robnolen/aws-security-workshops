@@ -31,7 +31,7 @@ This will bring you back to the CloudFormation console. You can refresh the page
 
 Below is a diagram of the setup after the module 2 CloudFormation stack is created.
 
-> If you're doing this workshop outside of an AWS sponsored event then you can proceed to Module 3.  Please not it will take at least **20 minutes** after the 2nd CloudFormation template has completed before you will start seeing findings.
+> If you're doing this workshop outside of an AWS sponsored event then you can proceed to Module 3.  Please note it will take at least **20 minutes** after the 2nd CloudFormation template has completed before you will start seeing findings.
 
 ![Module 2 Diagram](../images/02-diagram-module2-3.png)
 

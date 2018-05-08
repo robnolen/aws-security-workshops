@@ -1,14 +1,16 @@
 # Module 3: Detection and Remediation
 
-##Security Incident
+## Security Incident
 
 Unfortunately, due to a misconfiguration in your environment, a hacker has been able to gain access to your webserver. Now, with the intruder in your environment you’re getting alerts from the Security tools you’ve put in place indicating nefarious activity. These alerts include changes to communicating with known malicious IP addresses, account reconnaissance, changes to S3 policies, and disabling security configurations. You must identify exactly what activity the intruder has performed and how so you can block the intruder’s access, remediate the vulnerabilities, and restore the configuration to its proper state.
 
-##Student Actions
+## Take Action!
+
 You’ve received the first alerts from GuardDuty. Now what? Assuming you’re still logged into your account, let’s see where these findings are coming from.
 Since the alert came from GuardDuty, we will check there first.
 
-Check GuardDuty findings:
+### Check GuardDuty findings:
+
 1. Open the GuardDuty console
 2. In the navigation pane, you should be on Findings -> Current
 3. Do you see these four findings?
@@ -16,7 +18,7 @@ Check GuardDuty findings:
   * IP from our custom threat list should show up. Where would you find that?
   * Do you see any inbound brute force attacks? Can you tell if it was successful?
 
-Note: The SSH Brute Force Finding from an internal IP (High Severity) is a function of our environment and can be ignored.
+> The SSH Brute Force Finding from an internal IP (High Severity) is a function of our environment and can be ignored.
 Let’s evaluate the intrusion. First, was the brute force successful? Following security design best practices you already setup your servers to log CloudWatch. You’ve also setup automated scanning of instances under attack using Inspector. Let’s look at Inspector to see if password authentication is enabled for the instance under attack.
 
 4. Go to the Inspector Console
