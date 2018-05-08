@@ -1,4 +1,4 @@
-# Threat Detection Workshop
+# Threat Detection and Remediation Workshop
 
 This workshop is designed to get attendees familiar and comfortable with how AWS Security services can identify threats and demonstrate how to remediate findings.
 
