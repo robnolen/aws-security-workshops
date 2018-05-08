@@ -111,33 +111,33 @@ Macie is now enabled and ready to classify your data and send alerts and our env
 
 ## Troubleshooting
 
-### Create the Service\-linked role for Inspector \(IF NECESSARY\)
+### Create the Service-linked role for AWS Inspector
 
-We will use Inspector to evaluate instances that may be under attack. Before we can enable Inspector, we need to create a Service\-linked role. A service\-linked role is a unique type of IAM role that is linked directly to an AWS service. Service\-linked roles are predefined by the service and include all the permissions that the service requires to call other AWS services on your behalf. To create the role, follow these steps.
+We will use Inspector to evaluate instances that may be under attack. Before we can enable Inspector, we need to create a Service-linked role. A service-linked role is a unique type of IAM role that is linked directly to an AWS service. Service-linked roles are predefined by the service and include all the permissions that the service requires to call other AWS services on your behalf. If for some reason your CloudFormation stack didn't succeed in creating the Inspector, you can create it with the following steps:
 
-1.>	Go to the [IAM console](https://console.aws.amazon.com/iam/home?region=us-west-2#/home)
-2.>	Click ***Roles*** on the left navigation
-3.>	Click ***Create Role***
-4.>	Click ***Inspector*** in the list of AWS Services to build the role for
-5.>	Click ***Next:Permissions***
-6.>	Click ***Next:Review***
-7.>	Click ***Create Role***
+1.	Go to the [IAM console](https://console.aws.amazon.com/iam/home?region=us-west-2#/home)
+2.	Click ***Roles*** on the left navigation
+3.	Click ***Create Role***
+4.	Click ***Inspector*** in the list of AWS Services to build the role for
+5.	Click ***Next:Permissions***
+6.	Click ***Next:Review***
+7.	Click ***Create Role***
 
 If you already have a role for Inspector you will see the following error:
-![Inspector Role Error](/images/AWS-Inspector-Role-Error.png)
+![Inspector Role Error](../images/01-inspector-role-error.png)
  
 ### Macie CloudTrail Log Error
 
-If you previous configured Macie but didn’t delete the CloudTrail log, you will receive the following error:
+If you previous configured Macie but didn’t delete the CloudTrail for the us-west-2 region, you will receive the following error:
 
-![Macie CloudTrail Error](/images/AWS-Macie-CloudTrail-Error.png)
+![Macie CloudTrail Error](../images/01-macie-ct-error.png)
  
 To fix this, perform the following steps:
 
-1.>	Go to the [CloudTrail console](https://us-west-2.console.aws.amazon.com/cloudtrail/home?region=us-west-2)
-2.>	Click on ***Trails***
-3.>	Click on the trail named ***AWSMacieTrail\DO\_NOT\_EDIT***
-4.>	Click on the trash can under the logging on/off toggle on the right.
-5.>	Click ***Delete***
-6.>	Go back to the [Macie console](https://us-west-2.redirection.macie.aws.amazon.com/) and select your account again.
+1.	Go to the [CloudTrail console](https://us-west-2.console.aws.amazon.com/cloudtrail/home?region=us-west-2)
+2.	Click on **Trails**
+3.	Click on the trail named **AWSMacieTrail-DO-NOT-EDIT**
+4.	Click on the trash can under the logging on/off toggle on the right.
+5.	Click **Delete**
+6.	Go back to the [Macie console](https://us-west-2.redirection.macie.aws.amazon.com/) and select your account again.
 
