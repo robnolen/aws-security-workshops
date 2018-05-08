@@ -33,4 +33,4 @@ Here is the diagram of the setup after the module 2 CloudFormation stack is crea
 
 ![Module 2 Diagram](../images/02-diagram-module2-3.png)
 
-After the presentation, you can proceed to the next module: **[Module 3 - Investigate and Remediate](../docs/02-attack-simulation.md)**.
+After the presentation, you can proceed to the next module: **[Module 3 - Detection and Remediation](../docs/02-attack-simulation.md)**.
