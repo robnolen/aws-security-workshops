@@ -33,7 +33,7 @@ US West 2 (Oregon) | [![Launch Module 1 in us-west-2](../images/launch-stack-but
 
 3. Once you have entered your parameters click **Next**, then **Next** again \(leave everything on this page at the default\).
 
-4. Finally acknowledge the template will create IAM roles and click **Create**
+4. Finally, acknowledge the template will create IAM roles and click **Create**
 
 ![IAM Capabilities](../images/iam-capabilities.png)
 
@@ -107,7 +107,7 @@ Since Macie isn’t turned on but you plan on storing data in S3, let’s quickl
 
 Macie is now enabled and ready to classify your data and send alerts and our environment is configured and ready for operations.  Below is diagram to dipict the detective controls you now in place.
 
-![Detective Controls](../images/01-detective-controls.png)
+![Detective Controls](../images/01-diagram-module1.png)
 
 After you have successfully setup your environment, you can proceed to the next module: **[Module 2 - Attack Simulation](../docs/02-attack-simulation.md)**.
 
