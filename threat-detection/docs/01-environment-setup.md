@@ -71,7 +71,7 @@ Below are steps to create this rule through the console but you can also find ou
 5.	On the Configure Details screen please use insert the following information
     * Name: **threat-detection-wksp-guardduty-finding-ec2-maliciousip**
     * Description: **GuardDuty Finding: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom**
-    Lastly, click **Create**.
+    * Click **Create**.
 6.	Now let’s examine the Lambda function to see what it does.  Open the [Lambda console](https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2)
 7.	Click on the function named **threat\-detection\-wksp\-remediation\-NACL**
 
