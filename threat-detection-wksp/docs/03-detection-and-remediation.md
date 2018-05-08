@@ -2,7 +2,7 @@
 
 Unfortunately, due to a misconfiguration in your environment, a hacker has been able to gain access to your webserver. Now, with the intruder in your environment you’re getting alerts from the Security tools you’ve put in place indicating nefarious activity. These alerts include changes to communicating with known malicious IP addresses, account reconnaissance, changes to S3 policies, and disabling security configurations. You must identify exactly what activity the intruder has performed and how so you can block the intruder’s access, remediate the vulnerabilities, and restore the configuration to its proper state.
 
-## Take Action!
+## Find out what's going on!
 
 You’ve received the first alerts from GuardDuty. Now what? Assuming you’re still logged into your account, let’s see where these findings are coming from.
 Since the alert came from GuardDuty, we will check there first.

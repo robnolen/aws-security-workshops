@@ -25,5 +25,5 @@ Please use the **us-west-2 (Oregon)** region for this workshop.
 3. [Detection and Remediation](./docs/03-detection-and-remediation.md) 
 4. [Review and Discussion](./docs/04-review-and-dicussion.md)
 
-> Total time: &plusmn; 2 hours
+	> Total time: &plusmn; 2 hours
 
