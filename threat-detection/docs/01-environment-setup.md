@@ -24,7 +24,7 @@ US West 2 (Oregon) | [![Launch Module 1 in us-west-2](../images/launch-stack-but
 
 ### Launch Instructions
 
-1. Click the **Launch Stack** button above.  This will automatically take you to the console to run the template.  The file for the CloudFormation template (**01-environment-setup.yml**) is also available in the /templates folder of this repo if you'd like to download it and manually upload it to create a stack.
+1. Click the **Launch Stack** button above.  This will automatically take you to the console to run the template.  The file for the CloudFormation template (**01-environment-setup.yml**) is also available in the [templates](../templates/01-environment-setup.yml) folder if you'd like to download it and manually upload it to create a stack.
 
 2. On the **Specify Details** section enter the necessary parameters as shown below.  Please use the answers you discovered during the *Review Current Configurations*.
 
@@ -36,7 +36,7 @@ US West 2 (Oregon) | [![Launch Module 1 in us-west-2](../images/launch-stack-but
 
 ![IAM Capabilities](../images/iam-capabilities.png)
 
-This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to create. Before moving on, make sure the stack is in a **CREATE COMPLETE** status as shown below.
+This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to create. Before moving on, make sure the stack is in a **CREATE_COMPLETE** status as shown below.
 
 ![Stack Complete](../images/01-stack-complete.png)
 
