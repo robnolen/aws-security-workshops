@@ -29,9 +29,9 @@ This will bring you back to the CloudFormation console. You can refresh the page
 
 ## Threat Detection and Remediation Presentation
 
----
+Below is a diagram of the setup after the module 2 CloudFormation stack is created.
 
-Below is a diagram of the setup after the module 2 CloudFormation stack is created:
+> If you're doing this workshop outside of an AWS sponsored event then you can proceed to Module 3.  Please not it will take at least **15 minutes** after the CloudFormation template has completed before you start seeing findings.
 
 ![Module 2 Diagram](../images/02-diagram-module2-3.png)
 
