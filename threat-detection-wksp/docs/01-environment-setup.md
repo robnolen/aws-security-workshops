@@ -1,6 +1,6 @@
 # Module 1: Environment Build and Configuration
 
-In this module you will be configuring all the initial detective and remediation controls for your environment.  You'll be running the first of two CloudFormation templates which will automate the creation of some of these controls and then you will manaually configure the rest. Below is a visual representation of what you'll be configuring in your environment.
+In this module you will be configuring all the initial detective and remediation controls for your environment.  You'll be running the first of two CloudFormation templates which will automate the creation of some of these controls and then you will manaually configure the rest.
 
 ### Agenda
 
