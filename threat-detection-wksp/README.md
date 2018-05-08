@@ -20,10 +20,9 @@ Before you migrated the application you saw a webinar about AWS security best pr
 Please use the **us-west-2 (Oregon)** region for this workshop.
 
 ### Modules
+> Total time: &plusmn; 2 hours
 1. [Environment Build and Configuration](./docs/01-environment-setup.md)
 2. [Attack Simulation](./docs/02-attack-simulation.md) 
 3. [Detection and Remediation](./docs/03-detection-and-remediation.md) 
 4. [Review and Discussion](./docs/04-review-and-dicussion.md)
-
-	> Total time: &plusmn; 2 hours
 
