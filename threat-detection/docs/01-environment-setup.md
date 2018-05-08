@@ -90,11 +90,11 @@ The next step is to enable Amazon GuardDuty. Browse to [Amazon GuardDuty](https:
 
 Since Macie isn’t turned on but you plan on storing data in S3, let’s quickly enable it.
 
-1.	Under Services click [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/)
-2.	Make sure the top left indicated you are in the **us-west-2 (Oregon)** region
-3.	Click **Get Started**
-4.	Check the box under **Permissions**
-5.	Click **Enable Macie**
+1.	Under Services click [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/).
+2.	Make sure the top left indicated you are in the **us-west-2 (Oregon)** region.
+3.	Click **Get Started**.
+4.	Check the box under **Permissions**.
+5.	Click **Enable Macie**.
 	* The IAM roles created and AWS CloudTrail enabled should have checks next to them based on the template’s output
 	* Wait for a minute while Macie starts up
 6.	Once inside of Macie, click on **Integrations** on the left hand navigation
