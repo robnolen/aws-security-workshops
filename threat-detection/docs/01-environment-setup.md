@@ -92,16 +92,9 @@ Since Macie isn’t turned on but you plan on storing data in S3, let’s quickl
 
 1.	Under Services click [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/).
 2.	Make sure the top left indicated you are in the **us-west-2 (Oregon)** region.
+3.	Click **Get Started**.
 
-### Enable Macie
 
-Since Macie isn’t turned on but you plan on storing data in S3, let’s quickly enable it.
-
-1.	Once you are in the GuardDuty console, Click the **Get Started** button.
-2.	On the next screen click the **Enable GuardDuty** button.
-
-1.	Under Services click [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/).
-2.	Make sure the top left indicated you are in the **us-west-2 (Oregon)** region.
 3.	Click **Get Started**.
 4.	Check the box under **Permissions**.
 5.	Click **Enable Macie**.
