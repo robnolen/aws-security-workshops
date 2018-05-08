@@ -103,32 +103,7 @@ Since Macie isn’t turned on but you plan on storing data in S3, let’s quickl
 	* Make sure you click both the checkboxes on the left and the right ends of the rows. This ensures both new and existing files get classified.
 ![Macie Bucket Sample](../images/01-macie-bucket-selection.png)
 10.	Click **Review and Save**.
-11.	Click the boxes to acknowledge pricing and terms of service and click **Save**
-
-### Enable Macie
-
-Since Macie isn’t turned on but you plan on storing data in S3, let’s quickly enable it.
-
-1.	Once you are in the GuardDuty console, Click the **Get Started** button.
-2.	On the next screen click the **Enable GuardDuty** button.
-
-1.	Under Services click [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/).
-2.	Make sure the top left indicated you are in the **us-west-2 (Oregon)** region.
-3.	Click **Get Started**.
-4.	Check the box under **Permissions**.
-5.	Click **Enable Macie**.
-	* The IAM roles created and AWS CloudTrail enabled should have checks next to them based on the template’s output
-	* Wait for a minute while Macie starts up
-6.	Once inside of Macie, click on **Integrations** on the left hand navigation
-7.	Click on **Services** near the top
-8.	Select your account (should be the only one) and click **Add** (or **Details** if you already have buckets configured) for Amazon S3
-9.	Click on the paper and pencil on the far right and select the S3 bucket that ends with **“-data”**
-	* **Make sure you click both the checkboxes on the left and the right ends of the rows. This ensures both new and existing files get classified.**
-
-	![Macie bucket sample](../images/01-macie-bucket-selection.png)
-
-10.	Click **Review and Save**
-11.	Click the boxes to acknowledge pricing and terms of service and click **Save**
+11.	Click the boxes to acknowledge pricing and terms of service and click **Save**.
 
 Macie is now enabled and ready to classify your data and send alerts and our environment is configured and ready for operations.  Below is diagram to dipict the detective controls you now in place.
 
