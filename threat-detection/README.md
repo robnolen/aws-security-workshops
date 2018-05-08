@@ -12,16 +12,16 @@ You are a systems administrator for a web services company. New to the cloud, yo
 ### Architecture
 For this Workshop you will have a single instance setup in the us-west-2 region. As this was a “lift-and-shift” migration for piloting you have yet to build redundancy into your application, so you have a single public-facing webserver. The webserver has access to the Internet Gateway through an Elastic Network Interface. Customers access your web server through a DNS entry pointing to the Elastic Network Interface. You store static content in an S3 bucket and use the VPC S3 Endpoint Gateway for access from the webserver.
 
+![Architecture](./images/diagram-basic-arch.png "Lab Workload Architecture")
+
 Before you migrated the application you saw a webinar about AWS security best practices. Because of that webinar, you knew to enable the following security products: VPC Flow Logs, Config, CloudTrail, and GuardDuty.
 
-![Architecture](./images/basic-arch.png "Lab Architecture")
-
 ### Region
-Please use the us-west-2 (Oregon) region for this workshop.
+Please use the **us-west-2 (Oregon)** region for this workshop.
 
 ### Modules
-* [1. Environment Build and Configuration](https://code.amazon.com/packages/Aws-security-workshops/blobs/mainline/--/threat-detection/docs/01-environment-setup.md)
-* [2. Generate Findings](https://code.amazon.com/packages/Aws-security-workshops/blobs/mainline/--/threat-detection/docs/02-generate-findings.md) 
-* [3. Detection and Remediation](https://code.amazon.com/packages/Aws-security-workshops/blobs/mainline/--/threat-detection/docs/03-investigate-remediation.md) 
-* [4. Review and Discussion](https://code.amazon.com/packages/Aws-security-workshops/blobs/mainline/--/threat-detection/docs/04-review-and-dicussion.md)
+* [1. Environment Build and Configuration](./docs/01-environment-setup.md)
+* [2. Generate Findings](./docs/02-generate-findings.md) 
+* [3. Detection and Remediation](./docs/03-investigate-remediation.md) 
+* [4. Review and Discussion](./docs/04-review-and-dicussion.md)
 
