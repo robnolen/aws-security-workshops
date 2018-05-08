@@ -25,7 +25,7 @@ US West 2 (Oregon) | [![Launch Module 2 in us-west-2](../images/launch-stack-but
 
 This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to create. Before moving on, make sure the stack is in a **CREATE_COMPLETE** status as shown below.
 
-![Stack Complete](../images/01-stack-complete.png)
+![Stack Complete](../images/02-stack-complete.png)
 
 ### Threat Detection and Remediation Presentation
 
