@@ -32,3 +32,5 @@ This will bring you back to the CloudFormation console. You can refresh the page
 Here is the diagram of the setup after the module 2 CloudFormation stack is created:
 
 ![Module 2 Diagram](../images/02-diagram-module2-3.png)
+
+After the presentation, you can proceed to the next module: **[Module 3 - Investigate and Remediate](../docs/02-attack-simulation.md)**.
