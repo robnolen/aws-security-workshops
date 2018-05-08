@@ -24,7 +24,7 @@ US West 2 (Oregon) | [![Launch Module 1 in us-west-2](../images/launch-stack-but
 
 ### Launch Instructions
 
-1. Click the **Launch Stack** button above.  This will automatically take you to the console to run the template.  The file for the CloudFormation template (**01-environment-setup.yml**) is also available in the [templates](../templates/01-environment-setup.yml) folder if you'd like to download it and manually upload it to create a stack.
+1. Click the **Launch Stack** button above.  This will automatically take you to the console to run the template.  The file for the CloudFormation template (**01-environment-setup.yml**) is also available in the [templates](../templates/) folder if you'd like to download it and manually upload it to create a stack.
 
 2. On the **Specify Details** section enter the necessary parameters as shown below.  Please use the answers you discovered during the *Review Current Configurations*.
 
@@ -69,8 +69,8 @@ Below are steps to create this rule through the console but you can also find ou
 	* For *Targets*, click **Add Target**, select **Lambda Function**, and then select **threat-detection-wksp-remediation-NACL**.
 	* Click **Configure Details**
 5.	On the Configure Details screen please use insert the following information
-    * Name: *threat-detection-wksp-guardduty-finding-ec2-maliciousip*
-    * Description: *GuardDuty Finding: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom*)
+    * Name: **threat-detection-wksp-guardduty-finding-ec2-maliciousip**
+    * Description: **GuardDuty Finding: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom**
     Lastly, click **Create**.
 6.	Now let’s examine the Lambda function to see what it does.  Open the [Lambda console](https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2)
 7.	Click on the function named **threat\-detection\-wksp\-remediation\-NACL**
