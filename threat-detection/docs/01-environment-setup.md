@@ -109,7 +109,7 @@ Macie is now enabled and ready to classify your data and send alerts and our env
 
 ![Detective Controls](../images/01-detective-controls.png)
 
-After you have successfully setup your environment, you can proceed to the next module, **[Attack Simulation](../docs/02-attack-simulation.md)**.
+After you have successfully setup your environment, you can proceed to the next module: **[Module 2 - Attack Simulation](../docs/02-attack-simulation.md)**.
 
 ## Troubleshooting
 
