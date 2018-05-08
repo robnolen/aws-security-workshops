@@ -13,7 +13,7 @@ To initiate the attack simulation you will need to run the module 2 CloudFormati
 
 Region| Launch
 ------|-----
-US West 2 (Oregon) | [![Launch Module 2 in us-west-2](../images/launch-stack-button.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=ThreatDetectionWksp-Attack&templateURL=https://s3-us-west-2.amazonaws.com/sa-security-specialist-workshops-us-west-2/02-attack-simulation.yml)
+US West 2 (Oregon) | [![Launch Module 2 in us-west-2](../images/launch-stack-button.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=ThreatDetectionWksp-Attacks&templateURL=https://s3-us-west-2.amazonaws.com/sa-security-specialist-workshops-us-west-2/02-attack-simulation.yml)
 
 ### Launch Instructions
 

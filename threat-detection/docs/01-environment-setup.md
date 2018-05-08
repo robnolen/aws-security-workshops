@@ -45,7 +45,7 @@ US West 2 (Oregon) | [![Launch Module 1 in us-west-2](../images/launch-stack-but
 
 This will bring you back to the CloudFormation console. You can refresh the page to see the stack starting to create. Before moving on, make sure the stack is in a **CREATE_COMPLETE** status as shown below.
 
-![Stack Complete](../images/01-stack-complete.png)
+![Stack Complete](../images/01-complete.png)
 
 5.	You will get an email from SNS asking you to confirm the Subscription. Confirm this so you can receive email alerts from AWS services during the Workshop.
 

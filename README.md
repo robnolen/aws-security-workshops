@@ -30,4 +30,4 @@ For any workshop module that requires use of the AWS Command Line Interface (see
 
 ## License Summary
 
-This sample code is made available under a modified MIT license. See the LICENSE file.
+This sample code is made available under a modified MIT license. See the [LICENSE](LICENSE) file.
