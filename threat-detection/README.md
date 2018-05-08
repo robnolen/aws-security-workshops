@@ -14,7 +14,7 @@ For this Workshop you will have a single instance setup in the us-west-2 region.
 
 ![Architecture](./images/diagram-basic-arch.png "Lab Workload Architecture")
 
-Before you migrated the application you saw a webinar about AWS security best practices. Because of that webinar, you knew to enable the following security products: VPC Flow Logs, Config, CloudTrail, and GuardDuty.
+Before you migrated the application you saw a webinar about AWS security best practices. Because of that webinar, you knew to enable the following security products: VPC Flow Logs, Config, CloudTrail, and GuardDuty. 
 
 ### Region
 Please use the **us-west-2 (Oregon)** region for this workshop.
