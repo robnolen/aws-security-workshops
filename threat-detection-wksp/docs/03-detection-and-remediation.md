@@ -9,7 +9,7 @@ Since the alert came from GuardDuty, we will check there first.
 
 ### Check GuardDuty findings:
 
-1. Open the GuardDuty console
+1. Go to [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) in the Amazon Console.
 2. In the navigation pane, you should be on Findings -> Current
 3. Do you see these four findings?
   *	Do you see any IP’s performing malicious actions?
