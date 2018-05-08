@@ -101,7 +101,7 @@ Since Macie isn’t turned on but you plan on storing data in S3, let’s quickl
 8.	Select your account (should be the only one) and click **Add** (or **Details** if you already have buckets configured) for Amazon S3.
 9.	Click on the paper and pencil on the far right and select the S3 bucket that ends with **“-data”**
 	* Make sure you click both the checkboxes on the left and the right ends of the rows. This ensures both new and existing files get classified.
-	![Macie Bucket Sample](../images/01-macie-bucket-selection.png)
+![Macie Bucket Sample](../images/01-macie-bucket-selection.png)
 
 ### Enable Macie
 
