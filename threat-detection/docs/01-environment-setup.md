@@ -13,7 +13,7 @@ Before you the run the template please verify whether you already have the follo
   > If you do not see the Inspector Role; you'll answer **No** when prompted if the Inspector Role exists when launching the CloudFormation template.
 
 2. Go to <a href="https://us-west-2.console.aws.amazon.com/config/home?region=us-west-2" target="_blank">AWS Config</a> (in the us-west-2 region) and see if it is already enabled.
-  * If you see a **Get Started** button; you'll answer **No** when prompted if Config is enabled when launching the CloudFormation template.
+  > If you see a **Get Started** button; you'll answer **No** when prompted if Config is enabled when launching the CloudFormation template.
 
 ## Deploy the CloudFormation Template
 
