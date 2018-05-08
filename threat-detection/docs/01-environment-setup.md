@@ -94,6 +94,8 @@ Since Macie isn’t turned on but you plan on storing data in S3, let’s quickl
 2.	Make sure the top left indicated you are in the **us-west-2 (Oregon)** region.
 3.	Click **Get Started**.
 4.	Check the box under **Permissions**.
+5.	Click **Enable Macie**.
+	*	The IAM roles created and AWS CloudTrail enabled should have checks next to them based on the template’s output.
 
 ### Enable Macie
 
