@@ -4,9 +4,9 @@ In this module you will be configuring all the initial detective and remediation
 
 ### Agenda
 
-1. Review Current Configurations – 5 min
+1. Review your current configurations – 5 min
 2. Run the 1st CloudFormation template – 5 min
-3. Configure the Remaining Detective Controls – 20 min
+3. Configure the remaining Controls – 20 min
 
 ## Review Current Configurations
 
@@ -25,9 +25,9 @@ Before you the run the template please verify whether you already have the follo
 
 To initiate the scenario and configure your environment you will need to run the module 1 CloudFormation template: 
 
-Region| Launch
+Region| Deploy
 ------|-----
-US West 2 (Oregon) | [![Launch Module 1 in us-west-2](../images/launch-stack-button.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=ThreatDetectionWksp-Env-Setup&templateURL=https://s3-us-west-2.amazonaws.com/sa-security-specialist-workshops-us-west-2/01-environment-setup.yml)
+US West 2 (Oregon) | [![Launch Module 1 in us-west-2](../images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=ThreatDetectionWksp-Env-Setup&templateURL=https://s3-us-west-2.amazonaws.com/sa-security-specialist-workshops-us-west-2/01-environment-setup.yml)
 
 ### Launch Instructions
 
