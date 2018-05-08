@@ -20,8 +20,8 @@ Before you migrated the application you saw a webinar about AWS security best pr
 Please use the **us-west-2 (Oregon)** region for this workshop.
 
 ### Modules
-* [1. Environment Build and Configuration](./docs/01-environment-setup.md)
-* [2. Generate Findings](./docs/02-generate-findings.md) 
-* [3. Detection and Remediation](./docs/03-investigate-remediation.md) 
-* [4. Review and Discussion](./docs/04-review-and-dicussion.md)
+1. [Environment Build and Configuration](./docs/01-environment-setup.md)
+2. [Generate Findings](./docs/02-generate-findings.md) 
+3. [Detection and Remediation](./docs/03-investigate-remediation.md) 
+4. [Review and Discussion](./docs/04-review-and-dicussion.md)
 
