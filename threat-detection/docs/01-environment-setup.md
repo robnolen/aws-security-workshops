@@ -86,7 +86,9 @@ The next step is to enable Amazon GuardDuty. Browse to [Amazon GuardDuty](https:
 2.	On the next screen click the **Enable GuardDuty** button.
 3.	That is all that is required to enable GuardDuty. 
 
-### Enable GuardDuty
+### Enable Macie
+
+Since Macie isn’t turned on but you plan on storing data in S3, let’s quickly enable it.
 
 1.	Once you are in the GuardDuty console, Click the **Get Started** button.
 2.	On the next screen click the **Enable GuardDuty** button.
