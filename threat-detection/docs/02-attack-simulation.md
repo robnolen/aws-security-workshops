@@ -27,9 +27,11 @@ This will bring you back to the CloudFormation console. You can refresh the page
 
 ![Stack Complete](../images/02-stack-complete.png)
 
-### Threat Detection and Remediation Presentation
+## Threat Detection and Remediation Presentation
 
-Here is the diagram of the setup after the module 2 CloudFormation stack is created:
+---
+
+Below is a diagram of the setup after the module 2 CloudFormation stack is created:
 
 ![Module 2 Diagram](../images/02-diagram-module2-3.png)
 
