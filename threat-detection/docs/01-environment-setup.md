@@ -96,6 +96,9 @@ Since Macie isn’t turned on but you plan on storing data in S3, let’s quickl
 4.	Check the box under **Permissions**.
 5.	Click **Enable Macie**.
 	*	The IAM roles created and AWS CloudTrail enabled should have checks next to them based on the template’s output.
+6.	Once inside of Macie, click on **Integrations** on the left hand navigation.
+7.	Click on **Services** near the top.
+8.	Select your account (should be the only one) and click **Add** (or **Details** if you already have buckets configured) for Amazon S3.
 
 ### Enable Macie
 
