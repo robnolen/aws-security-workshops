@@ -7,10 +7,14 @@ Unfortunately, due to a misconfiguration in your environment, a hacker has been 
 You’ve received the first alerts from GuardDuty. Now what? Assuming you’re still logged into your account, let’s see where these findings are coming from.
 Since the alert came from GuardDuty, we will check there first.
 
-### Check GuardDuty findings:
+### Check GuardDuty findings
 
 1. Go to [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) in the Amazon Console.
-2. In the navigation pane, you should be on Findings -> Current
+2. In the navigation pane, click on **Findings**.  You should see all the findings below:
+  ![GuardDuty Findings](../images/03-gd-findings.png)
+
+  > Don't panic if you don't see all these. You may just have to wait a little bit longer
+
 3. Do you see these four findings?
   *	Do you see any IP’s performing malicious actions?
   * IP from our custom threat list should show up. Where would you find that?
@@ -19,7 +23,7 @@ Since the alert came from GuardDuty, we will check there first.
 > The SSH Brute Force Finding from an internal IP (High Severity) is a function of our environment and can be ignored.
 Let’s evaluate the intrusion. First, was the brute force successful? 
 
-### Check Inspector Assessment
+### Check Instance Security Configuration and Logs
 
 Following security design best practices you already setup your servers to log CloudWatch. You’ve also setup automated scanning of instances under attack using Inspector. Let’s look at Inspector to see if password authentication is enabled for the instance under attack.
 
