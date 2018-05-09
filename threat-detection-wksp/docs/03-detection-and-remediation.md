@@ -84,27 +84,26 @@ You can see by these findings that an advisory has been using the AWS IAM Role c
 At this point we know how the attacker was able to get into your systems and a general idea of what they did. After reviewing the permissions associated with the IAM Role you realize that it has very permissive policies as it relates to your S3 bucket.  Lets verify what sort of senstive data is in your bucket and take a closer at your Macie Alerts.
 
 1.  Go to the [Amazon Macie](https://mt.us-west-2.macie.aws.amazon.com/) console.
-2.  On the navigation pane to the left, click on **Dashboard**.
-3.  Look through latest alerts.
+2.  Look through latest alerts.
 
     > Are there any critical alerts?
 
     You should see a critical alert that says **S3 Bucket IAM policy grants global read rights**.  Next lets verify what sort of sensitve data exists in that bucket.
 
-4.  On the navigation pane to the left, click **Dashboard**.  You should see the following data classifications:
+3.  Click **Dashboard** in the left navigation.  You should see the following data classifications:
     ![Macie Classification](../images/03-macie-data.png)
 
     > You can slide the risk slider to filter data classifications based on risk levels.
 
-5.  Click the icon under **Critical Assets** for “S3 Objects by PII”
+4.  Click the icon under **Critical Assets** for “S3 Objects by PII”
 
     > Is there any PII in your bucket?
 
 Now you know all of your PII should be encrypted, but what if the attacker removed that encryption? Rather than checking each file in S3, you can create a Macie alert to validate if encryption has been disabled.
 
-6.  On the navigation pane to the left, click on **Settings** and then **Basic Alerts**.
-7.  Click on **Add New**
-8.  Create an alert with the following parameters:
+5.  Click on **Settings** in the left navigation and then **Basic Alerts**.
+6.  Click on **Add New**
+7.  Create an alert with the following parameters:
     * **Alert title**: *Encryption Removed*
     * **Description**: *Evidence of encryption being removed from a bucket*
     * **Category**: *Data Compliance*
@@ -113,16 +112,16 @@ Now you know all of your PII should be encrypted, but what if the attacker remov
     * **Severity**: *Critical*
     
     You can leave the other options at the default settings
-9.  Click **Save**
-10. In the list of alerts find the alert you just created and click on the magnifying glass to the right of the screen to run the alert. 
-11. Review the alert details.
+8.  Click **Save**
+9. In the list of alerts find the alert you just created and click on the magnifying glass to the right of the screen to run the alert. 
+10. Review the alert details.
 
 We now see that a bucket has had encryption removed. In order to find out which bucket, let’s look at the CloudTrail logs we enabled.
 
-12. Go to the [AWS CloudTrail](https://us-west-2.console.aws.amazon.com/cloudtrail/home?region=us-west-2) console
-13. On the navigation pane to the left, click **Event History**.
-14. Filter based on **Event Name and **DeleteBucketEncryption**.
-15. Expand the latest event and click on **View Event** to see the details of the API call.
+11. Go to the [AWS CloudTrail](https://us-west-2.console.aws.amazon.com/cloudtrail/home?region=us-west-2) console
+12. Click **Event History** in the left navigation.
+13. Filter based on **Event Name and **DeleteBucketEncryption**.
+14. Expand the latest event and click on **View Event** to see the details of the API call.
 
     > Which bucket was encryption disabled on?
 
@@ -130,29 +129,22 @@ We now see that a bucket has had encryption removed. In order to find out which 
 
 So at this point we have identified a successful intrusion into our network and specific actions taken against our account. Let’s recap what those are:
 
-1. Brute force SSH Attack against an internet accessible EC2 instance was successful
-2. Malware was put on the EC2 instance and communicated with a known malicious IP address
-3. The IAM credentials for the server were stolen, published to S3, and used to perform reconnaissance against the account
-4. An S3 bucket was made public and encryption was removed - most likely for data exfiltration
-Now that we’ve identified the attacker’s actions we need to stop them from performing any additional activities, restore our systems to their previous configurations, and protect our resources so this can’t happen again. For each of the following vulnerabilities, develop a remediation using AWS native policy and a DevSecOps approach to alerting and remediation during future attacks. (Answers are not shared with Attendees)
-A.>	EC2 Brute Force attack:
-a.	(Answers) Reduce access to only specific IP’s
-i.	Update Security Groups to reduce Port 22 access to MyIP (Manual intervention)
-b.	(Answers) Act upon alert on failed SSH attempts that blocks the IP address automatically (Lambda adds NACL)
-c.	(Answers) Improve username/password combinations (Switch back to key pairs and Run Command)
-B.>	Malware Infection:
-a.	(Answers) Automate GuardDuty finding to NACL blocking (GD findings -> CloudWatch event -> Lambda -> NACL)
-C.>	EC2 Credential Theft:
-a.	(Answers) Rotate keys so the IAM credentials stop being useful (Stop and Start Instance, and TBD)
-b.	(Answers) Change IAM credentials to least privilege (Demonstrate better policy)
-D.>	S3 Bucket Policy
-a.	(Answers) Reestablish access rules (Look at Config)
-b.	(Answers) Change S3 bucket access to only S3 Endpoint (VPC Routing)
-c.	(Answers) Automate unencrypted bucket findings and lockdown (CloudWatch events and Lambda)
-E.>	General Best Practice
-a.	Look at Inspector for findings/remediations
+* A SSH brute force Attack against an internet accessible EC2 instance was successful.
+* Malware was put on the EC2 instance and communicated with a known malicious IP address.
+* The IAM credentials for the server were stolen, published to S3, and used to perform reconnaissance against the account.
+* An S3 bucket was made public and encryption was removed - most likely for data exfiltration.
 
-## Remediate
+Now that we’ve identified the attacker’s actions we need to stop them from performing any additional activities, restore our systems to their previous configurations, and protect our resources so this can’t happen again. For each of the following vulnerabilities, develop a remediation using AWS native policies and a DevSecOps approach to alerting and remediation during future attacks.
+
+What remediations should you put in place:
+
+1.  EC2 Brute Force attack:
+2.	Malware Infection:
+3.  EC2 Credential Theft:
+4.  S3 Bucket Policy
+5.	General Best Practice
+
+## Respond and Remediate
 
 Before we get ahead of ourselves, we must stop any further actions from taking place. This requires removing the foothold in our environment, revoking any active credentials or removing those credentials capabilities, and blocking further actions by the attacker. 
 
@@ -160,14 +152,19 @@ Before we get ahead of ourselves, we must stop any further actions from taking p
 
 Based upon your existing work, you’ve implemented the first step by using the CloudWatch Event rule to trigger the Lambda function to update the NACL for the instance. Let’s look at what changed.
 
-1. In the AWS Management Console go to Config
-2. Click Cancel as Config is already enabled
-3. Click Resources in the left navigation
-4. Select Tag
-5. Enter the following Key Pair
-a.	Name: threat-detection-wksp
+1.  Go to the [AWS Config](https://us-west-2.console.aws.amazon.com/config/home?region=us-west-2) console.
+2.  Click **Get Started**.
+3.  On the Settings page you will see the message below.
+    ![Config Message](../images/03-config-message.png)
+
+    Click the **Click Here** button to proceed with using Config without Config Rules
+
+3.  Click **Resources** in the left navigation.
+4.  Select **Tag** and enter the following Key Pair:
+    * **Name** : **threat-detection-wksp**
+    ![Config Key Pair](../images/03-config-keypair.png)
 6. Click on the Config timeline for the EC2 NetworkAcl
-7. Click on Change
+7. Click on **Change**
 8. Evaluate the change to see the updated NACL
 
 ### Limit Security Group
