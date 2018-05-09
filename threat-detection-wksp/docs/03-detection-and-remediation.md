@@ -49,13 +49,18 @@ Based on the findings you see that password authentication is configured on the 
 5.  Click on the log group **/threat-detection-wksp/var/log/secure**
 6.  If you have multiple log streams, filter using the Instance ID you copied earlier and click on the stream.
 7.  Within the **Filter Events** textbox put the following Filter Pattern: 
+
     ```
     [Mon, day, timestamp, ip, id, msg1= Invalid, msg2 = user, ...]
     ```
+
     > Do you see any failed attempts to log into the instance?
-11. Now replace the Filter with one for successful attempts
-  * For Filter Pattern enter: [Mon, day, timestamp, ip, id, msg1= Accepted, msg2 = password, ...]
-  * Do you see any successful attempts to log into the instance from the same IP or usernames?
+8.  Now replace the Filter with one for successful attempts:
+    ```
+    [Mon, day, timestamp, ip, id, msg1= Accepted, msg2 = password, ...]
+    ```
+
+    > Do you see any successful attempts to log into the instance from the same IP or usernames?
 12. If there is a match then you know the SSH Brute Force attack was successful
 13. Go back to the GuardDuty console
 14. Does it look like we are early in the attack (just intrusion), or has the intruder started performing malicious actions?
