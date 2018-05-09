@@ -94,6 +94,8 @@ At this point we know how the attacker was able to get into your systems and a g
 4.  On the navigation pane to the left, click **Dashboard**.  You should see the following data classifications:
     ![Macie Classification](../images/03-macie-data.png)
 
+    > You can slide the risk slider to filter data classifications based on risk levels.
+
 5. Click the icon under “Critical Assets” for “S3 Objects by PII”
   * Is there any PII in your bucket?
 
