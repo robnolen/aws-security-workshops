@@ -14,12 +14,18 @@ Since the alert came from GuardDuty, we will check there first.
     ![GuardDuty Findings](../images/03-gd-findings.png)
 
     > Don't panic if you don't see all these. The findings generated in Module 2 will take at least 20 minutes to show up in GuardDuty.
-3.  The high severity (![High Severity](../images/03-high-severity.png)) **UnauthorizedAccess:EC2/SSHBruteForce** finding is a function of our environment and can be archived with the steps below.
+3.  The high severity ![High Severity](../images/03-high-severity.png) **UnauthorizedAccess:EC2/SSHBruteForce** finding is a function of our environment and can be archived with the steps below.
     * Click on the **Finding**.
     * Click on **Actions**.
     * Select **Archive**.  If you're interested in seeing all of your findings (current and archived) you can click on the filter icon to the left of *Add filter criteria* to toggle them in the console.
     * After archiving you should have four findings that are associated with this workshop.
 
+4.  Now let's examine the low severity ![Low Severity](../images/03-low-severity.png) **UnauthorizedAccess:EC2/SSHBruteForce** finding since it was the first one to be detected.
+    * Click on the finding.
+    * 
+
+Now let’s examine the Lambda function to see what it does. Open the Lambda console
+Click on the function named threat-detection-wksp-remediation-NACL
 4.  After archiving you should have four findings that are associated with this workshop.
   *	Do you see any IP’s performing malicious actions?
   * IP from our custom threat list should show up. Where would you find that?
