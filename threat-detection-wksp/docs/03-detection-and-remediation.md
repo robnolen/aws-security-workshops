@@ -17,15 +17,13 @@ Since the alert came from GuardDuty, we will check there first.
 3.  The high severity (![High Severity](../images/03-high-severity.png)) **UnauthorizedAccess:EC2/SSHBruteForce** finding is a function of our environment and can be archived with the steps below.
     * Click on the **Finding**.
     * Click on **Actions**.
-    * Select **Archive**.  If you're interested in seeing all your findings (current and archived) you can click on the filter icon to the left *Add filter criteria* to toggle them.
+    * Select **Archive**.  If you're interested in seeing all of your findings (current and archived) you can click on the filter icon to the left of *Add filter criteria* to toggle them in the console.
+    * After archiving you should have four findings that are associated with this workshop.
 
-3. Do you see these four findings?
+4.  After archiving you should have four findings that are associated with this workshop.
   *	Do you see any IP’s performing malicious actions?
   * IP from our custom threat list should show up. Where would you find that?
   * Do you see any inbound brute force attacks? Can you tell if it was successful?
-
-> The SSH Brute Force Finding from an internal IP (High Severity) is a function of our environment and can be ignored.
-Let’s evaluate the intrusion. First, was the brute force successful? 
 
 ### Check Instance Security Configuration and Logs
 
