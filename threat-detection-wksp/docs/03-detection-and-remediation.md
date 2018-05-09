@@ -89,7 +89,7 @@ At this point we know how the attacker was able to get into your systems and a g
 
     > Are there any critical alerts?
 
-You should see a critical alert that says **S3 Bucket IAM policy grants global read rights**.  Next lets verify what sort of sensitve data exists in that bucket.
+    You should see a critical alert that says **S3 Bucket IAM policy grants global read rights**.  Next lets verify what sort of sensitve data exists in that bucket.
 
 4.  On the navigation pane to the left, click **Dashboard**.  You should see the following data classifications:
     ![Macie Classification](../images/03-macie-data.png)
