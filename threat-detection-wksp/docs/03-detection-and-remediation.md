@@ -104,7 +104,7 @@ Now you know all of your PII should be encrypted, but what if the attacker remov
 
 6.  On the navigation pane to the left, click on **Settings** and then **Basic Alerts**.
 7.  Click on **Add New**
-21. Create an alert with the following parameters:
+8.  Create an alert with the following parameters:
     * **Alert title**: *Encryption Removed*
     * **Description**: *Evidence of encryption being removed from a bucket*
     * **Category**: *Data Compliance*
@@ -113,17 +113,18 @@ Now you know all of your PII should be encrypted, but what if the attacker remov
     * **Severity**: *Critical*
     
     You can leave the other options at the default settings
-22. Click **Save**
-23. In the list of alerts find the alert you just created and click on the magnifying glass to the right of the screen to run the alert. 
-24. Review the alert details
+9.  Click **Save**
+10. In the list of alerts find the alert you just created and click on the magnifying glass to the right of the screen to run the alert. 
+11. Review the alert details.
 
 We now see that a bucket has had encryption removed. In order to find out which bucket, let’s look at the CloudTrail logs we enabled.
 
-25. Going back to the AWS Console go to the CloudTrail console
-26. Check to see if the “DeleteBucketEncryption” Event shows up in the Recent Events on the Dashboard
-27. Click on View Event to see the details of the call
-  * Which bucket was encryption disabled on?
-  * Why would it not be in the Dashboard (yet)?
+12. Go to the [AWS CloudTrail](https://us-west-2.console.aws.amazon.com/cloudtrail/home?region=us-west-2) console
+13. On the navigation pane to the left, click **Event History**.
+14. Filter based on **Event Name and **DeleteBucketEncryption**.
+15. Expand the latest event and click on **View Event** to see the details of the API call.
+
+    > Which bucket was encryption disabled on?
 
 ## Stop and Evaluate
 
