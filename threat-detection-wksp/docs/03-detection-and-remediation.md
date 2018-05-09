@@ -106,13 +106,14 @@ Now you know all of your PII should be encrypted, but what if the attacker remov
 7.  Click on **Add New**
 21. Create an alert with the following parameters:
     * **Alert title**: *Encryption Removed*
-    * *Description*: **Evidence of encryption being removed from a bucket**
-    * Category: “Data Compliance”
-    * Query: eventNameErrorCode.key::DeleteBucketEncryption
-    * Index: “CloudTrail Data”
-    * Severity: “Critical”
-    * You can leave the other options at the default settings
-22. Click Save
+    * **Description**: *Evidence of encryption being removed from a bucket*
+    * **Category**: *Data Compliance*
+    * **Query**: *eventNameErrorCode.key::DeleteBucketEncryption*
+    * **Index**: *CloudTrail Data*
+    * **Severity**: *Critical*
+    
+    You can leave the other options at the default settings
+22. Click **Save**
 23. In the list of alerts find the alert you just created and click on the magnifying glass to the right of the screen to run the alert. 
 24. Review the alert details
 
