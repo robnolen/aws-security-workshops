@@ -182,13 +182,15 @@ Now we’ve stopped the active session from the attacker. Next, we will stop the
 
 5. Modify the SSH inbound rule to only allow access from your current IP Address (http://www.whatsmyip.org/)
 
-### Revoke All Sessions
+### Revoke the IAM Role Active Sessions
 
-Now that the attacker can’t SSH into the compromised machine, we need to rotate the keys and disable their permissions. Before we do that though, let’s revoke all accesses held by the previous credentials.
-14. Browse to the IAM console
-15. Click Roles and find the role threat-detection-wksp-compromised-ec2 (this is the role attached to the compromised instance)
-16. Click on the Revoke sessions tab
-17. Click on Revoke active sessions, click the check box and then click Revoke active sessions. (Ca)
+Now that the attacker can’t SSH into the compromised machine, we need to rotate the AWS IAM credentials and disable their permissions. Before we do that though, let’s revoke all accesses held by the previous credentials.
+
+1.  Browse to the [AWS IAM](https://console.aws.amazon.com/iam/home?region=us-west-2) console
+2.  Click **Roles** and the **threat-detection-wksp-compromised-ec2** (this is the role attached to the compromised instance) Role.
+3.  Click on the **Revoke sessions** tab.
+4.  Click on **Revoke active sessions**.
+5.  Click the acknowledgement **check box** and then click **Revoke active sessions**. 
 
 ### Restart Instance to Rotate Credentials
 
