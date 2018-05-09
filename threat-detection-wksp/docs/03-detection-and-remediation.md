@@ -15,9 +15,9 @@ Since the alert came from GuardDuty, we will check there first.
 
     > Don't panic if you don't see all these. The findings generated in Module 2 will take at least 20 minutes to show up in GuardDuty.
 3.  The high severity (![High Severity](../images/03-high-severity.png)) **UnauthorizedAccess:EC2/SSHBruteForce** finding is a function of our environment and can be archived with the steps below.
-  * Click on the **Finding**.
-  * Click on **Actions**.
-  * Select **Archive**.  If you're interested in seeing all your findings (current and archived) you can click on the filter icon to the left *Add filter criteria* to toggle them.
+    * Click on the **Finding**.
+    * Click on **Actions**.
+    * Select **Archive**.  If you're interested in seeing all your findings (current and archived) you can click on the filter icon to the left *Add filter criteria* to toggle them.
 
 3. Do you see these four findings?
   *	Do you see any IP’s performing malicious actions?
