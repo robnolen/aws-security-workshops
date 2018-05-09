@@ -76,17 +76,19 @@ View the following GuardDuty findings and take a note of the Role:
 * Recon:IAMUser/MaliciousIPCaller.Custom
 * UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom
 * UnauthorizedAccess:EC2/MaliciousIPCaller.Custom
+
+### Data Check
  
 At this point we know how the attacker was able to get into the system and what they did. But what about the data in the S3 bucket? Did they do anything to that? Have you received any alerts from Macie about data in your buckets?
 
-15. Go to the Macie console
-16. The alerts show up immediately
+1. Go to the Macie console
+2. The alerts show up immediately
   * Were any actions taken in the last 30 minutes?
   * Did Macie find any sensitive data in our buckets we should be worried about?
-17. Click on “Dashboard”
+3. Click on “Dashboard”
   * What types of files are at high risk (>5)?
   * Are access keys found in your bucket?
-18. Click the icon under “Critical Assets” for “S3 Objects by PII”
+4. Click the icon under “Critical Assets” for “S3 Objects by PII”
   * Is there any PII in your bucket?
 
 Now you know all of your PII should be encrypted, but what if the attacker removed that encryption? Rather than checking each file in S3, you can create a Macie alert to validate if encryption has been disabled.
@@ -113,7 +115,7 @@ We now see that a bucket has had encryption removed. In order to find out which 
   * Which bucket was encryption disabled on?
   * Why would it not be in the Dashboard (yet)?
 
-Stop and Evaluate
+## Stop and Evaluate
 
 So at this point we have identified a successful intrusion into our network and specific actions taken against our account. Let’s recap what those are:
 
@@ -138,7 +140,9 @@ b.	(Answers) Change S3 bucket access to only S3 Endpoint (VPC Routing)
 c.	(Answers) Automate unencrypted bucket findings and lockdown (CloudWatch events and Lambda)
 E.>	General Best Practice
 a.	Look at Inspector for findings/remediations
-Remediation Actions
+
+## Remediation Actions
+
 Before we get ahead of ourselves, we must stop any further actions from taking place. This requires removing the foothold in our environment, revoking any active credentials or removing those credentials capabilities, and blocking further actions by the attacker. Based upon your existing work, you’ve implemented the first step by using the CloudWatch Event rule to trigger the Lambda function to update the NACL for the instance. Let’s look at what changed.
 1. In the AWS Management Console go to Config
 2. Click Cancel as Config is already enabled
