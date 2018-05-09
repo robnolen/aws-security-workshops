@@ -163,21 +163,24 @@ Based upon your existing work, you’ve implemented the first step by using the 
 4.  Select **Tag** and enter **Name** and **threat-detection-wksp-compromised** for the key pair like shown below:
     ![Config Key Pair](../images/03-config-keypair.png)
 6. Click on the Config timeline for the EC2 NetworkAcl.
-7. Click on **Change**
-8. Evaluate the change to see the updated NACL
+7. Click on **Change**.
+8. Evaluate the change to the updated NACL.
 
 ### Limit Security Group
 
 Now we’ve stopped the active session from the attacker. Next, we will stop the attacker, or anyone else, from coming from a different IP. 
 
-9. In the AWS Management Console go to EC2 Console
-10. Find the running instances and find the active, compromised instance
-a.	You can do this by using the instance id you wrote down from the GuardDuty findings earlier
-11. On the bottom, find and click on the Security Group for the compromised instance
-12. Click on the Security Group and review the inbound rules
-a.	Notice the large number of IP’s that can log in
-13. Modify the inbound rule to only allow access from your current IP Address (Aa)
-a.	How can you set the IP address without explicitly knowing your IP?
+1.  Go to the [Amazon EC2](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2) Console.
+2.  Find the running instances with the name **threat-detection-wksp: Compromised Instance**.
+    
+    > You can also filter by the Instance ID you captured earlier.
+
+3.  Under the **Description** tab, click on the Security Group for the compromised instance.
+4.  View the rules under the **Inbound** tab.
+    
+    > Notice the large number of IP’s that can log in?
+
+5. Modify the SSH inbound rule to only allow access from your current IP Address (http://www.whatsmyip.org/)
 
 ### Revoke All Sessions
 
@@ -257,4 +260,4 @@ a.	Make note of the changes to Permissions
 
 With the configuration reestablished we will focus on alerts and automated remediation should the attacker try again. In Module 1 we put some of this in place. This is where the CloudWatch alerts tied to Lambda functions come into play.
 
-After you have remediated all incident and further hardened your environment, you can proceed to the next module: **[Module 4 - Review and Discussion](../docs/04-review-and-discussion.md)**.
+After you have remediated the incident and further hardened your environment, you can proceed to the next module: **[Module 4 - Review and Discussion](../docs/04-review-and-discussion.md)**.
