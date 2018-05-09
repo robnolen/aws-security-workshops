@@ -43,14 +43,14 @@ Following security design best practices you already setup your servers to log t
 
     > What is CVE-2017-5754?
 
-Now we’ve determined that the instance is more susceptible to a SSH brute force attack. Let’s look at the CloudWatch logs and create a metric to see if there are any successful attempts.
+Based on the findings you see that password authentication is configured on the instance with no password complexity restrictions which means the instance is more susceptible to a SSH brute force attack. Let’s look at the CloudWatch logs and create a metric to see if there are any successful attempts.
 
-7. Go to the CloudWatch logs
-8. Choose Logs in the navigation pane, click on the log group “/threat-detection-wksp/var/log/secure”
-9. Click on the latest log stream
-10. Where it says Filter Events put the following Filter Pattern
-  * [Mon, day, timestamp, ip, id, msg1= Invalid, msg2 = user, ...]
-  * Do you see any failed attempts to log into the instance?
+4.  Go to the [CloudWatch logs](https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2#logs:).
+5.  Click on the log group **/threat-detection-wksp/var/log/secure**
+6.  If you have multiple log streams, filter using the Instance ID you copied earlier and click on the stream.
+7.  Within the **Filter Events** textbox put the following Filter Pattern: **[Mon, day, timestamp, ip, id, msg1= Invalid, msg2 = user, ...]**
+
+  > Do you see any failed attempts to log into the instance?
 11. Now replace the Filter with one for successful attempts
   * For Filter Pattern enter: [Mon, day, timestamp, ip, id, msg1= Accepted, msg2 = password, ...]
   * Do you see any successful attempts to log into the instance from the same IP or usernames?
