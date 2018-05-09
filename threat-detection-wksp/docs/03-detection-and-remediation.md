@@ -7,7 +7,7 @@ Unfortunately, due to a misconfiguration in your environment, a hacker has been 
 You’ve received the first alerts from GuardDuty. Now what? Assuming you’re still logged into your account, let’s see where these findings are coming from.
 Since the alert came from GuardDuty, we will check there first.
 
-### Check GuardDuty findings
+### Check GuardDuty Findings
 
 1.  Go to [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) in the Amazon Console.
 2.  In the navigation pane, click on **Findings**.  You should see all the findings below:
@@ -65,15 +65,17 @@ Based on the findings you see that password authentication is configured on the 
 
     You should see a match which indicates that the SSH Brute Force attack was successful.
 
-Now that you verified that your instance was compromised, go back to the [Amazon GuardDuty]([Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) console and view the other findings.
+
+### Check the Remaining GuardDuty Findings
+
+Now that you verified that your instance was compromised, go back to the [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) console and view the other findings.
 
 > Does it look like we are early in the attack (just intrusion), or has the intruder started performing malicious actions?
 
-
-13. Go back to the GuardDuty console
-14. Does it look like we are early in the attack (just intrusion), or has the intruder started performing malicious actions?
-  * Account Reconnaissance
-  * Malicious IP Communication
+View the following GuardDuty findings and take a note of the Role:
+* Recon:IAMUser/MaliciousIPCaller.Custom
+* UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom
+* UnauthorizedAccess:EC2/MaliciousIPCaller.Custom
  
 At this point we know how the attacker was able to get into the system and what they did. But what about the data in the S3 bucket? Did they do anything to that? Have you received any alerts from Macie about data in your buckets?
 
