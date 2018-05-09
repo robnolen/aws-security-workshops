@@ -13,7 +13,7 @@ Since the alert came from GuardDuty, we will check there first.
 2. In the navigation pane, click on **Findings**.  You should see all the findings below:
   ![GuardDuty Findings](../images/03-gd-findings.png)
 
-  > Don't panic if you don't see all these. You may just have to wait a little bit longer
+    > Don't panic if you don't see all these. You may just have to wait a little bit longer
 
 3. Do you see these four findings?
   *	Do you see any IP’s performing malicious actions?
