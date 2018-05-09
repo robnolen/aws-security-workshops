@@ -22,7 +22,7 @@ Since the alert came from GuardDuty, we will check there first.
 4.  Now let's examine the low severity ![Low Severity](../images/03-low-severity.png) **UnauthorizedAccess:EC2/SSHBruteForce** finding since it was the first one to be detected.
     * Click on the **Finding**.
     * Review the finding details and affected resources.
-      * Copy down the **GuardDuty Finding ID** and the **Instance ID**.
+    * Copy down the **GuardDuty Finding ID** and the **Instance ID**.
 
       > Was the brute force attack successful?
 
@@ -36,12 +36,14 @@ Following security design best practices you already setup your servers to log t
 2.  Click on **Findings** in the left navigation.
 3.  You should see the four medium severity findings as shown below:
     ![Inspector Findings](../images/03-inspector-findings.png)
-    * If you have run multiple Inspector scans outside of this workshop you can filter down the findings results by using the **GuardDuty Finding ID** you copied earlier.  The Inspector template that was used for the scan includes this ID in the name.
+    * If you have run multiple Inspector scans outside of this workshop you can filter down the findings by using the **GuardDuty Finding ID** (as shown above) you copied earlier.  The Inspector template that was used for the scan includes this ID in the name.
+
+    > Which Inspector [rule packages](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_rule-packages.html) were used for this scan?
 3. FIndings | Filter | Four | CVE Package | Best Practices Package
 3. Evaluate each finding to determine if the instance is configured to support password authentication over SSH
   * Write down the instance ID of the compromised instance. You will use this later
 
-Now we’ve determined that the instance is more susceptible to a brute force SSH attack. Let’s look at the CloudWatch logs and create a metric to see if there are any successful attempts.
+Now we’ve determined that the instance is more susceptible to a SSH brute force attack. Let’s look at the CloudWatch logs and create a metric to see if there are any successful attempts.
 
 7. Go to the CloudWatch logs
 8. Choose Logs in the navigation pane, click on the log group “/threat-detection-wksp/var/log/secure”
