@@ -68,14 +68,16 @@ Based on the findings you see that password authentication is configured on the 
 
 ### Check the Remaining GuardDuty Findings
 
-Now that you verified that your instance was compromised, go back to the [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) console and view the other findings.
+Now that you have verified that your instance was compromised, go back to the [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) console and view the other findings.
 
 > Does it look like we are early in the attack (just intrusion), or has the intruder started performing malicious actions?
 
-View the following GuardDuty findings and take a note of the Role:
-* Recon:IAMUser/MaliciousIPCaller.Custom
-* UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom
-* UnauthorizedAccess:EC2/MaliciousIPCaller.Custom
+View the following GuardDuty findings and take a note of the resources involved:
+* **Recon:IAMUser/MaliciousIPCaller.Custom**
+* **UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom**
+* **UnauthorizedAccess:EC2/MaliciousIPCaller.Custom**
+
+You can see by these findings that an advisory has been using the AWS IAM Role credentials associated with the instance and the instance has been communicating with an IP on a custom threat list.
 
 ### Check the Sensitive Data
  
@@ -141,11 +143,11 @@ c.	(Answers) Automate unencrypted bucket findings and lockdown (CloudWatch event
 E.>	General Best Practice
 a.	Look at Inspector for findings/remediations
 
-## Remediation Actions
+## Remediate
 
 Before we get ahead of ourselves, we must stop any further actions from taking place. This requires removing the foothold in our environment, revoking any active credentials or removing those credentials capabilities, and blocking further actions by the attacker. 
 
-### Verify our Automated Remediation
+### Verify your Automated Remediation
 
 Based upon your existing work, you’ve implemented the first step by using the CloudWatch Event rule to trigger the Lambda function to update the NACL for the instance. Let’s look at what changed.
 
