@@ -27,9 +27,9 @@ Before you the run the template please verify whether you already have the follo
 
 To initiate the scenario and configure your environment you will need to run the module 1 CloudFormation template: 
 
-	Region| Deploy
-	------|-----
-	US West 2 (Oregon) | [![Deploy Module 1 in us-west-2](../images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=ThreatDetectionWksp-Env-Setup&templateURL=https://s3-us-west-2.amazonaws.com/sa-security-specialist-workshops-us-west-2/01-environment-setup.yml)
+Region| Deploy
+------|-----
+US West 2 (Oregon) | [![Deploy Module 1 in us-west-2](../images/deploy-to-aws.png)](https://console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks/new?stackName=ThreatDetectionWksp-Env-Setup&templateURL=https://s3-us-west-2.amazonaws.com/sa-security-specialist-workshops-us-west-2/01-environment-setup.yml)
 
 1. Click the **Deploy to AWS** button above.  This will automatically take you to the console to run the template.  The file for the CloudFormation template (**01-environment-setup.yml**) is also available in the [templates](../templates/) folder if you'd like to download it and manually upload it to create a stack.
 
