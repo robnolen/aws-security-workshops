@@ -48,7 +48,9 @@ Based on the findings you see that password authentication is configured on the 
 4.  Go to the [CloudWatch logs](https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2#logs:).
 5.  Click on the log group **/threat-detection-wksp/var/log/secure**
 6.  If you have multiple log streams, filter using the Instance ID you copied earlier and click on the stream.
-7.  Within the **Filter Events** textbox put the following Filter Pattern: **[Mon, day, timestamp, ip, id, msg1= Invalid, msg2 = user, ...]**
+7.  Within the **Filter Events** textbox put the following Filter Pattern: 
+    
+    **[Mon, day, timestamp, ip, id, msg1= Invalid, msg2 = user, ...]**
 
   > Do you see any failed attempts to log into the instance?
 11. Now replace the Filter with one for successful attempts
