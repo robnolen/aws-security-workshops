@@ -96,8 +96,10 @@ At this point we know how the attacker was able to get into your systems and a g
 
     > You can slide the risk slider to filter data classifications based on risk levels.
 
-5. Click the icon under “Critical Assets” for “S3 Objects by PII”
-  * Is there any PII in your bucket?
+5.  Click the icon under **Critical Assets** for “S3 Objects by PII”
+    ![Macie PII](../images/03-macie-pii.png)
+
+    > Is there any PII in your bucket?
 
 Now you know all of your PII should be encrypted, but what if the attacker removed that encryption? Rather than checking each file in S3, you can create a Macie alert to validate if encryption has been disabled.
 
