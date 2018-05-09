@@ -195,21 +195,28 @@ Now that the attacker can’t SSH into the compromised machine, we need to rotat
 ### Restart Instance to Rotate Credentials
 
 Now that those credentials won’t work we need to rotate the existing server credentials. In order to change the IAM credentials on the server, we must Stop and Start the server. A simple reboot will not change the keys.
-18. Go back to the EC2 Console
-19. To see the keys currently active on the instance, click on Run Command on the left hand navigation
-20. Click “Run a command”
-21. Select “AWS-RunShellScript”. The instance in your account should already be selected
-22. In “Commands” type: curl http://169.254.169.254/latest/meta-data/iam/security-credentials/threat-detection-wksp-compromised-ec2
-23. Click Run
-24. Back at the console click Output on the bottom of the screen once the Status is “Success”.
-25. Click View Output
-26. Make note of the “AccessKeyId” and “SecretAccessKey”
-27. In the EC2 console Stop the Instance.
-28. Wait for the Instance State to say “Stopped”
-29. Start the instance. (Ca)
-30. Repeat steps 18-25
-a.	Notice the keys are different.
-b.	If you want, try again after rebooting the server. The keys will stay the same.
+
+1.  Go back to the [Amazon EC2](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2) console.
+2.  To see the keys currently active on the instance, click on **Run Command** on the left hand navigation.
+3.  Click **Run a command**.
+4.  Select **AWS-RunShellScript**. The instance in your account should already be selected.
+5.  In **Commands** type:
+
+    ```
+    curl http://169.254.169.254/latest/meta-data/iam/security-credentials/threat-detection-wksp-compromised-ec2
+    ```
+
+6.  Click **Run**.
+7.  Back at the console click **Output** on the bottom of the screen once the Status is **Success**.
+8.  Click View Output
+9.  Make note of the **AccessKeyId** and **SecretAccessKey**
+10. In the EC2 console **Stop** the Instance.
+11. Wait for the Instance State to say **Stopped** and then **Start** the instance.
+12. Repeat the Run Command steps to retrieve the credentials again.
+
+    > Notice the keys are different.
+
+    > If you want, try again after rebooting the server. The keys will stay the same.
 
 Clearing the suspected malware is out of scope for now, but we will establish alerts for this later. This is a good use case for auto-scaling groups and golden-image AMI’s, but that is out of scope for this workshop. 
 
