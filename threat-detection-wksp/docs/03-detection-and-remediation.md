@@ -36,8 +36,8 @@ Following security design best practices you already setup your servers to log t
 2.  Click on **Findings** in the left navigation.
 3.  You should see the four medium severity findings as shown below:
     ![Inspector Findings](../images/03-inspector-findings.png)
-    * If you have run multiple Inspector scans outside of this workshop you can filter down the findings by using the **GuardDuty Finding ID** (as shown above) you copied earlier.  The Inspector template that was used for the scan includes this ID in the name.
     
+    If you have run multiple Inspector scans outside of this workshop you can filter down the findings by using the **GuardDuty Finding ID** (as shown above) you copied earlier.  The Inspector template that was used for the scan includes this ID in the name.
 
     > Which Inspector [rule packages](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_rule-packages.html) were used for this scan?
 
