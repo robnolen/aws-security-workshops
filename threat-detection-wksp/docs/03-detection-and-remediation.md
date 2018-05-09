@@ -97,22 +97,21 @@ At this point we know how the attacker was able to get into your systems and a g
     > You can slide the risk slider to filter data classifications based on risk levels.
 
 5.  Click the icon under **Critical Assets** for “S3 Objects by PII”
-    ![Macie PII](../images/03-macie-pii.png)
 
     > Is there any PII in your bucket?
 
 Now you know all of your PII should be encrypted, but what if the attacker removed that encryption? Rather than checking each file in S3, you can create a Macie alert to validate if encryption has been disabled.
 
-19. Click on Settings and then Basic Alerts
-20. Click on Add New
+6.  On the navigation pane to the left, click on **Settings** and then **Basic Alerts**.
+7.  Click on **Add New**
 21. Create an alert with the following parameters:
-  * Alert title: “Encryption Removed”
-  * Description: “Evidence of encryption being removed from a bucket”
-  * Category: “Data Compliance”
-  * Query: eventNameErrorCode.key::DeleteBucketEncryption
-  * Index: “CloudTrail Data”
-  * Severity: “Critical”
-  * You can leave the other options at the default settings
+    * **Alert title**: *Encryption Removed*
+    * *Description*: **Evidence of encryption being removed from a bucket**
+    * Category: “Data Compliance”
+    * Query: eventNameErrorCode.key::DeleteBucketEncryption
+    * Index: “CloudTrail Data”
+    * Severity: “Critical”
+    * You can leave the other options at the default settings
 22. Click Save
 23. In the list of alerts find the alert you just created and click on the magnifying glass to the right of the screen to run the alert. 
 24. Review the alert details
