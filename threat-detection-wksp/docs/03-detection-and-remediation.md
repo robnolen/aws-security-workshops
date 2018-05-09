@@ -77,7 +77,7 @@ View the following GuardDuty findings and take a note of the Role:
 * UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom
 * UnauthorizedAccess:EC2/MaliciousIPCaller.Custom
 
-### Data Check
+### Check the Sensitive Data
  
 At this point we know how the attacker was able to get into the system and what they did. But what about the data in the S3 bucket? Did they do anything to that? Have you received any alerts from Macie about data in your buckets?
 
@@ -143,7 +143,12 @@ a.	Look at Inspector for findings/remediations
 
 ## Remediation Actions
 
-Before we get ahead of ourselves, we must stop any further actions from taking place. This requires removing the foothold in our environment, revoking any active credentials or removing those credentials capabilities, and blocking further actions by the attacker. Based upon your existing work, you’ve implemented the first step by using the CloudWatch Event rule to trigger the Lambda function to update the NACL for the instance. Let’s look at what changed.
+Before we get ahead of ourselves, we must stop any further actions from taking place. This requires removing the foothold in our environment, revoking any active credentials or removing those credentials capabilities, and blocking further actions by the attacker. 
+
+### Verify our Automated Remediation
+
+Based upon your existing work, you’ve implemented the first step by using the CloudWatch Event rule to trigger the Lambda function to update the NACL for the instance. Let’s look at what changed.
+
 1. In the AWS Management Console go to Config
 2. Click Cancel as Config is already enabled
 3. Click Resources in the left navigation
@@ -236,18 +241,3 @@ a.	Notice each Rule creates an alert or executes a Lambda
 52. Go to the Lambda service from the Services drop down
 53. Review the existing lambda functions
 a.	You can examine the Lambda functions at your leisure to see how they handle events
-
-There are additional protections you can put in place. Look at these following actions and see how you would implement them.
-
-•	Update IAM Policy to have restrictive policy
-•	Create Config rule to alert to any changes to IAM policy (Cb)
-•	Create Lambda function for setting Bucket Encryption
-o	Input is the Basic Alert you created
-o	Lambda looks up bucket name in CloudTrail
-o	Runs command to add Bucket encryption using default AES if encryption is not there
-•	Create CloudWatch alert to push to Lambda on Macie finding of Encryption removed (Dc)
-o	If I change bucket encryption do I see a S3 object encryption change {CopyObject call}
-•	Check for any other issues using Inspector
-o	Evaluate findings created by Lambda (Ea)
-o	Use Run command to delete hacked User
-o	Use Run command to change authentication for user to keypair (Ac)
