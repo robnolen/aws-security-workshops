@@ -50,7 +50,7 @@ Based on the findings you see that password authentication is configured on the 
 6.  If you have multiple log streams, filter using the Instance ID you copied earlier and click on the stream.
 7.  Within the **Filter Events** textbox put the following Filter Pattern: 
     ```
-    **[Mon, day, timestamp, ip, id, msg1= Invalid, msg2 = user, ...]**
+    [Mon, day, timestamp, ip, id, msg1= Invalid, msg2 = user, ...]
     ```
     > Do you see any failed attempts to log into the instance?
 11. Now replace the Filter with one for successful attempts
