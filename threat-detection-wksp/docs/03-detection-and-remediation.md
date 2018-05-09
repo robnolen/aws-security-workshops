@@ -24,9 +24,9 @@ Since the alert came from GuardDuty, we will check there first.
     * Click on the **Finding**.
     * Review the finding details and affected resources.
 
-    > Was the brute force attack successful?
+      > Was the brute force attack successful?
 
-      Are any of the other findings related to the brute force finding?
+      > Are any of the other findings related to the brute force finding?
 
 Now let’s examine the Lambda function to see what it does. Open the Lambda console
 Click on the function named threat-detection-wksp-remediation-NACL
