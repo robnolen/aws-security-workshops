@@ -9,7 +9,7 @@ Since the alert came from GuardDuty, we will check there first.
 
 ### Check GuardDuty Findings
 
-1.  Go to [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) in the Amazon Console.
+1.  Go to the [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) console.
 2.  In the navigation pane, click on **Findings**.  You should see all the findings below:
     ![GuardDuty Findings](../images/03-gd-findings.png)
 
@@ -45,7 +45,7 @@ Following security design best practices you already setup your servers to log t
 
 Based on the findings you see that password authentication is configured on the instance with no password complexity restrictions which means the instance is more susceptible to a SSH brute force attack. Let’s look at the CloudWatch logs and create a metric to see if there are any successful attempts.
 
-4.  Go to the [CloudWatch logs](https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2#logs:).
+4.  Go to [CloudWatch logs](https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2#logs:).
 5.  Click on the log group **/threat-detection-wksp/var/log/secure**
 6.  If you have multiple log streams, filter using the Instance ID you copied earlier and click on the stream.
 7.  Within the **Filter Events** textbox put the following Filter Pattern: 
@@ -77,20 +77,24 @@ View the following GuardDuty findings and take a note of the resources involved:
 * **UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom**
 * **UnauthorizedAccess:EC2/MaliciousIPCaller.Custom**
 
-You can see by these findings that an advisory has been using the AWS IAM Role credentials associated with the instance and the instance has been communicating with an IP on a custom threat list.
+You can see by these findings that an advisory has been using the AWS IAM Role credentials associated with the compromised instance and the instance has been communicating with an IP on a custom threat list.
 
-### Check the Sensitive Data
- 
-At this point we know how the attacker was able to get into the system and what they did. But what about the data in the S3 bucket? Did they do anything to that? Have you received any alerts from Macie about data in your buckets?
+### Check if Sensitive Data was Involved
 
-1. Go to the Macie console
-2. The alerts show up immediately
-  * Were any actions taken in the last 30 minutes?
-  * Did Macie find any sensitive data in our buckets we should be worried about?
-3. Click on “Dashboard”
-  * What types of files are at high risk (>5)?
-  * Are access keys found in your bucket?
-4. Click the icon under “Critical Assets” for “S3 Objects by PII”
+At this point we know how the attacker was able to get into your systems and a general idea of what they did. After reviewing the permissions associated with the IAM Role you realize that it has very permissive policies as it relates to your S3 bucket.  Lets verify what sort of senstive data is in your bucket and take a closer at your Macie Alerts.
+
+1.  Go to the [Amazon Macie](https://mt.us-west-2.macie.aws.amazon.com/) console.
+2.  On the navigation pane to the left, click on **Dashboard**.
+3.  Look through latest alerts.
+
+    > Are there any critical alerts?
+
+You should see a critical alert that says **S3 Bucket IAM policy grants global read rights**.  Next lets verify what sort of sensitve data exists in that bucket.
+
+4.  On the navigation pane to the left, click **Dashboard**.  You should see the following data classifications:
+    ![Macie Classification](../images/03-macie-data.png)
+
+5. Click the icon under “Critical Assets” for “S3 Objects by PII”
   * Is there any PII in your bucket?
 
 Now you know all of your PII should be encrypted, but what if the attacker removed that encryption? Rather than checking each file in S3, you can create a Macie alert to validate if encryption has been disabled.
