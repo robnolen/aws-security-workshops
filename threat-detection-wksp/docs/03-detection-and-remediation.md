@@ -158,7 +158,11 @@ a.	Name: threat-detection-wksp
 6. Click on the Config timeline for the EC2 NetworkAcl
 7. Click on Change
 8. Evaluate the change to see the updated NACL
+
+### Limit Security Group
+
 Now we’ve stopped the active session from the attacker. Next, we will stop the attacker, or anyone else, from coming from a different IP. 
+
 9. In the AWS Management Console go to EC2 Console
 10. Find the running instances and find the active, compromised instance
 a.	You can do this by using the instance id you wrote down from the GuardDuty findings earlier
@@ -167,11 +171,17 @@ a.	You can do this by using the instance id you wrote down from the GuardDuty fi
 a.	Notice the large number of IP’s that can log in
 13. Modify the inbound rule to only allow access from your current IP Address (Aa)
 a.	How can you set the IP address without explicitly knowing your IP?
+
+### Revoke All Sessions
+
 Now that the attacker can’t SSH into the compromised machine, we need to rotate the keys and disable their permissions. Before we do that though, let’s revoke all accesses held by the previous credentials.
 14. Browse to the IAM console
 15. Click Roles and find the role threat-detection-wksp-compromised-ec2 (this is the role attached to the compromised instance)
 16. Click on the Revoke sessions tab
 17. Click on Revoke active sessions, click the check box and then click Revoke active sessions. (Ca)
+
+### Restart Instance to Rotate Credentials
+
 Now that those credentials won’t work we need to rotate the existing server credentials. In order to change the IAM credentials on the server, we must Stop and Start the server. A simple reboot will not change the keys.
 18. Go back to the EC2 Console
 19. To see the keys currently active on the instance, click on Run Command on the left hand navigation
@@ -189,7 +199,11 @@ Now that those credentials won’t work we need to rotate the existing server cr
 a.	Notice the keys are different.
 b.	If you want, try again after rebooting the server. The keys will stay the same.
 
-Clearing the suspected malware is out of scope for now, but we will establish alerts for this later. This is a good use case for auto-scaling groups and golden-image AMI’s, but that is out of scope for this workshop. With the EC2 instance isolated and the IAM credentials revoked, we need to stop external access to the S3 bucket next. Before we restore the previous configuration, we can quickly make the bucket only accessible from inside the VPC. Then we can re-enable encryption.
+Clearing the suspected malware is out of scope for now, but we will establish alerts for this later. This is a good use case for auto-scaling groups and golden-image AMI’s, but that is out of scope for this workshop. 
+
+### Limit S3 Access
+
+With the EC2 instance isolated and the IAM credentials revoked, we need to stop external access to the S3 bucket next. Before we restore the previous configuration, we can quickly make the bucket only accessible from inside the VPC. Then we can re-enable encryption.
 
 31. First, check the configuration of the S3 Endpoint in your environment by going to VPC, Endpoints.
 a.	Make note of the VPC Endpoint ID
@@ -233,11 +247,7 @@ a.	Make note of the changes to Permissions
 46. Remove Public Access based on Config finding
 47. Click on the Properties Tab
 48. Re-enable S3 Default AES-256 encryption based on the Config update and Macie’s earlier alert (Da)
+
 With the configuration reestablished we will focus on alerts and automated remediation should the attacker try again. In Module 1 we put some of this in place. This is where the CloudWatch alerts tied to Lambda functions come into play.
-49. Go to the CloudWatch console
-50. Click on Event -> Rules
-51. Read through the 3 Rules
-a.	Notice each Rule creates an alert or executes a Lambda
-52. Go to the Lambda service from the Services drop down
-53. Review the existing lambda functions
-a.	You can examine the Lambda functions at your leisure to see how they handle events
+
+After you have remediated all incident and further hardened your environment, you can proceed to the next module: **[Module 4 - Review and Discussion](../docs/04-review-and-discussion.md)**.
