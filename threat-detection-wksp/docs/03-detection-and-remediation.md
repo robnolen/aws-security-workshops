@@ -39,9 +39,8 @@ Following security design best practices you already setup your servers to log t
     * If you have run multiple Inspector scans outside of this workshop you can filter down the findings by using the **GuardDuty Finding ID** (as shown above) you copied earlier.  The Inspector template that was used for the scan includes this ID in the name.
 
     > Which Inspector [rule packages](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_rule-packages.html) were used for this scan?
-3. FIndings | Filter | Four | CVE Package | Best Practices Package
-3. Evaluate each finding to determine if the instance is configured to support password authentication over SSH
-  * Write down the instance ID of the compromised instance. You will use this later
+
+    > What is CVE-2017-5754?
 
 Now we’ve determined that the instance is more susceptible to a SSH brute force attack. Let’s look at the CloudWatch logs and create a metric to see if there are any successful attempts.
 
