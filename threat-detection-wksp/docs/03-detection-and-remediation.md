@@ -224,48 +224,54 @@ Clearing the suspected malware is out of scope for now, but we will establish al
 
 With the EC2 instance isolated and the IAM credentials revoked, we need to stop external access to the S3 bucket next. Before we restore the previous configuration, we can quickly make the bucket only accessible from inside the VPC. Then we can re-enable encryption.
 
-31. First, check the configuration of the S3 Endpoint in your environment by going to VPC, Endpoints.
-a.	Make note of the VPC Endpoint ID
-32. Check the Policy on the bottom tab to notice all access is allowed
-33. Check the Route Tables to see who is using the Endpoint.
-a.	Notice that routing to S3 is through the VPC endpoint
-34. Now to update the S3 bucket policy click on S3 from the Services Drop down
-35. Click the bucket that ends in “-data”
-36. Click on the Permissions Tab
-37. Click Bucket Policy
-38. Update the Bucket Policy with the following text:
-```
-{
-  "Version": "2012-10-17",
-  "Id": "Policy1415115909152",
-  "Statement": [
+1.  First, check the configuration of the S3 Endpoint in your environment by going to [Amazon VPC](https://us-west-2.console.aws.amazon.com/vpc/home?region=us-west-2) and clicking on **Endpoints** on the left hand navigation.
+    * Copy the **Endpoint ID**
+2.  Check the **Policy** on the bottom tab to notice all access is allowed.
+3.  Check the Route Tables to see who is using the Endpoint.
+    
+    > Notice that routing to S3 is through the VPC endpoint
+
+4.  Go to the [Amazon S3](https://s3.console.aws.amazon.com/s3/home?region=us-west-2) console.
+5. Click the bucket that starts with **threat-detection-wksp-** and ends in **-data**.
+6. Click on the **Permissions** tab.
+7. Click **Bucket Policy**
+8. Update the Bucket Policy with the following policy:
+
+    ```
     {
-      "Sid": "Access-to-specific-VPCE-only",
-      "Principal": "*",
-      "Action": "s3:*",
-      "Effect": "Deny",
-      "Resource": ["arn:aws:s3:::{BUCKETNAME}",
-                   "arn:aws:s3::: {BUCKETNAME}/*"],
-      "Condition": {
-        "StringNotEquals": {
-          "aws:sourceVpce": "{VPCENDPOINTNAME}"
+      "Version": "2012-10-17",
+      "Id": "Policy1415115909152",
+      "Statement": [
+        {
+          "Sid": "Access-to-specific-VPCE-only",
+          "Principal": "*",
+          "Action": "s3:*",
+          "Effect": "Deny",
+          "Resource": ["arn:aws:s3:::<BUCKETNAME>",
+                       "arn:aws:s3:::<BUCKETNAME>/*"],
+          "Condition": {
+            "StringNotEquals": {
+              "aws:sourceVpce": "<VPCENDPOINTNAME>"
+            }
+          }
         }
-      }
+      ]
     }
-  ]
-}
-```
-39. Click Save. Now regardless of the bucket’s Access Control List, if traffic isn’t coming from the VPC Endpoint it will be denied. This also provides more security and better pricing for legitimate traffic. (Db)
-40. To quickly restore the previous configuration for this bucket, we start by going to Config under the Services drop down.
-41. In the Dashboard, click on S3 Bucket
-42. Click the bucket name
-43. Click on “Change” under the previous configuration in the slider
-a.	Make note of the changes to Permissions
-44. Click on Manage Resource in the top right. This will take you to the S3 console.
-45. Click on the Permissions Tab
-46. Remove Public Access based on Config finding
-47. Click on the Properties Tab
-48. Re-enable S3 Default AES-256 encryption based on the Config update and Macie’s earlier alert (Da)
+    ```
+
+    > Be sure to replace **<BUCKETNAME>** with the name of the bucket and **<VPCENDPOINTNAME>** with endpoint ID you copied down earlier.
+
+9.  Click **Save**. Now regardless of the bucket’s Access Control List, if traffic isn’t coming from the VPC Endpoint it will be denied. This also provides more security and better pricing for legitimate traffic.
+10. To quickly restore the previous configuration for this bucket, we start by going to the [AWS Config](https://us-west-2.console.aws.amazon.com/config/home?region=us-west-2) console.
+11. Under **Resources** click on **S3 Buckets**.
+12. Click on your Bucket (bucket name starts with **threat-detection-wksp-** and ends in **-data**).
+13. Click on **Change** under the previous configuration in the slider
+    * Make note of the changes to Permissions
+14. Click on **Manage Resource** in the top right. This will take you to the S3 console.
+15. Click on the **Permissions** tab.
+16. Remove Public Access based on Config change.
+17. Click on the **Properties** Tab.
+18. Re-enable S3 Default AES-256 encryption based on the Config update and Macie’s earlier alert.
 
 With the configuration reestablished we will focus on alerts and automated remediation should the attacker try again. In Module 1 we put some of this in place. This is where the CloudWatch alerts tied to Lambda functions come into play.
 
