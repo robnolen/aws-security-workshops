@@ -56,12 +56,20 @@ Based on the findings you see that password authentication is configured on the 
 
     > Do you see any failed attempts to log into the instance?
 8.  Now replace the Filter with one for successful attempts:
+
     ```
     [Mon, day, timestamp, ip, id, msg1= Accepted, msg2 = password, ...]
     ```
 
     > Do you see any successful attempts to log into the instance from the same IP or usernames?
-12. If there is a match then you know the SSH Brute Force attack was successful
+
+    You should see a match which indicates that the SSH Brute Force attack was successful.
+
+Now that you verified that your instance was compromised, go back to the [Amazon GuardDuty]([Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) console and view the other findings.
+
+> Does it look like we are early in the attack (just intrusion), or has the intruder started performing malicious actions?
+
+
 13. Go back to the GuardDuty console
 14. Does it look like we are early in the attack (just intrusion), or has the intruder started performing malicious actions?
   * Account Reconnaissance
