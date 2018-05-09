@@ -548,10 +548,10 @@ Resources:
             instance_id = event["detail"]["resource"]["instanceDetails"]["instanceId"]
             gd_sev = event['detail']['severity']
             scan_id = str(uuid.uuid4())
-            scan_name = 'td-wksp-inspector-scan'
-            target_name = 'td-wksp-target-%s' % event["id"]
-            template_name = 'td-wksp-template-%s' % event["id"]
-            assess_name = 'td-wksp-assessment-%s' % event["id"]
+            scan_name = '%s-inspector-scan' % os.environ['PREFIX']
+            target_name = '%s-target-%s' % (os.environ['PREFIX'], event["id"])
+            template_name = '%s-template-%s' % (os.environ['PREFIX'], event["id"])
+            assess_name = '%s-assessment-%s' % (os.environ['PREFIX'], event["id"])
 
             response = "Skipping Remediation"
 

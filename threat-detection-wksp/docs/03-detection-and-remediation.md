@@ -19,33 +19,29 @@ Since the alert came from GuardDuty, we will check there first.
     * Click on **Actions**.
     * Select **Archive**.  If you're interested in seeing all of your findings (current and archived) you can click on the filter icon to the left of *Add filter criteria* to toggle them in the console.
     * After archiving you should have four findings that are associated with this workshop.
-
 4.  Now let's examine the low severity ![Low Severity](../images/03-low-severity.png) **UnauthorizedAccess:EC2/SSHBruteForce** finding since it was the first one to be detected.
     * Click on the **Finding**.
     * Review the finding details and affected resources.
+      * Copy down the **GuardDuty Finding ID** and the **Instance ID**.
 
       > Was the brute force attack successful?
 
       > Are any of the other findings related to the brute force finding?
 
-Now let’s examine the Lambda function to see what it does. Open the Lambda console
-Click on the function named threat-detection-wksp-remediation-NACL
-4.  After archiving you should have four findings that are associated with this workshop.
-  *	Do you see any IP’s performing malicious actions?
-  * IP from our custom threat list should show up. Where would you find that?
-  * Do you see any inbound brute force attacks? Can you tell if it was successful?
+### Check Instance Security Assessment and Logs
 
-### Check Instance Security Configuration and Logs
+Following security design best practices you already setup your servers to log to CloudWatch. You’ve also setup automated scanning of instances under attack using [AWS Inspector](https://aws.amazon.com/inspector/). Let’s look at Inspector to see if the SSH configuration adheres to best practices to determine what the risk is involved with the brute force attack.
 
-Following security design best practices you already setup your servers to log CloudWatch. You’ve also setup automated scanning of instances under attack using Inspector. Let’s look at Inspector to see if password authentication is enabled for the instance under attack.
-
-4. Go to the Inspector Console
-5. Click on Findings in the left navigation
-  * There should be three findings of medium severity
-6. Evaluate each finding to determine if the instance is configured to support password authentication over SSH
+1.  Go to [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector/home?region=us-west-2) in the Amazon Console.
+2.  Click on **Findings** in the left navigation.
+3.  You should see the four medium severity findings as shown below:
+    ![Inspector Findings](../images/03-inspector-findings.png)
+    * If you have run multiple Inspector scans outside of this workshop you can filter down the findings results by using the **GuardDuty Finding ID** you copied earlier.  The Inspector template that was used for the scan includes this ID in the name.
+3. FIndings | Filter | Four | CVE Package | Best Practices Package
+3. Evaluate each finding to determine if the instance is configured to support password authentication over SSH
   * Write down the instance ID of the compromised instance. You will use this later
 
-Now we’ve determined that the instance is susceptible to a brute force SSH attack. Let’s look at the CloudWatch logs and create a metric to see if there are any successful attempts.
+Now we’ve determined that the instance is more susceptible to a brute force SSH attack. Let’s look at the CloudWatch logs and create a metric to see if there are any successful attempts.
 
 7. Go to the CloudWatch logs
 8. Choose Logs in the navigation pane, click on the log group “/threat-detection-wksp/var/log/secure”
