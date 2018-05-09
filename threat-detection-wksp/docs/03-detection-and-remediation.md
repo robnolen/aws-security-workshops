@@ -138,9 +138,9 @@ Now that we’ve identified the attacker’s actions we need to stop them from p
 
 What remediations should you put in place:
 
-1.  EC2 Brute Force attack:
-2.	Malware Infection:
-3.  EC2 Credential Theft:
+1.  EC2 Brute Force attack
+2.	Malware Infection
+3.  EC2 Credential Theft
 4.  S3 Bucket Policy
 5.	General Best Practice
 
@@ -160,10 +160,9 @@ Based upon your existing work, you’ve implemented the first step by using the 
     Click the **Click Here** button to proceed with using Config without Config Rules
 
 3.  Click **Resources** in the left navigation.
-4.  Select **Tag** and enter the following Key Pair:
-    * **Name** : **threat-detection-wksp**
+4.  Select **Tag** and enter **Name** and **threat-detection-wksp-compromised** for the key pair like shown below:
     ![Config Key Pair](../images/03-config-keypair.png)
-6. Click on the Config timeline for the EC2 NetworkAcl
+6. Click on the Config timeline for the EC2 NetworkAcl.
 7. Click on **Change**
 8. Evaluate the change to see the updated NACL
 
