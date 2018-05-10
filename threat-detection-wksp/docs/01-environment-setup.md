@@ -6,11 +6,11 @@ In this module you will be configuring all the initial detective and remediation
 
 1.	Review your current configurations – 5 min
 2.	Run the 1st CloudFormation template – 5 min
-3.	Configure the remaining Controls – 20 min
+3.	Configure the remaining controls – 20 min
 
 ## Review Current Configurations
 
-Before you the run the template please verify whether you already have the following services or resources configured.  When you launch the first CloudFormation template you'll be prompted with questions regarding whether these resources are already configured.
+When you launch the first CloudFormation template you'll be prompted with questions regarding whether certain resources are already configured.  Please verify now whether you aleady have the following configured.
 
 1.	Go to AWS IAM and see if you have the following Roles created:
 	![Roles](../images/01-current-roles.png)
