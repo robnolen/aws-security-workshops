@@ -103,11 +103,14 @@ The next step is to enable Amazon GuardDuty, which will continuously monitor you
 Since Macie isn’t turned on but you plan on storing data in S3, let’s quickly enable it.
 
 1.	Go to the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console.
-2.	Make sure the top left indicated you are in the **us-west-2 (Oregon)** region.
-3.	Click **Get Started**.
-4.	Check the box under **Permissions**.
-5.	Click **Enable Macie**.
-	*	The IAM roles created and AWS CloudTrail enabled should have checks next to them based on the template’s output.
+2.	Click **Get Started**.
+3.	Check the box under **Permissions**.
+4.	Click **Enable Macie**.
+	
+	> The IAM roles created and AWS CloudTrail enabled should have checks next to them because they were created as part of the CloudFormation stack.
+
+### Setup Macie for Data Classification
+
 6.	Once inside of Macie, click on **Integrations** on the left hand navigation.
 7.	Click on **Services** near the top.
 8.	Select your account (should be the only one) and click **Add** (or **Details** if you already have buckets configured) for Amazon S3.
