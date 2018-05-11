@@ -63,7 +63,7 @@ Based on the findings you see that password authentication is configured on the 
     [Mon, day, timestamp, ip, id, msg1= Accepted, msg2 = password, ...]
     ```
 
-    > Do you see any successful attempts to log into the instance from the same IP or usernames?
+    > Do you see any successful attempts to log into the instance?
 
     You should see a match which indicates that the SSH Brute Force attack was successful.
 
@@ -79,18 +79,16 @@ View the following GuardDuty findings and take a note of the resources involved:
 * **UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom**
 * **UnauthorizedAccess:EC2/MaliciousIPCaller.Custom**
 
-You can see by these findings that an advisory has been using the AWS IAM Role credentials associated with the compromised instance and the instance has been communicating with an IP on a custom threat list.
+You can see by these findings that an advisory is using the AWS IAM Role credentials associated with the compromised instance and the instance is also communicating with an IP on your custom threat list.
 
 ### Check if Sensitive Data was Involved
 
 At this point we know how the attacker was able to get into your systems and a general idea of what they did. After reviewing the permissions associated with the IAM Role you realize that it has very permissive policies as it relates to your S3 bucket.  Lets verify what sort of senstive data is in your bucket and take a closer at your Macie Alerts.
 
 1.  Go to the [Amazon Macie](https://mt.us-west-2.macie.aws.amazon.com/) console.
-2.  Look through latest alerts.
+2.  Look through the latest alerts.
 
-    > Are there any critical alerts?
-
-    You should see a critical alert that says **S3 Bucket IAM policy grants global read rights**.  Next lets verify what sort of sensitve data exists in that bucket.
+    > You should see a critical alert that says **S3 Bucket IAM policy grants global read rights**.  Next lets verify what sort of sensitve data exists in that bucket.
 
 3.  Click **Dashboard** in the left navigation.  You should see the following data classifications:
     ![Macie Classification](../images/03-macie-data.png)
