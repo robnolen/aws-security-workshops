@@ -55,13 +55,14 @@ In **Module 1** of the lab you setup the initial components of your infrastructu
 ## Cleanup
 In order to prevent charges to your account we recommend cleaning up the infrastructure that was created. If you plan to keep things running so you can examine the lab a bit more please remember to do the cleanup when you are done. It is very easy to leave things running in an AWS account, forgot about it, and then accrue charges. 
 
-> You will need manually delete some resources before you delete the CloudFormation stacks so please do the following steps in order.
+> You will need to manually delete some resources before you delete the CloudFormation stacks so please do the following steps in order.
 
-1.	Delete the IAM Role for the compromised EC2 instance 
+1.	Delete the IAM Role for the compromised EC2 instance and the Service-Linked Role for Inspector (if you didn't already have this Role created).
 	* Go to [AWS IAM](https://console.aws.amazon.com/iam/) console.
 	* Click on **Roles**
 	* Search for the role named **threat-detection-wksp-compromised-ec2**.
 	* Click the check box next to it and click **Delete**.
+	* Repeat for the second role.
 
 2.	Delete all three S3 buckets created by the Module 1 CloudFormation template (the buckets that start with **threat-detection-wksp** and end with **-data**, **-threatlist** and **-logs**)
 	* Go to [Amazon S3](https://s3.console.aws.amazon.com/s3/home?region=us-west-2) console.
@@ -79,26 +80,46 @@ In order to prevent charges to your account we recommend cleaning up the infrast
 
 	> You do not need to wait for the first stack to delete before you delete the second one.
 
-4. Delete the GuardDuty custom threat list
+4.	Delete the GuardDuty custom threat list and disable GuardDuty (if you didn't already have it configured before the workshop)
+	* Go to the [Amazon GuardDuty]((https://us-west-2.console.aws.amazon.com/guardduty/) console.
+	* Click on **Lists** in the navigation pane on the left.
+	* Click the **X** next to the threat list that starts with **Custom-Threat-List**.
+	* Click **Settings** in the navigation pane on the left.
+	* Click the check box next to **Disable**.
+	* Click **Save Settings**
 
-4. Disable GuardDuty (if you didn't already have GuardDuty enabled before the Workshop) - go to the [GuardDuty console](https://us-west-2.console.aws.amazon.com/guardduty/), select the **General** tab, click the checkbox next to **Disable GuardDuty** then click **Save Settings**, then click **Disable**
+5.	Delete the manual CloudWatch Event Rule you created and the CloudWatch Logs that were generated.
+	* Go to the [AWS CloudWatch](https://us-west-2.console.aws.amazon.com/cloudwatch) console.
+	* Click on **Rules** in the navigation pane on the left.
+	* Click the radio button next **threat-detection-wksp-guardduty-finding-maliciousip**.
+	* Select **Action** and click **Delete**.
+	* Click on **Logs** in the naviagation pane on the left.
+	* Click the radio button next to **/aws/lambda/threat-detection-wksp-inspector-role-creation**.
+	* Select **Action** and click **Delete Log Group**.
+	* Repeat for: 
+		* **/aws/lambda/threat-detection-wksp-remediation-inspector**
+		* **/aws/lambda/threat-detection-wksp-remediation-nacl**
+		* **/threat-detection-wksp/var/log/secure** 
+		* **/threat-detection-wksp/vpc-ID#/flowlogs**
 
-1.	Disable Macie (if you didn't already have Macie enabled before the Workshop).
+6.	Delete the Inspector objects created for the workshop.
+	* Go to the [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector) console.
+	* Click on **Assessment Targets** in the navigation pane on the left.
+	* Delete all that start with **threat-detection-wksp**.
+
+7.	Delete the SNS subscription that was created when you subscribed to SNS Topic.
+	* Go to the [AWS SNS](https://us-west-2.console.aws.amazon.com/sns) console.
+	* Click on **Subscriptions**
+	* Select the check box next to the subscription that shows your e-mail as the Endpoint and has **threat-detection-wksp** in the **Subscription ARN**.
+	* Select **Action** and then click **Delete subscriptions**
+
+8.	Disable Macie (if you didn't already have Macie enabled before the Workshop).
 	* Go the [Amazon Macie]((https://mt.us-west-2.macie.aws.amazon.com/) console.
 	* In the upper hand corner select the down arrow to the left of the Region and select **Macie General Settings**.
 	* Check the two boxes and click **Disable Amazon Macie**
 
+## Finished!
 
-3. Delete the GuardDuty custom threat list
-4. Disable GuardDuty (if you didn't already have GuardDuty enabled before the Workshop) - go to the [GuardDuty console](https://us-west-2.console.aws.amazon.com/guardduty/), select the **General** tab, click the checkbox next to **Disable GuardDuty** then click **Save Settings**, then click **Disable**
-5. MAY NOT BE NECESSARY - NEED TO VERIFY AFTER A FEW MORE TESTS you disabled Macie (again only if you didn't already have Macie enabled before the Workshop), delete the CloudTrail trail created for Macie. Go to the [CloudTrail console](https://us-west-2.console.aws.amazon.com/cloudtrail/), click **Trails**, find the Macie CloudTrail trail and delete it.
-6. Delete one of the CloudWatch event rules, go to the [CloudWatch console](https://us-west-2.console.aws.amazon.com/cloudwatch), click on Rules under the Events section, click the radio button next **threat-detection-wksp-guardduty-finding-maliciousip**, selection **Action** and click **Delete** then click **Delete** on the pop up box. 
-7. Delete the three CloudWatch Logs, go to the [CloudWatch console](https://us-west-2.console.aws.amazon.com/cloudwatch), click on Logs, click the radio button next to **/aws/lambda/threat-detection-wksp-remediation-sshbruteforce**, select **Action** and click **Delete log group** and then click **Yes Delete** , do the same for the following logs: **/threat-detection-wksp/var/log/secure** & **/threat-detection-wksp/vpc-ID#/flowlogs**
-8. Delete the Inspector objects created for the workshop, go to the [Inspector Console](https://us-west-2.console.aws.amazon.com/inspector), click on **Assessment targets**, delete the template (the name should start with "td-wksp-target") by clicking on the check box and clicking **Delete** , do the same for **Assessment template**, the name should start with "td-wksp-template" and finally for **Assessment runs**, the name should start with "td-wksp-template-". There may be multiple entries in each section, delete all of them that begin with the text shown above.  
-9. Delete the IAM Role for Inspector (if you didn't already have this Role created this), go to the [IAM console](https://console.aws.amazon.com/iam/), **click** on Roles, search for the role named AWSServiceRoleForAmazonInspector, click the check box next to it and click **Delete role**
-10. Delete the SNS subscription that was created when you subscribed to SNS Topic, go to the [SNS Console](https://us-west-2.console.aws.amazon.com/sns), click on **Subscriptions**, select the check box next to the subscription that shows your e-mail as the Endpoint and has "threat-detection-wksp" in the "Subscription ARN", select **Action** and then click **Delete subscriptions**
-11. For the Module 2 CloudFormation template you can just delete the stack. Open the [CloudFormation console](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks?filter=active), find the Module 2 stack and select **Action** and click **Delete Stack**
-12. Now you can delete the CloudFormation template for Module 1. Open the [CloudFormation console](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks?filter=active), find the Module 2 stack and select **Action** and click **Delete Stack**
-
+Congratulations on completing this workshop! This is the workshop's permanent home, so feel free to revisit as often as you'd like.
 
 
