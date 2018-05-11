@@ -111,39 +111,28 @@ Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Ma
 
 ## Setup Macie for Data Discovery
 
-Macie is also used for automatically discovering and classifying sensitive data.  Now setup a Macie integration classify data in your S3 bucket.
+Macie is also used for automatically discovering and classifying sensitive data.  Now that Macie is enabled, setup an integration to classify data in your S3 bucket.
 
 1.	In the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console click on **Integrations** on the left hand navigation.
 2.	Click on **Services** near the top.
-8.	Select your account (should be the only one) and click **Add** (or **Details** if you already have buckets configured) for Amazon S3.
+3.	Select your account (should be the only one) and click **Add** (or **Details** if you already have buckets configured) for Amazon S3.
 9.	Click on the paper and pencil on the far right and select the S3 bucket that ends with **“-data”**
 	* Make sure you click both the checkboxes on the left and the right ends of the rows. This ensures both new and existing files get classified.
 ![Macie Bucket Sample](../images/01-macie-bucket-selection.png)
 10.	Click **Review and Save**.
 11.	Click the boxes to acknowledge pricing and terms of service and click **Save**.
 
-Macie is now enabled and ready to classify your data and send alerts and our environment is configured and ready for operations.  Below is diagram to dipict the detective controls you now in place.
+Macie is now enabled and ready to classify your data and send alerts
+
+## Architecture
+
+Your environment is now configured and ready for operations.  Below is diagram to dipict the detective controls you now have in place.
 
 ![Detective Controls](../images/01-diagram-module1.png)
 
 After you have successfully setup your environment, you can proceed to the next module: **[Module 2 - Attack Simulation](../docs/02-attack-simulation.md)**.
 
 ## Troubleshooting
-
-### Create the Service-linked role for AWS Inspector
-
-We will use Inspector to evaluate instances that may be under attack. Before we can enable Inspector, we need to create a Service-linked role. A service-linked role is a unique type of IAM role that is linked directly to an AWS service. Service-linked roles are predefined by the service and include all the permissions that the service requires to call other AWS services on your behalf. If for some reason your CloudFormation stack didn't succeed in creating the Inspector, you can create it with the following steps:
-
-1.	Go to the [IAM console](https://console.aws.amazon.com/iam/home?region=us-west-2#/home)
-2.	Click ***Roles*** on the left navigation
-3.	Click ***Create Role***
-4.	Click ***Inspector*** in the list of AWS Services to build the role for
-5.	Click ***Next:Permissions***
-6.	Click ***Next:Review***
-7.	Click ***Create Role***
-
-If you already have a role for Inspector you will see the following error:
-![Inspector Role Error](../images/01-inspector-role-error.png)
  
 ### Macie CloudTrail Log Error
 

@@ -625,7 +625,7 @@ Resources:
                     ]
                 )
 
-                for x in range(0, 3):
+                for x in range(0, 5):
                   try:
                     time.sleep(5)
                     assessment = inspector.start_assessment_run(
@@ -646,7 +646,7 @@ Resources:
             print(response)
             return response
       Runtime: "python2.7"
-      Timeout: "35"
+      Timeout: "120"
   LambdaRemediationInspectInvokePermissions: 
     DependsOn:
       - LambdaRemediationInspector
