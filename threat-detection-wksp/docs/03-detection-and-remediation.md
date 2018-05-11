@@ -88,7 +88,7 @@ At this point we know how the attacker was able to get into your systems and a g
 1.  Go to the [Amazon Macie](https://mt.us-west-2.macie.aws.amazon.com/) console.
 2.  Look through the latest alerts.
 
-    > You should see a critical alert that says **S3 Bucket IAM policy grants global read rights**.  
+    > Do you see any critical alerts?  
 
     Next lets verify what sort of sensitve data exists in that bucket.
 
@@ -103,7 +103,7 @@ At this point we know how the attacker was able to get into your systems and a g
 
     > Look for the **Object Encryption** field.
 
-At this point you have identified that there is high risk data in your bucket and certain objects in your bucket are not encrypted.  When you first configured the environment you enabled default encryption for the bucket so this could be an indicator that some one has disabled it. 
+At this point you have identified that there is a bucket with high risk data that has open public read permissions and that certain objects in your bucket are not encrypted.  When you first configured the environment you enabled default encryption for the bucket so this could be an indicator that some one has disabled it. 
 
 Since you are already in the Macie service, create a new Basic Alert that will alert you in the future if default encryption is disabled on any of your buckets. 
 
@@ -131,7 +131,7 @@ Next you need to track down if someone recently disabled default encryption and 
 
     > Who was the user who disabled default encryption on the bucket?
 
-    > Are they the same user seen in your GuardDuty findings?
+    > Is this the same user seen in your GuardDuty findings?
 
 ## Stop and Evaluate
 
@@ -142,7 +142,7 @@ So at this point we have identified a successful intrusion into our network and 
 * The IAM credentials for the server were stolen, published to S3, and used to perform reconnaissance against the account.
 * An S3 bucket was made public and encryption was removed - most likely for data exfiltration.
 
-Now that we’ve identified the attacker’s actions we need to stop them from performing any additional activities, restore our systems to their previous configurations, and protect our resources so this can’t happen again. For each of the following vulnerabilities, develop a remediation using AWS native policies and a DevSecOps approach to alerting and remediation during future attacks.
+Now that we’ve identified the attacker’s actions we need to stop them from performing any additional activities, restore our systems to their previous configurations, and protect our resources so this can’t happen again. For each of the following, develop a remediation plan for using AWS native policies and a DevSecOps approach to alerting and remediation for future attacks.
 
 What remediations should you put in place:
 
@@ -150,7 +150,8 @@ What remediations should you put in place:
 2.	Malware Infection
 3.  EC2 Credential Theft
 4.  S3 Bucket Policy
-5.	General Best Practice
+
+> If this is not an AWS sponsored event you can think about what remediations you would put in place and move on to the next section.
 
 ## Respond and Remediate
 

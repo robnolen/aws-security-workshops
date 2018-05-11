@@ -124,7 +124,7 @@ Macie is also used for automatically discovering and classifying sensitive data.
 
 Macie is now enabled and ready to classify your data and send alerts
 
-## Architecture
+## Architecture Overview
 
 Your environment is now configured and ready for operations.  Below is diagram to dipict the detective controls you now have in place.
 

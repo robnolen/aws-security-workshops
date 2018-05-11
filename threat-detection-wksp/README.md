@@ -6,7 +6,7 @@ This workshop is designed to help you get familiar with AWS Security services an
 
 You are a systems administrator for a web services company. New to the cloud, you have performed a lift-and-shift of your infrastructure for piloting purposes leaving multiple instances available to the internet. The security best practices haven’t been evaluated yet. As the administrator of the system, you have been tasked with responding to any security alerts generated from your instances both during office hours and while on call.
 
-### Architecture
+### Architecture Overview
 
 For this Workshop you will have a single instance setup in the us-west-2 region. As this was a “lift-and-shift” migration for piloting you have yet to build redundancy into your application, so you have a single public-facing webserver. The webserver has access to the Internet Gateway through an Elastic Network Interface. Customers access your web server through a DNS entry pointing to the Elastic Network Interface. You store static content in an S3 bucket and use the VPC S3 Endpoint Gateway for access from the webserver.
 
