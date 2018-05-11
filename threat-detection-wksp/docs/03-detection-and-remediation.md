@@ -162,8 +162,7 @@ Before we get ahead of ourselves, we must stop any further actions from taking p
 Based upon your existing work, you’ve implemented the first step by using the CloudWatch Event rule to trigger the Lambda function to update the NACL for the instance. Let’s look at what changed.
 
 1.  Go to the [AWS Config](https://us-west-2.console.aws.amazon.com/config/home?region=us-west-2) console.
-2.  Click **Get Started**.
-3.  On the Settings page you will see the message below.
+2.  On the Settings page you will see the message below.
     ![Config Message](../images/03-config-message.png)
 
     Click the **Click Here** button to proceed with using Config without Config Rules
