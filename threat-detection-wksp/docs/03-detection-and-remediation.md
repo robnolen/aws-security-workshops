@@ -188,7 +188,10 @@ Now we’ve stopped the active session from the attacker. Next, we will stop the
     
     > Notice the large number of IP’s that can log in?
 
-5. Modify the SSH inbound rule to only allow access from your current IP Address (http://www.whatsmyip.org/)
+5.  Click **Edit** and delete the inbound SSH rule. You've decided that all administration on EC2 Instances will be done through [AWS Systems Manager](https://aws.amazon.com/systems-manager/) so you no longer need these ports open.
+
+    > In your initial setup you already installed the SSM Agent on your EC2 Instance.
+
 
 ### Revoke the IAM Role Active Sessions
 
