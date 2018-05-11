@@ -1,10 +1,10 @@
 # Threat Detection and Remediation Workshop
 
-This workshop is designed to help you get familiar with AWS Security services and learn how to use them to identify and remediate threats in your environment.  You'll be working with services such as Amazon GuardDuty, Amazon Macie, Amazon Inspector, Amazon CloudWatch (Events & Logs), AWS Lambda, AWS Config, and AWS CloudTrail. You will learn how to use these services to set up a notification and remediation pipeline, investigate threats during and after an attack, and  add additional protections in place to further harden your environment.
+This workshop is designed to help you get familiar with AWS Security services and learn how to use them to identify and remediate threats in your environment.  You'll be working with services such as Amazon GuardDuty, Amazon Macie, Amazon Inspector, Amazon CloudWatch (Events & Logs), AWS Lambda, AWS Systems Manager, AWS Config, and AWS CloudTrail. You will learn how to use these services to set up a notification and remediation pipeline, investigate threats during and after an attack, and  add additional protections in place to improve the security posture of your environment.
 
 ### Scenario
 
-You are a systems administrator for a web services company. New to the cloud, you have performed a lift-and-shift of your infrastructure for piloting purposes leaving multiple instances available to the internet. The security best practices haven’t been evaluated yet. As the administrator of the system, you have been tasked with responding to any security alerts generated from your instances both during office hours and while on call.
+You are a systems administrator for a web services company. New to the cloud, you have performed a lift-and-shift of your infrastructure for piloting purposes leaving an instance available to the internet.  As the administrator of the system, you have been tasked with responding to any security alerts generated from your AWS environment.
 
 ### Architecture Overview
 
