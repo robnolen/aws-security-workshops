@@ -206,7 +206,9 @@ Now that the attacker can’t SSH into the compromised machine, we need to rotat
 
 ### Restart Instance to Rotate Credentials
 
-Now that those credentials won’t work we need to rotate the existing server credentials. In order to change the IAM credentials on the server, we must Stop and Start the server. A simple reboot will not change the keys.
+Now that those credentials won’t work we need to rotate the existing server credentials. In order to change the IAM credentials on the server, we must Stop and Start the server. A simple reboot will not change the keys.  Since you are using AWS Systems Manager for doing administration on your EC2 Instances you can use it to query the metadata to validate that the credentials were rotated.
+
+First verify what the current credentials are.   
 
 1.  Go back to the [Amazon EC2](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2) console.
 2.  To see the keys currently active on the instance, click on **Run Command** on the left hand navigation.
@@ -222,19 +224,25 @@ Now that those credentials won’t work we need to rotate the existing server cr
 7.  Back at the console click **Output** on the bottom of the screen once the Status is **Success**.
 8.  Click View Output
 9.  Make note of the **AccessKeyId** and **SecretAccessKey**
+
+Next, you need to stop and restart the Instance.
+
 10. In the EC2 console **Stop** the Instance.
 11. Wait for the Instance State to say **Stopped** and then **Start** the instance.
-12. Repeat the Run Command steps to retrieve the credentials again.
+
+Lastly, you can need to query the metadata again to validate that the credentials were changed.
+
+12. Repeat the first 9 steps to retrieve the credentials again.
 
     > Notice the keys are different.
 
     > If you want, try again after rebooting the server. The keys will stay the same.
 
-Clearing the suspected malware is out of scope for now, but we will establish alerts for this later. This is a good use case for auto-scaling groups and golden-image AMI’s, but that is out of scope for this workshop. 
+This is a good use case for auto-scaling groups and golden-image AMI’s, but that is out of scope for this workshop. Also out of scope is clearing the suspected malware.
 
 ### Limit S3 Access
 
-With the EC2 instance isolated and the IAM credentials revoked, we need to stop external access to the S3 bucket next. Before we restore the previous configuration, we can quickly make the bucket only accessible from inside the VPC. Then we can re-enable encryption.
+With the EC2 instance access scoped down and the IAM credentials revoked, we need to stop external access to the S3 bucket. Before we restore the previous configuration, we can quickly make the bucket only accessible from inside the VPC. Then we can re-enable encryption.
 
 1.  First, check the configuration of the S3 Endpoint in your environment by going to [Amazon VPC](https://us-west-2.console.aws.amazon.com/vpc/home?region=us-west-2) and clicking on **Endpoints** on the left hand navigation.
     * Copy the **Endpoint ID**
