@@ -100,7 +100,7 @@ The next step is to enable Amazon GuardDuty, which will continuously monitor you
 
 ## Enable Macie
 
-Since Macie isn’t turned on but you plan on storing data in S3, let’s quickly enable it.
+Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Macie, which will continuously monitor data access activity for anomalies and generate alerts when it detects risk of unauthorized access or inadvertent data leaks.
 
 1.	Go to the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console.
 2.	Click **Get Started**.
