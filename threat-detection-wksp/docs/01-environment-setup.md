@@ -96,13 +96,13 @@ The next step is to enable Amazon GuardDuty, which will continuously monitor you
 2.	Click the **Get Started** button.
 3.	On the next screen click the **Enable GuardDuty** button.
 
-> That's all you have to do! GuardDuty is now enabled and continuously monitoring your CloudTrail logs, VPC flow logs, and DNS Query logs for threats in your environment.
+> GuardDuty is now enabled and continuously monitoring your CloudTrail logs, VPC flow logs, and DNS Query logs for threats in your environment.
 
 ### Enable Macie
 
 Since Macie isn’t turned on but you plan on storing data in S3, let’s quickly enable it.
 
-1.	Under Services click [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/).
+1.	Go to the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console.
 2.	Make sure the top left indicated you are in the **us-west-2 (Oregon)** region.
 3.	Click **Get Started**.
 4.	Check the box under **Permissions**.
