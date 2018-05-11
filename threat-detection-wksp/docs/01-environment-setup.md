@@ -10,7 +10,7 @@ In this module you will be configuring all the initial detective and remediation
 
 ## Review Current Configurations
 
-When you launch the first CloudFormation template you'll be prompted with questions regarding whether certain resources are already configured.  Please verify now whether you aleady have the following configured.
+When you launch the first CloudFormation template you'll be prompted with questions regarding whether certain resources are already configured.  Please verify whether you aleady have the following configured in your account:
 
 1.	Go to AWS IAM and see if you have the following Roles created:
 	![Roles](../images/01-current-roles.png)
