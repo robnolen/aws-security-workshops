@@ -55,11 +55,40 @@ In **Module 1** of the lab you setup the initial components of your infrastructu
 ## Cleanup
 In order to prevent charges to your account we recommend cleaning up the infrastructure that was created. If you plan to keep things running so you can examine the lab a bit more please remember to do the cleanup when you are done. It is very easy to leave things running in an AWS account, forgot about it, and then accrue charges. 
 
-For the Module 1 cleanup you will need to do the following steps manually before deleting the CloudFormation stack: (You must complete the steps below before deleting the Module 1 template.) 
+> You will need manually delete some resources before you delete the CloudFormation stacks so please do the following steps in order.
 
-1. Disable Macie (if you didn't already have Macie enabled before the Workshop) - go to the [Macie console](https://mt.us-west-2.macie.aws.amazon.com/), in the upper hand corner select the down arrow next to your IAM user name (or the root user) and select **Macie general settings** then check the two boxes and click **Disable Amazon Macie**
+1.	Delete the IAM Role for the compromised EC2 instance 
+	* Go to [AWS IAM](https://console.aws.amazon.com/iam/) console.
+	* Click on **Roles**
+	* Search for the role named **threat-detection-wksp-compromised-ec2**.
+	* Click the check box next to it and click **Delete**.
 
-2. Delete all three S3 buckets created by the Module 1 CloudFormation template (the buckets that end with that ends with "-data", "-threatlist" and "-logs")
+2.	Delete all three S3 buckets created by the Module 1 CloudFormation template (the buckets that start with **threat-detection-wksp** and end with **-data**, **-threatlist** and **-logs**)
+	* Go to [Amazon S3](https://s3.console.aws.amazon.com/s3/home?region=us-west-2) console.
+	* Click on the appropiate bucket.
+	* Click **Delete Bucket**.
+	* Copy and paste the name of the bucket (this is an extra verification that you actually want to delete the bucket).
+	* Repeat steps for the other buckets.
+
+3.	Delete Module 1 and 2 CloudFormation stacks (**ThreatDetectionWksp-Env-Setup** and **ThreatDetectionWksp-Attacks**).
+	* Go to the [AWS CloudFormation](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks?filter=active) console.
+	* Select the appropiate stack.
+	* Select **Action**.
+	* Click **Delete Stack**.
+	* Repeat for the other buckets second stack.
+
+	> You do not need to wait for the first stack to delete before you delete the second one.
+
+4. Delete the GuardDuty custom threat list
+
+4. Disable GuardDuty (if you didn't already have GuardDuty enabled before the Workshop) - go to the [GuardDuty console](https://us-west-2.console.aws.amazon.com/guardduty/), select the **General** tab, click the checkbox next to **Disable GuardDuty** then click **Save Settings**, then click **Disable**
+
+1.	Disable Macie (if you didn't already have Macie enabled before the Workshop).
+	* Go the [Amazon Macie]((https://mt.us-west-2.macie.aws.amazon.com/) console.
+	* In the upper hand corner select the down arrow to the left of the Region and select **Macie General Settings**.
+	* Check the two boxes and click **Disable Amazon Macie**
+
+
 3. Delete the GuardDuty custom threat list
 4. Disable GuardDuty (if you didn't already have GuardDuty enabled before the Workshop) - go to the [GuardDuty console](https://us-west-2.console.aws.amazon.com/guardduty/), select the **General** tab, click the checkbox next to **Disable GuardDuty** then click **Save Settings**, then click **Disable**
 5. MAY NOT BE NECESSARY - NEED TO VERIFY AFTER A FEW MORE TESTS you disabled Macie (again only if you didn't already have Macie enabled before the Workshop), delete the CloudTrail trail created for Macie. Go to the [CloudTrail console](https://us-west-2.console.aws.amazon.com/cloudtrail/), click **Trails**, find the Macie CloudTrail trail and delete it.
