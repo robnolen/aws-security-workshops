@@ -58,7 +58,7 @@ Below are steps to create this rule through the console but you can also find ou
 1.	Open the [CloudWatch console](https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2)
 2.	In the navigation pane on the left, under **Events**, choose **Rules**
 
-	> Take a look at the current Rules in place.
+	> What are the current Rules in place setup to do?
 3.	Choose **Create Rule**
 4.	In the dialog box, add the following is correct: 
 	* For *Event Source*, choose **Event Pattern** and set **Service Name** to **GuardDuty**
