@@ -61,8 +61,8 @@ Below are steps to create this rule through the console but you can also find ou
 	> What are the current Rules in place setup to do?
 3.	Choose **Create Rule**
 4.	In the dialog box, add the following is correct: 
-	* For *Event Source*, choose **Event Pattern** and set **Service Name** to **GuardDuty**
-	* Edit the **Event Pattern Preview** to contain a specific finding using the following text
+	* Under **Event Pattern** select **Custom Event Pattern** in the drop down.
+	* Paste in the custom event pattern below:
 	```
 	{
 	  "source": [
