@@ -88,7 +88,7 @@ Below are steps to create this rule through the console but you can also find ou
 
 	> What will the other functions do?
 
-### Enable GuardDuty
+## Enable GuardDuty
 
 The next step is to enable Amazon GuardDuty, which will continuously monitor your environment for malicious or unauthorized behavior.
 
@@ -98,7 +98,7 @@ The next step is to enable Amazon GuardDuty, which will continuously monitor you
 
 > GuardDuty is now enabled and continuously monitoring your CloudTrail logs, VPC flow logs, and DNS Query logs for threats in your environment.
 
-### Enable Macie
+## Enable Macie
 
 Since Macie isn’t turned on but you plan on storing data in S3, let’s quickly enable it.
 
@@ -109,7 +109,7 @@ Since Macie isn’t turned on but you plan on storing data in S3, let’s quickl
 	
 	> The IAM roles created and AWS CloudTrail enabled should have checks next to them because they were created as part of the CloudFormation stack.
 
-### Setup Macie for Data Classification
+## Setup Macie for Data Classification
 
 6.	Once inside of Macie, click on **Integrations** on the left hand navigation.
 7.	Click on **Services** near the top.
