@@ -1,6 +1,6 @@
 # Module 4: Review and Discussion
 
-In this module we will have a short discussion of the lab (and discuss exactly what occurred.) We will also go over a number of questions and then provide instructions on how to clean up the lab environment (to prevent future charges in your AWS account.) 
+In the last module we will have a short discussion of the lab (and discuss exactly what occurred.) We will also go over a number of questions and then provide instructions on how to clean up the lab environment (to prevent future charges in your AWS account.) 
 
 ### Agenda
 
@@ -9,7 +9,7 @@ In this module we will have a short discussion of the lab (and discuss exactly w
 3. Cleanup – 5 min
 
 Diagram of the overall lab setup:
-![Part 1 Diagram](images/module4.png)
+![Part 1 Diagram](../images/04-diagram-module4.png)
 
 #### What is really going on
 
