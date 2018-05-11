@@ -96,7 +96,7 @@ The next step is to enable Amazon GuardDuty, which will continuously monitor you
 2.	Click the **Get Started** button.
 3.	On the next screen click the **Enable GuardDuty** button.
 
-> GuardDuty is now enabled and continuously monitoring your CloudTrail logs, VPC flow logs, and DNS Query logs for threats in your environment.
+> That's all you have to do! GuardDuty is now enabled and continuously monitoring your CloudTrail logs, VPC flow logs, and DNS Query logs for threats in your environment.
 
 ### Enable Macie
 
