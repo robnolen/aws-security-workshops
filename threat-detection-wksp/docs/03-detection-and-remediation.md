@@ -88,22 +88,28 @@ At this point we know how the attacker was able to get into your systems and a g
 1.  Go to the [Amazon Macie](https://mt.us-west-2.macie.aws.amazon.com/) console.
 2.  Look through the latest alerts.
 
-    > You should see a critical alert that says **S3 Bucket IAM policy grants global read rights**.  Next lets verify what sort of sensitve data exists in that bucket.
+    > You should see a critical alert that says **S3 Bucket IAM policy grants global read rights**.  
+
+    Next lets verify what sort of sensitve data exists in that bucket.
 
 3.  Click **Dashboard** in the left navigation.  You should see the following data classifications:
     ![Macie Classification](../images/03-macie-data.png)
 
     > You can slide the risk slider to filter data classifications based on risk levels.
 
-4.  Click the icon under **Critical Assets** for “S3 Objects by PII”
+4.  Above the risk slider, click the **S3 Public Objects and Buckets** icon.
+5.  Click the magnifying glass for the bucket listed.
+6.  Verify that all the data is encrypted.
 
-    > Is there any PII in your bucket?
+    > Look for the **Object Encryption** field.
 
-Now you know all of your PII should be encrypted, but what if the attacker removed that encryption? Rather than checking each file in S3, you can create a Macie alert to validate if encryption has been disabled.
+At this point you have identified that there is high risk data in your bucket and certain objects in your bucket are not encrypted.  When you first configured the environment you enabled default encryption for the bucket so this could be an indicator that some one has disabled it. 
 
-5.  Click on **Settings** in the left navigation and then **Basic Alerts**.
-6.  Click on **Add New**
-7.  Create an alert with the following parameters:
+Since you are already in the Macie service, create a new Basic Alert that will alert you in the future if default encryption is disabled on any of your buckets. 
+
+7.  Click on **Settings** in the left navigation and then **Basic Alerts**.
+8.  Click on **Add New**
+9.  Create an alert with the following parameters:
     * **Alert title**: *Encryption Removed*
     * **Description**: *Evidence of encryption being removed from a bucket*
     * **Category**: *Data Compliance*
@@ -112,18 +118,20 @@ Now you know all of your PII should be encrypted, but what if the attacker remov
     * **Severity**: *Critical*
     
     You can leave the other options at the default settings
-8.  Click **Save**
-9. In the list of alerts find the alert you just created and click on the magnifying glass to the right of the screen to run the alert. 
-10. Review the alert details.
+10.  Click **Save**
+11. In the list of alerts find the alert you just created and click on the magnifying glass to the right of the screen to run the alert. 
+12. Review the alert details.
 
-We now see that a bucket has had encryption removed. In order to find out which bucket, let’s look at the CloudTrail logs we enabled.
+Next you need to track down if someone recently disabled default encryption and who did it.
 
-11. Go to the [AWS CloudTrail](https://us-west-2.console.aws.amazon.com/cloudtrail/home?region=us-west-2) console
-12. Click **Event History** in the left navigation.
-13. Filter based on **Event Name and **DeleteBucketEncryption**.
-14. Expand the latest event and click on **View Event** to see the details of the API call.
+13. Go to the [AWS CloudTrail](https://us-west-2.console.aws.amazon.com/cloudtrail/home?region=us-west-2) console
+14. Click **Event History** in the left navigation.
+15. Filter based on **Event Name and **DeleteBucketEncryption**.
+16. Expand the latest event and click on **View Event** to see the details of the API call.
 
-    > Which bucket was encryption disabled on?
+    > Who was the user who disabled default encryption on the bucket?
+
+    > Are they the same user seen in your GuardDuty findings?
 
 ## Stop and Evaluate
 
