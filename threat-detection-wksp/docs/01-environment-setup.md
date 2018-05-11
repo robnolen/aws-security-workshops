@@ -12,7 +12,7 @@ In this module you will be configuring all the initial detective and remediation
 
 When you launch the first CloudFormation template you'll be prompted with questions regarding whether certain resources are already configured.  Please verify whether you aleady have the following configured in your account:
 
-1.	Go to AWS IAM and see if you have the following Roles created:
+1.	Go to [AWS IAM](https://console.aws.amazon.com/iam/home?region=us-west-2#/roles) and see if you have the following Roles created:
 	![Roles](../images/01-current-roles.png)
   	
   	> If you do not see the Macie Roles; you'll answer **No** when prompted if the Macie Roles exist when launching the CloudFormation template.
