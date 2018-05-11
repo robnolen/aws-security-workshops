@@ -174,7 +174,7 @@ Based upon your existing work, you’ve implemented the first step by using the 
 7. Click on **Change**.
 8. Evaluate the change to the updated NACL.
 
-### Modify Security Group
+### Modify the Security Group
 
 Now we’ve stopped the active session from the attacker. Next, we will stop the attacker, or anyone else, from coming from a different IP. 
 
@@ -194,10 +194,14 @@ Now we’ve stopped the active session from the attacker. Next, we will stop the
 
 Now that the attacker can’t SSH into the compromised machine, we need to rotate the AWS IAM credentials and disable their permissions. Before we do that though, let’s revoke all accesses held by the previous credentials.
 
-1.  Browse to the [AWS IAM](https://console.aws.amazon.com/iam/home?region=us-west-2) console
-2.  Click **Roles** and the **threat-detection-wksp-compromised-ec2** (this is the role attached to the compromised instance) Role.
+1.  Browse to the [AWS IAM](https://console.aws.amazon.com/iam/home?region=us-west-2) console.
+
+2.  Click **Roles** and the **threat-detection-wksp-compromised-ec2** Role (this is the role attached to the compromised instance).
+
 3.  Click on the **Revoke sessions** tab.
+
 4.  Click on **Revoke active sessions**.
+
 5.  Click the acknowledgement **check box** and then click **Revoke active sessions**. 
 
 ### Restart Instance to Rotate Credentials
