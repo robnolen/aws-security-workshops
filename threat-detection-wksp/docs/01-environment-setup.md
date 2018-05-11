@@ -100,7 +100,7 @@ The next step is to enable Amazon GuardDuty, which will continuously monitor you
 
 ## Enable Macie
 
-Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Macie, which will continuously monitor data access activity for anomalies and generate alerts when it detects risk of unauthorized access or inadvertent data leaks.
+Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Macie.  Macie is a security service that will continuously monitor data access activity for anomalies and generate alerts when it detects risk of unauthorized access or inadvertent data leaks.
 
 1.	Go to the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console.
 2.	Click **Get Started**.
@@ -109,10 +109,12 @@ Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Ma
 	
 	> The IAM roles created and AWS CloudTrail enabled should have checks next to them because they were created as part of the CloudFormation stack.
 
-## Setup Macie for Data Classification
+## Setup Macie for Data Discovery
 
-6.	Once inside of Macie, click on **Integrations** on the left hand navigation.
-7.	Click on **Services** near the top.
+Macie is also used for automatically discovering and classifying sensitive data.  Now setup a Macie integration classify data in your S3 bucket.
+
+1.	In the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console click on **Integrations** on the left hand navigation.
+2.	Click on **Services** near the top.
 8.	Select your account (should be the only one) and click **Add** (or **Details** if you already have buckets configured) for Amazon S3.
 9.	Click on the paper and pencil on the far right and select the S3 bucket that ends with **“-data”**
 	* Make sure you click both the checkboxes on the left and the right ends of the rows. This ensures both new and existing files get classified.
