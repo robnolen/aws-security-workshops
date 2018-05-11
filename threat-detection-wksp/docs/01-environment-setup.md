@@ -93,7 +93,9 @@ Below are steps to create this rule through the console but you can also find ou
 The next step is to enable Amazon GuardDuty, which will continuously monitor your environment for malicious or unauthorized behavior.
 
 1.	Go to the [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) console.
+
 2.	Click the **Get Started** button.
+
 3.	On the next screen click the **Enable GuardDuty** button.
 
 > GuardDuty is now enabled and continuously monitoring your CloudTrail logs, VPC flow logs, and DNS Query logs for threats in your environment.
@@ -114,13 +116,18 @@ Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Ma
 Macie is also used for automatically discovering and classifying sensitive data.  Now that Macie is enabled, setup an integration to classify data in your S3 bucket.
 
 1.	In the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console click on **Integrations** on the left hand navigation.
+
 2.	Click on **Services** near the top.
+
 3.	Select your account (should be the only one) and click **Add** (or **Details** if you already have buckets configured) for Amazon S3.
-9.	Click on the paper and pencil on the far right and select the S3 bucket that ends with **“-data”**
+
+4.	Click on the paper and pencil on the far right and select the S3 bucket that ends with **“-data”**
 	* Make sure you click both the checkboxes on the left and the right ends of the rows. This ensures both new and existing files get classified.
-![Macie Bucket Sample](../images/01-macie-bucket-selection.png)
-10.	Click **Review and Save**.
-11.	Click the boxes to acknowledge pricing and terms of service and click **Save**.
+	![Macie Bucket Sample](../images/01-macie-bucket-selection.png)
+
+5.	Click **Review and Save**.
+
+6.	Click the boxes to acknowledge pricing and terms of service and click **Save**.
 
 Macie is now enabled and ready to classify your data and send alerts
 
