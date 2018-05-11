@@ -8,10 +8,11 @@ In the last module we will have a short discussion of the lab (and discuss exact
 2. Questions – 10 min
 3. Cleanup – 5 min
 
+## Architecture Overview
 Diagram of the overall lab setup:
 ![Part 1 Diagram](../images/04-diagram-module4.png)
 
-#### What is really going on
+## What is Really Going On?
 
 In **Module 1** of the lab you setup the initial components of your infrastructure including GuardDuty, Macie and a simple notification and remediation pipeline. Some of the steps required manual configuration but you also ran a CloudFormation template which setup some of the components. In **Module 2** you launched a second CloudFormation template that initiated the attack simulated by this lab. The CloudFormation template created two EC2 instances. One instance (named **Malicious Host**) had the EIP attached to it that is in a GuardDuty custom threat list. Although the **Malicious Host** is in the same subnet as the other instance, for the sake of the scenario we acted as if it is on the Internet and represented the attack's computer. The other instance (named **Compromised Instance**) was your web server and it was taken over by the **Malicious Host**. In **Module 3** you investigated the attack, remediated the damage and setup some automated remediations for future attacks.  
 
