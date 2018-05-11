@@ -95,7 +95,8 @@ The next step is to enable Amazon GuardDuty, which will continuously monitor you
 1.	Go to the [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) console.
 2.	Click the **Get Started** button.
 3.	On the next screen click the **Enable GuardDuty** button.
-4.	That is all that is required to enable GuardDuty. 
+
+> That is all that is required to enable GuardDuty. 
 
 ### Enable Macie
 
