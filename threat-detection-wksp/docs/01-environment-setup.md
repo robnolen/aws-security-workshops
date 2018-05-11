@@ -84,7 +84,9 @@ Below are steps to create this rule through the console but you can also find ou
 6.	Now let’s examine the Lambda function to see what it does.  Open the [Lambda console](https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2)
 7.	Click on the function named **threat-detection-wksp-remediation-nacl**
 
-	> *What will the function do when invoked?*
+	> What will the function do when invoked?
+
+	> What will the other functions do?
 
 ### Enable GuardDuty
 
