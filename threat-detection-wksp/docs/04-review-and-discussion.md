@@ -21,22 +21,28 @@ In **Module 1** of the lab you setup the initial components of your infrastructu
 1. There are two instances created by the Module 2 CloudFormation template. They are in the same VPC but different subnets. The **Malicious Host** represents the attacker which we pretend is on the Internet. The Elastic IP on the **Malicious Host** is in a custom threat list in GuardDuty. The other instance named **Compromised Instance** represents the web server that was lifted and shifted into AWS.
 
 2. Although company policy is that only key-based authentication should be enabled for SSH, at some point password authentication for SSH was enabled on the **Compromised Instance**.  
-	* This misconfiguration is identified in the Inspector scan that is triggered from the GuardDuty finding.
+	
+	> This misconfiguration is identified in the Inspector scan that is triggered from the GuardDuty finding.
 
 3. The **Malicious Host** performed a brute force SSH password attack against the **Compromised Instance**. The brute force attack is designed to be successful.
-	* **GuardDuty Finding**: UnauthorizedAccess:EC2/SSHBruteForce
+	
+	> **GuardDuty Finding**: UnauthorizedAccess:EC2/SSHBruteForce
 
 4. The SSH brute force attack was successful and the attacker was able to log in to the **Compromised Instance**.
-	* Successful login is confirmed in CloudWatch Logs (/threat-detection-wksp/var/log/secure).
+	
+	> Successful login is confirmed in CloudWatch Logs (/threat-detection-wksp/var/log/secure).
 
 5. The EC2 Instance that is created in the Module 2 CloudFormation template disabled default encryption on the **Data** bucket.  In addition the CloudFormation template made the **Data** bucket public.  This is used for the Macie part of the investigation in Module 3. We pretend that the attacker made the bucket public and removed the default encryption from the bucket.
-	* **Macie Alert**: S3 Bucket IAM policy grants global read rights
+	
+	> **Macie Alert**: S3 Bucket IAM policy grants global read rights
 
 6.  The Compromised Instance also has a cron job that continuously pings the Malicious Host to generate a GuardDuty finding based off the custom threat list.
-	* **GuardDuty Finding**: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom
+	
+	> **GuardDuty Finding**: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom
 
 7. The API Calls that generated the API findings come from the **Malicious Host**. The calls use the temp creds from the IAM role for EC2 running on the **Malicious Host**. The GuardDuty findings are generated because the EIP attached to the **Malicious Host** is in a custom threat list. 
-	* **GuardDuty Findings**: 
+	
+	> **GuardDuty Findings**: 
 		* Recon:IAMUser/MaliciousIPCaller.Custom
 		* UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom
 
@@ -46,15 +52,13 @@ In **Module 1** of the lab you setup the initial components of your infrastructu
 	3.	**CloudWatch Event Rule**: The SSH brute force attack finding invokes a CloudWatch Event rule which triggers a Lambda function to block the attacker IP address of the attacker via a NACL as well as a Lambda function that runs an Inspector scan on the EC2 instance.
 	4. **CloudWatch Event Rule**: The Unauthorized Access Custom MaliciousIP finding invokes a CloudWatch Event rule which triggers a Lambda function to block the IP address of the attacker via a NACL.
 
-### Additional Findings in GuardDuty
-There were two findings in GuardDuty that were not part of the attack. These findings are a side effect of the lab setup in order to simulate the attack. These findings are "API CreateThreatIntelSet was invoked from an IP address" & "API ListDetectors, commonly used in reconnaissance attacks, was invoked from an IP address." Do you know why these two findings were generated? Why were they necessary for the lab setup?
-
 ## Cleanup
-In order to prevent charges to your account we recommend cleaning up the infrastructure that was created. If you plan to keep things running so you can examine the lab a bit more please remember to do the cleanup when you are done. It is very easy to leave things running in an AWS account, forgot about it and then accrue a lot of charges. 
+In order to prevent charges to your account we recommend cleaning up the infrastructure that was created. If you plan to keep things running so you can examine the lab a bit more please remember to do the cleanup when you are done. It is very easy to leave things running in an AWS account, forgot about it, and then accrue charges. 
 
 For the Module 1 cleanup you will need to do the following steps manually before deleting the CloudFormation stack: (You must complete the steps below before deleting the Module 1 template.) 
 
 1. Disable Macie (if you didn't already have Macie enabled before the Workshop) - go to the [Macie console](https://mt.us-west-2.macie.aws.amazon.com/), in the upper hand corner select the down arrow next to your IAM user name (or the root user) and select **Macie general settings** then check the two boxes and click **Disable Amazon Macie**
+
 2. Delete all three S3 buckets created by the Module 1 CloudFormation template (the buckets that end with that ends with "-data", "-threatlist" and "-logs")
 3. Delete the GuardDuty custom threat list
 4. Disable GuardDuty (if you didn't already have GuardDuty enabled before the Workshop) - go to the [GuardDuty console](https://us-west-2.console.aws.amazon.com/guardduty/), select the **General** tab, click the checkbox next to **Disable GuardDuty** then click **Save Settings**, then click **Disable**
