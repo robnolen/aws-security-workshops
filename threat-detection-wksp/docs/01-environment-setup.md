@@ -51,12 +51,14 @@ This will bring you back to the CloudFormation console. You can refresh the page
 
 ## Setup CloudWatch Event Rules and Automatic Remediation
 
-The CloudFormation template you just ran created three [CloudWatch Event Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) for alerting and remediation purposes. The steps below will walk you through creating the final rule in order to trigger your remediation Lambda functions whenever GuardDuty or Macie flag any findings. 
+The CloudFormation template you just ran created three [CloudWatch Event Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) for alerting and remediation purposes. The steps below will walk you through creating the final rule.  After which you'll have all the necessary rules in place to receive email notifications and trigger the appropiate AWS Lambda functions for remediations.
 
-Below are steps to create this rule through the console but you can also find out more about doing it programmatically by reviewing the [GuardDuty Documentation](http://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_cloudwatch.html) for example. You can also look at the other rules to see how the AWS Simple Notification Service (SNS) is used for subscribing emails to alerts.
+Below are steps to create this rule through the console but you can also find out more about doing it programmatically by reviewing the [GuardDuty Documentation](http://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_cloudwatch.html) for example.
 
 1.	Open the [CloudWatch console](https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2)
 2.	In the navigation pane on the left, under **Events**, choose **Rules**
+
+	> Take a look at the current Rules in place.
 3.	Choose **Create Rule**
 4.	In the dialog box, add the following is correct: 
 	* For *Event Source*, choose **Event Pattern** and set **Service Name** to **GuardDuty**
