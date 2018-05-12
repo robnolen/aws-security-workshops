@@ -71,7 +71,7 @@ Based on the findings you see that password authentication is configured on the 
 
 Now that you have verified that the brute force attack was successful and your instance was compromised, go back to the [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) console and view the other findings.
 
-> Does it look like we are early in the attack (just intrusion), or has the intruder started performing malicious actions?
+> Does it look like you are early in identifying the attack (just intrusion), or has the intruder started performing malicious actions?
 
 View the following GuardDuty findings and take a note of the resources involved:
 * **Recon:IAMUser/MaliciousIPCaller.Custom**
@@ -82,7 +82,7 @@ You can see by these findings that the compromised instance is communicating wit
 
 ### Check if Sensitive Data was Involved
 
-At this point we know how the attacker was able to get into your systems and a general idea of what they did. After reviewing the permissions associated with the IAM Role you realize that it has very permissive policies as it relates to your S3 bucket.  Lets verify what sort of senstive data is in your bucket and take a closer at your Macie Alerts.
+At this point you know how the attacker was able to get into your systems and a general idea of what they did. After reviewing the permissions associated with the IAM Role you realize that it has very permissive policies as it relates to your S3 bucket.  Verify what sort of senstive data is in your bucket and take a closer at your Macie Alerts.
 
 1.  Go to the [Amazon Macie](https://mt.us-west-2.macie.aws.amazon.com/) console.
 2.  Look through the latest alerts.
