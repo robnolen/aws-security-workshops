@@ -62,7 +62,7 @@ In order to prevent charges to your account we recommend cleaning up the infrast
 	* Click on **Roles**
 	* Search for the role named **threat-detection-wksp-compromised-ec2**.
 	* Click the check box next to it and click **Delete**.
-	* Repeat for the second role.
+	* Repeat for the second role (**AWSServiceRoleForAmazonInspector**).
 
 2.	Delete all three S3 buckets created by the Module 1 CloudFormation template (the buckets that start with **threat-detection-wksp** and end with **-data**, **-threatlist** and **-logs**)
 	* Go to [Amazon S3](https://s3.console.aws.amazon.com/s3/home?region=us-west-2) console.
