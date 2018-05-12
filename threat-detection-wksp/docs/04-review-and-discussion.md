@@ -78,7 +78,7 @@ In order to prevent charges to your account we recommend cleaning up the infrast
 	* Click **Delete Stack**.
 	* Repeat for the other buckets second stack.
 
-	> You do not need to wait for the first stack to delete before you delete the second one.
+		> You do not need to wait for the first stack to delete before you delete the second one.
 
 4.	Delete the GuardDuty custom threat list and disable GuardDuty (if you didn't already have it configured before the workshop)
 	* Go to the [Amazon GuardDuty]((https://us-west-2.console.aws.amazon.com/guardduty/) console.
