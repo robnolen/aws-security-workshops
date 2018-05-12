@@ -89,9 +89,9 @@ At this point you know how the attacker was able to get into your systems and a 
 
     > Do you see any critical alerts?  
 
-    Next lets verify what sort of sensitve data exists in that bucket.
+Next lets verify what sort of sensitve data exists in that bucket.
 
-3.  Click **Dashboard** in the left navigation.  You should see the following data classifications:
+3.  Click **Dashboard** on the left hand navigation.  You should see the following data classifications:
     ![Macie Classification](../images/03-macie-data.png)
 
     > You can slide the risk slider to filter data classifications based on risk levels.
