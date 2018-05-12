@@ -130,15 +130,17 @@ Macie is also used for automatically discovering and classifying sensitive data.
 
 6.	Click the boxes to acknowledge pricing and terms of service and click **Save**.
 
-Macie is now enabled and ready to classify your data and send alerts
+Macie is now enabled and ready to classify your data and send alerts.
 
 ## Architecture Overview
 
-Your environment is now configured and ready for operations.  Below is diagram to dipict the detective controls you now have in place.
+Your environment is now configured and ready for operations.  Below is a diagram to dipict the detective controls you now have in place.
 
 ![Detective Controls](../images/01-diagram-module1.png)
 
-After you have successfully setup your environment, you can proceed to the next module: **[Module 2 - Attack Simulation](../docs/02-attack-simulation.md)**.
+After you have successfully setup your environment, you can proceed to the next module: 
+
+### **[Module 2 - Attack Simulation](../docs/02-attack-simulation.md)**.
 
 ## Troubleshooting
  
