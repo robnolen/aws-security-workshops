@@ -62,7 +62,7 @@ Based on the findings you see that password authentication is configured on the 
     [Mon, day, timestamp, ip, id, msg1= Accepted, msg2 = password, ...]
     ```
 
-    You should see a match which indicates that the SSH brute force attack was successful.
+    > Do you see any successful attempts to log into the instance?
 
     > Which users were compromised?
 
