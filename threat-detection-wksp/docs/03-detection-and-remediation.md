@@ -180,12 +180,13 @@ Based upon your existing work, you’ve implemented the first step by using the 
 Now we’ve stopped the active session from the attacker. Next, we will stop the attacker, or anyone else, from coming from a different IP. 
 
 1.  Go to the [Amazon EC2](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2) Console.
+
 2.  Find the running instances with the name **threat-detection-wksp: Compromised Instance**.
-    
-    > You can also filter by the Instance ID you captured earlier.
 
 3.  Under the **Description** tab, click on the Security Group for the compromised instance.
+
 4.  View the rules under the **Inbound** tab.
+
 5.  Click **Edit** and delete the inbound SSH rule. You've decided that all administration on EC2 Instances will be done through [AWS Systems Manager](https://aws.amazon.com/systems-manager/) so you no longer need this port open.
 
     > In your initial setup you already installed the SSM Agent on your EC2 Instance.
