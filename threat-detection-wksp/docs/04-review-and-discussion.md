@@ -82,9 +82,9 @@ In order to prevent charges to your account we recommend cleaning up the infrast
 
 4.	Delete the GuardDuty custom threat list and disable GuardDuty (if you didn't already have it configured before the workshop)
 	* Go to the [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/) console.
-	* Click on **Lists** in the navigation pane on the left.
+	* Click on **Lists** on the left navigation.
 	* Click the **X** next to the threat list that starts with **Custom-Threat-List**.
-	* Click **Settings** in the navigation pane on the left.
+	* Click **Settings** in the navigation pane on the left navigation.
 	* Click the check box next to **Disable**.
 	* Click **Save Settings**
 
@@ -109,12 +109,12 @@ In order to prevent charges to your account we recommend cleaning up the infrast
 
 7.	Delete the SNS subscription that was created when you subscribed to SNS Topic.
 	* Go to the [AWS SNS](https://us-west-2.console.aws.amazon.com/sns) console.
-	* Click on **Subscriptions**
+	* Click on **Subscriptions** on the left navigation.
 	* Select the check box next to the subscription that shows your e-mail as the Endpoint and has **threat-detection-wksp** in the **Subscription ARN**.
 	* Select **Action** and then click **Delete subscriptions**
 
 8.	Disable Macie (if you didn't already have Macie enabled before the Workshop).
-	* Go the [Amazon Macie]((https://mt.us-west-2.macie.aws.amazon.com/) console.
+	* Go the [Amazon Macie](https://mt.us-west-2.macie.aws.amazon.com/) console.
 	* In the upper hand corner select the down arrow to the left of the Region and select **Macie General Settings**.
 	* Check the two boxes and click **Disable Amazon Macie**
 

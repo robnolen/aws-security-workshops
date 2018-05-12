@@ -34,7 +34,7 @@ You’ve received the first alerts from GuardDuty. Now what? Assuming you’re s
 Following security design best practices you already setup your servers to log to CloudWatch. You’ve also setup automated scanning of instances under attack using [AWS Inspector](https://aws.amazon.com/inspector/). Let’s look at Inspector to see if the SSH configuration adheres to best practices to determine what the risk is involved with the brute force attack.
 
 1.  Go to [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector/home?region=us-west-2) in the Amazon Console.
-2.  Click to **Findings** on the left hand navigation.
+2.  Click to **Findings** on the left navigation.
 3.  Review the four medium severity findings.
     ![Inspector Findings](../images/03-inspector-findings.png)
     
@@ -91,7 +91,7 @@ At this point you know how the attacker was able to get into your systems and a 
 
 Next lets verify what sort of sensitve data exists in that bucket.
 
-3.  Click **Dashboard** on the left hand navigation.  You should see the following data classifications:
+3.  Click **Dashboard** on the left navigation.  You should see the following data classifications:
     ![Macie Classification](../images/03-macie-data.png)
 
     > You can slide the risk slider to filter data classifications based on risk levels.
@@ -124,7 +124,7 @@ Since you are already in the Macie service, create a new Basic Alert that will a
 Next you need to track down if someone recently disabled default encryption and who did it.
 
 13. Go to the [AWS CloudTrail](https://us-west-2.console.aws.amazon.com/cloudtrail/home?region=us-west-2) console
-14. Click **Event History** on the left hand navigation.
+14. Click **Event History** on the left navigation.
 15. Filter based on **Event Name and **DeleteBucketEncryption**.
 16. Expand the latest event and click on **View Event** to see the details of the API call.
 
@@ -213,7 +213,7 @@ Now that those credentials won’t work we need to rotate the existing server cr
 First verify what the current credentials are.   
 
 1.  Go back to the [Amazon EC2](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2) console.
-2.  To see the keys currently active on the instance, click on **Run Command** on the left hand navigation.
+2.  To see the keys currently active on the instance, click on **Run Command** on the left navigation.
 3.  Click **Run a command**.
 4.  Select **AWS-RunShellScript**. The instance in your account should already be selected.
 5.  In **Commands** type:
@@ -246,7 +246,7 @@ This is a good use case for auto-scaling groups and golden-image AMI’s, but th
 
 With the EC2 instance access scoped down and the IAM credentials revoked, we need to stop external access to the S3 bucket. Before we restore the previous configuration, we can quickly make the bucket only accessible from inside the VPC. Then we can re-enable encryption.
 
-1.  First, check the configuration of the S3 Endpoint in your environment by going to [Amazon VPC](https://us-west-2.console.aws.amazon.com/vpc/home?region=us-west-2) and clicking on **Endpoints** on the left hand navigation.
+1.  First, check the configuration of the S3 Endpoint in your environment by going to [Amazon VPC](https://us-west-2.console.aws.amazon.com/vpc/home?region=us-west-2) and clicking on **Endpoints** on the left navigation.
     * Copy the **Endpoint ID**
 2.  Check the **Policy** on the bottom tab to notice all access is allowed.
 3.  Check the Route Tables to see who is using the Endpoint.
