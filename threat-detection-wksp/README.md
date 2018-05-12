@@ -4,7 +4,7 @@ This workshop is designed to help you get familiar with AWS Security services an
 
 ### Scenario
 
-You are a systems administrator for a web services company. New to the cloud, you have performed a lift-and-shift of your infrastructure for piloting purposes leaving an instance available to the internet.  As the administrator of the system, you have been tasked with responding to any security alerts generated from your AWS environment.
+Your company is new to the cloud and has recently performed a lift-and-shift of your infrastructure for piloting purposes.  You are a systems administrator and have been tasked with maintaining the environment in AWS.  As part of that maintenance you are also responsible for responding to any security event in your environment.
 
 ### Architecture Overview
 
