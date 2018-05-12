@@ -35,4 +35,6 @@ Below is a diagram of the setup after the module 2 CloudFormation stack is creat
 
 ![Module 2 Diagram](../images/02-diagram-module2-3.png)
 
-After the presentation, you can proceed to the next module: **[Module 3 - Detection and Remediation](../docs/03-detection-and-remediation.md)**.
+After the presentation, you can proceed to the next module.
+
+### **[Module 3 - Detection and Remediation](../docs/03-detection-and-remediation.md)**
