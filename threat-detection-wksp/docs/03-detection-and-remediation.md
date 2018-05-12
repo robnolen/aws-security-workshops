@@ -69,7 +69,7 @@ Based on the findings you see that password authentication is configured on the 
 
 ### Check the Remaining GuardDuty Findings
 
-Now that you have verified that your instance was compromised, go back to the [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) console and view the other findings.
+Now that you have verified that the brute force attack was successful and your instance was compromised, go back to the [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) console and view the other findings.
 
 > Does it look like we are early in the attack (just intrusion), or has the intruder started performing malicious actions?
 
@@ -78,7 +78,7 @@ View the following GuardDuty findings and take a note of the resources involved:
 * **UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom**
 * **UnauthorizedAccess:EC2/MaliciousIPCaller.Custom**
 
-You can see by these findings that an advisory is using the AWS IAM Role credentials associated with the compromised instance and the instance is also communicating with an IP on your custom threat list.
+You can see by these findings that the compromised instance is communicating with an IP address on your custom threat list and the AWS IAM Role credentials associated with the instance are being used by a malicious actor. 
 
 ### Check if Sensitive Data was Involved
 
