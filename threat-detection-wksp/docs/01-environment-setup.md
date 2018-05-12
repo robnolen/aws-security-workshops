@@ -140,7 +140,7 @@ Your environment is now configured and ready for operations.  Below is a diagram
 
 After you have successfully setup your environment, you can proceed to the next module: 
 
-### **[Module 2 - Attack Simulation](../docs/02-attack-simulation.md)**.
+### **[Module 2 - Attack Simulation](../docs/02-attack-simulation.md)**
 
 ## Troubleshooting
  
