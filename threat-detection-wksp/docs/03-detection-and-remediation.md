@@ -102,7 +102,7 @@ Next lets verify what sort of sensitve data exists in that bucket.
 
     > Look for the **Object Encryption** field.
 
-At this point you have identified that there is a bucket with high risk data that has open public read permissions and that certain objects in your bucket are not encrypted.  When you first configured the environment you enabled default encryption for the bucket so this could be an indicator that some one has disabled it. 
+At this point you have identified that there is a bucket with high risk data that has open public read permissions and that certain objects in that bucket are not encrypted.  When you first configured the environment you enabled default encryption for the bucket so this could be an indicator that some one has disabled it. 
 
 Since you are already in the Macie service, create a new Basic Alert that will alert you in the future if default encryption is disabled on any of your buckets. 
 
@@ -124,7 +124,7 @@ Since you are already in the Macie service, create a new Basic Alert that will a
 Next you need to track down if someone recently disabled default encryption and who did it.
 
 13. Go to the [AWS CloudTrail](https://us-west-2.console.aws.amazon.com/cloudtrail/home?region=us-west-2) console
-14. Click **Event History** in the left navigation.
+14. Click **Event History** on the left hand navigation.
 15. Filter based on **Event Name and **DeleteBucketEncryption**.
 16. Expand the latest event and click on **View Event** to see the details of the API call.
 
@@ -134,14 +134,14 @@ Next you need to track down if someone recently disabled default encryption and 
 
 ## Stop and Evaluate
 
-So at this point we have identified a successful intrusion into our network and specific actions taken against our account. Let’s recap what those are:
+So at this point you have identified a successful intrusion into your network and specific actions taken against your account. Let’s recap what those are:
 
 * A SSH brute force Attack against an internet accessible EC2 instance was successful.
 * Malware was put on the EC2 instance and communicated with a known malicious IP address.
 * The IAM credentials for the server were stolen, published to S3, and used to perform reconnaissance against the account.
 * An S3 bucket was made public and encryption was removed - most likely for data exfiltration.
 
-Now that we’ve identified the attacker’s actions we need to stop them from performing any additional activities, restore our systems to their previous configurations, and protect our resources so this can’t happen again. For each of the following, develop a remediation plan for using AWS native policies and a DevSecOps approach to alerting and remediation for future attacks.
+Now that you've identified the attacker’s actions you need to stop them from performing any additional activities, restore your systems to their previous configurations, and protect your resources so this can’t happen again. For each of the following, develop a remediation plan for using AWS native policies and a DevSecOps approach to alerting and remediation for future attacks.
 
 What remediations should you put in place:
 
@@ -169,9 +169,11 @@ Based upon your existing work, you’ve implemented the first step by using the 
 3.  Click **Resources** in the left navigation.
 4.  Select **Tag** and enter **Name** and **threat-detection-wksp-compromised** for the key pair like shown below:
     ![Config Key Pair](../images/03-config-keypair.png)
-6. Click on the Config timeline for the EC2 NetworkAcl.
-7. Click on **Change**.
-8. Evaluate the change to the updated NACL.
+6.  Click on the Config timeline for the EC2 NetworkAcl.
+7.  Click on **Change**.
+8.  Evaluate the change to the updated NACL.
+
+    > What does the new NACL rule do?
 
 ### Modify the Security Group
 
