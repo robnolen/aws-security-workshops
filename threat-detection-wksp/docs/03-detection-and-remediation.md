@@ -158,7 +158,7 @@ Before we get ahead of ourselves, we must stop any further actions from taking p
 
 ### Verify your Automated Remediation
 
-Based upon your existing work, you’ve implemented the first step by using the CloudWatch Event rule to trigger the Lambda function to update the NACL for the instance. Let’s look at what changed.
+Based upon your existing work, you’ve implemented the first step by using the CloudWatch Event rule to trigger the Lambda function to update the NACL for the subnet that the instance is located in. Let’s look at what changed.
 
 1.  Go to the [AWS Config](https://us-west-2.console.aws.amazon.com/config/home?region=us-west-2) console.
 2.  On the Settings page you will see the message below.
@@ -167,7 +167,7 @@ Based upon your existing work, you’ve implemented the first step by using the 
     Click the **Click Here** button to proceed with using Config without Config Rules
 
 3.  Click **Resources** in the left navigation.
-4.  Select **Tag** and enter **Name** and **threat-detection-wksp-compromised** for the key pair like shown below:
+4.  Since you know the name of the NACL select **Tag** and enter **Name** and **threat-detection-wksp-compromised** for the key pair like shown below:
     ![Config Key Pair](../images/03-config-keypair.png)
 6.  Click on the Config timeline for the EC2 NetworkAcl.
 7.  Click on **Change**.
