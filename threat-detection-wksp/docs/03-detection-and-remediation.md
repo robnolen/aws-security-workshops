@@ -299,4 +299,4 @@ With the configuration reestablished we will focus on alerts and automated remed
 
 After you have remediated the incident and further hardened your environment, you can proceed to the next module.
 
-### **[Module 4 - Review and Discussion](../docs/04-review-and-discussion.md)**.
+### **[Module 4 - Review and Discussion](../docs/04-review-and-discussion.md)**
