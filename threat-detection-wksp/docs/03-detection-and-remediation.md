@@ -177,7 +177,7 @@ Based upon your existing work, you’ve implemented the first step by using the 
 
 ### Modify the Security Group
 
-Now we’ve stopped the active session from the attacker. Next, we will stop the attacker, or anyone else, from coming from a different IP. 
+Now that the active session from the attacker has been stopped by the update to the NACL, you need to modify the Security Group associated with the instance to prevent the attacker or anyone else from coming from a different IP.
 
 1.  Go to the [Amazon EC2](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2) Console.
 
@@ -297,4 +297,6 @@ With the EC2 instance access scoped down and the IAM credentials revoked, we nee
 
 With the configuration reestablished we will focus on alerts and automated remediation should the attacker try again. In Module 1 we put some of this in place. This is where the CloudWatch alerts tied to Lambda functions come into play.
 
-After you have remediated the incident and further hardened your environment, you can proceed to the next module: **[Module 4 - Review and Discussion](../docs/04-review-and-discussion.md)**.
+After you have remediated the incident and further hardened your environment, you can proceed to the next module.
+
+### **[Module 4 - Review and Discussion](../docs/04-review-and-discussion.md)**.
