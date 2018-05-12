@@ -42,9 +42,8 @@ In **Module 1** of the lab you setup the initial components of your infrastructu
 
 7. The API Calls that generated the API findings come from the **Malicious Host**. The calls use the temp creds from the IAM role for EC2 running on the **Malicious Host**. The GuardDuty findings are generated because the EIP attached to the **Malicious Host** is in a custom threat list. 
 	
-	> **GuardDuty Findings**: 
-		* Recon:IAMUser/MaliciousIPCaller.Custom
-		* UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom
+	> **GuardDuty Findings**: Recon:IAMUser/MaliciousIPCaller.Custom
+		**GuardDuty Findings**: UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom
 
 8. A number of CloudWatch Events Rules are evoked by the GuardDuty findings and then these trigger various services.
 	1.	**CloudWatch Event Rule**: The generic GuardDuty finding invokes a CloudWatch Event rule which triggers SNS to send an email.
