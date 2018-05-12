@@ -1,11 +1,10 @@
 # Module 3: Detection and Remediation
 
-Unfortunately, due to a misconfiguration in your environment, a hacker has been able to gain access to your webserver. Now, with the intruder in your environment you’re getting alerts from the security tools you’ve put in place indicating nefarious activity. These alerts include communication with known malicious IP addresses, account reconnaissance, changes to S3 policies, and disabling security configurations. You must identify exactly what activity the intruder has performed and how so you can block the intruder’s access, remediate the vulnerabilities, and restore the configuration to its proper state.
+Unfortunately, due to a misconfiguration in your environment, a hacker has been able to gain access to your webserver. Now, with the intruder in your environment you’re getting alerts from the security tools you’ve put in place indicating nefarious activity. These alerts include communication with known malicious IP addresses, account reconnaissance, changes to S3 policies, and disabling security configurations. You must identify exactly what activity the intruder has performed and how they did it so you can block the intruder’s access, remediate the vulnerabilities, and restore the configuration to its proper state.
 
 ## Find Out What's Happening!
 
-You’ve received the first alerts from GuardDuty. Now what? Assuming you’re still logged into your account, let’s see where these findings are coming from.
-Since the alert came from GuardDuty, we will check there first.
+You’ve received the first alerts from GuardDuty. Now what? Assuming you’re still logged into your account, let’s see where these findings are coming from. Since the alert came from GuardDuty, we will check there first.
 
 ### Check GuardDuty Findings
 
@@ -35,7 +34,7 @@ Since the alert came from GuardDuty, we will check there first.
 Following security design best practices you already setup your servers to log to CloudWatch. You’ve also setup automated scanning of instances under attack using [AWS Inspector](https://aws.amazon.com/inspector/). Let’s look at Inspector to see if the SSH configuration adheres to best practices to determine what the risk is involved with the brute force attack.
 
 1.  Go to [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector/home?region=us-west-2) in the Amazon Console.
-2.  Click to **Findings** in the left navigation.
+2.  Click to **Findings** on the left hand navigation.
 3.  Review the four medium severity findings.
     ![Inspector Findings](../images/03-inspector-findings.png)
     
@@ -63,9 +62,9 @@ Based on the findings you see that password authentication is configured on the 
     [Mon, day, timestamp, ip, id, msg1= Accepted, msg2 = password, ...]
     ```
 
-    > Do you see any successful attempts to log into the instance?
+    You should see a match which indicates that the SSH brute force attack was successful.
 
-    You should see a match which indicates that the SSH Brute Force attack was successful.
+    > Which users were compromised?
 
 
 ### Check the Remaining GuardDuty Findings
