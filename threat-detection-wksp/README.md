@@ -8,11 +8,11 @@ Your company is new to the cloud and has recently performed a lift-and-shift of 
 
 ### Architecture Overview
 
-For this Workshop you will have a single instance setup in the us-west-2 region. As this was a “lift-and-shift” migration for piloting you have yet to build redundancy into your application, so you have a single public-facing webserver. The webserver has access to the Internet Gateway through an Elastic Network Interface. Customers access your web server through a DNS entry pointing to the Elastic Network Interface. You store static content in an S3 bucket and use the VPC S3 Endpoint Gateway for access from the webserver.
+For this Workshop you will have a single instance setup in the us-west-2 region. As this was a “lift-and-shift” migration for piloting, you have yet to build redundancy into your application, so you have a single public-facing webserver. The webserver has access to the Internet Gateway through an Elastic Network Interface. Customers access your web server through a DNS entry pointing to the Elastic Network Interface. You store static content in an S3 bucket and use the VPC S3 Endpoint Gateway for access from the webserver.
 
 ![Architecture](./images/diagram-basic-arch.png "Lab Workload Architecture")
 
-Before you migrated the application you saw a webinar about AWS security best practices. Because of that webinar, you knew to enable the following security products: VPC Flow Logs, Config, CloudTrail, and GuardDuty. 
+Before you migrated the application you saw a webinar about AWS security best practices. Because of that webinar, you knew to enable a number of the Security services. 
 
 ### Region
 Please use the **us-west-2 (Oregon)** region for this workshop.

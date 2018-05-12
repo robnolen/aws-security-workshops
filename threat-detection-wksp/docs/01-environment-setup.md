@@ -107,9 +107,10 @@ Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Ma
 1.	Go to the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console.
 2.	Click **Get Started**.
 3.	Check the box under **Permissions**.
-4.	Click **Enable Macie**.
 	
-	> The IAM roles created and AWS CloudTrail enabled should have checks next to them because they were created as part of the CloudFormation stack.
+	> The CloudFormation template you ran eariler created the IAM roles and AWS CloudTrail needed for Macie, which is why you already see the checkmarks next to those items. 
+
+4.	Click **Enable Macie**.
 
 ## Setup Macie for Data Discovery
 
