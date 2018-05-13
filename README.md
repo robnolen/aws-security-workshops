@@ -1,12 +1,12 @@
 # AWS Security Workshops
 
-Within AWS there are a variety of services that can be used to secure your environments and workloads running in the cloud. This repository contains a collection of security oriented workshops that will guide you through prepared scenarios that represent common use cases and operational tasks and give you hands on experience with a wide range of AWS services.  The workshops closely align with the [Security Perspective](https://d0.awsstatic.com/whitepapers/AWS_CAF_Security_Perspective.pdf) components of our Cloud Adoption Framework, which can be used to help you structure your selection and implementation of controls that are right for your organziation.  Captured below are the high level security components:
+Within AWS there are a variety of services that can be used to secure your environments and workloads. This repository contains a collection of security oriented workshops that will guide you through prepared scenarios that represent common use cases and operational tasks and give you hands on experience with a wide range of AWS services.  The workshops closely align with the [Security Perspective](https://d0.awsstatic.com/whitepapers/AWS_CAF_Security_Perspective.pdf) components of our Cloud Adoption Framework, which can be used to help you structure your selection and implementation of controls that are right for your organziation.  Captured below are the high level security components:
 
 ![Components](./images/security-components-color.png "Categorization of AWS Security Services")
 
 ## Workshops
 
-> Please review and complete all Prerequisites before attempting these workshops.
+> Please review and complete all prerequisites before attempting these workshops.
 
 - [**Threat Detection and Remediation**](./threat-detection-wksp/) - This workshop demonstrates how you can use AWS Security services such Amazon GuardDuty and Amazon Macie to detect malicious and unauthorized threats in an environment. You'll learn how to setup detective controls in your environment, investigate a variety of findings, and put in place automated remediations using Lambda.
 
@@ -14,11 +14,11 @@ Within AWS there are a variety of services that can be used to secure your envir
 
 ### AWS Account
 
-In order to complete this workshop you'll need an AWS Account, and an AWS IAM user in that account with at Admin permissions.  The code and instructions in this workshop assume only one student is using a given AWS account at a time. If you try sharing an account with another student, you'll run into naming conflicts for certain resources. 
+In order to complete these workshops you'll need a valid, usable AWS Account with Admin permissions.  The code and instructions in these workshops assume only one student is using a given AWS account at a time. If you try sharing an account with another student, you'll run into naming conflicts for certain resources. 
 
-Use a **personal account** or create a new AWS account for this workshop rather than using an organization’s account to ensure you have full access to the necessary services and to ensure you do not leave behind any resources from the workshop.
+Use a **personal account** or create a new AWS account to ensure you have the neccessary access. This should not be an AWS account from the company you work for.
 
-All of the resources you will launch as part of this workshop are eligible for the AWS free tier if your account is less than 12 months old. See the [AWS Free Tier](https://aws.amazon.com/free/) page for more details.  If you are doing this workshop as part of an AWS sponsored event, you will receive credits to apply towards your account to cover any costs.
+All of the resources you will launch as part of these workshops are eligible for the AWS free tier if your account is less than 12 months old. See the [AWS Free Tier](https://aws.amazon.com/free/) page for more details.  If you are doing this workshop as part of an AWS sponsored event, you will receive credits to cover the costs.
 
 ### Browser
 
