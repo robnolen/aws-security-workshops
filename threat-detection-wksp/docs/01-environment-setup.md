@@ -98,7 +98,7 @@ The next step is to enable Amazon GuardDuty, which will continuously monitor you
 
 3.	On the next screen click the **Enable GuardDuty** button.
 
-> GuardDuty is now enabled and continuously monitoring your CloudTrail logs, VPC flow logs, and DNS Query logs for threats in your environment.
+GuardDuty is now enabled and continuously monitoring your CloudTrail logs, VPC flow logs, and DNS Query logs for threats in your environment.
 
 ## Enable Macie
 
@@ -116,7 +116,7 @@ Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Ma
 
 Macie is also used for automatically discovering and classifying sensitive data.  Now that Macie is enabled, setup an integration to classify data in your S3 bucket.
 
-1.	In the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console click on **Integrations** on the left hand navigation.
+1.	In the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console click on **Integrations** on the left navigation.
 
 2.	Click on **Services** near the top.
 
