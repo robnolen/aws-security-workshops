@@ -35,10 +35,9 @@ Following security design best practices you already setup your servers to log t
 
 1.  Go to [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector/home?region=us-west-2) in the Amazon Console.
 2.  Click to **Findings** on the left navigation.
-3.  Review the four medium severity findings.
+3. Filter down the findings by using the **GuardDuty Finding ID** you copied earlier.  The Inspector template that was used for the scan includes this ID in the name.
+4.  Review the findings related to password authentication as shown below.
     ![Inspector Findings](../images/03-inspector-findings.png)
-    
-    If you have run multiple Inspector scans outside of this workshop you can filter down the findings by using the **GuardDuty Finding ID** (as shown above) you copied earlier.  The Inspector template that was used for the scan includes this ID in the name.
 
     > Which Inspector [rule packages](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_rule-packages.html) were used for this scan?
 
@@ -46,17 +45,17 @@ Following security design best practices you already setup your servers to log t
 
 Based on the findings you see that password authentication is configured on the instance with no password complexity restrictions which means the instance is more susceptible to a SSH brute force attack. Let’s look at the CloudWatch logs and create a metric to see if there are any successful attempts.
 
-4.  Go to [CloudWatch logs](https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2#logs:).
-5.  Click on the log group **/threat-detection-wksp/var/log/secure**
-6.  If you have multiple log streams, filter using the Instance ID you copied earlier and click on the stream.
-7.  Within the **Filter Events** textbox put the following Filter Pattern: 
+5.  Go to [CloudWatch logs](https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2#logs:).
+6.  Click on the log group **/threat-detection-wksp/var/log/secure**
+7.  If you have multiple log streams, filter using the Instance ID you copied earlier and click on the stream.
+8.  Within the **Filter Events** textbox put the following Filter Pattern: 
 
     ```
     [Mon, day, timestamp, ip, id, msg1= Invalid, msg2 = user, ...]
     ```
 
     > Do you see any failed attempts to log into the instance?
-8.  Now replace the Filter with one for successful attempts:
+9.  Now replace the Filter with one for successful attempts:
 
     ```
     [Mon, day, timestamp, ip, id, msg1= Accepted, msg2 = password, ...]

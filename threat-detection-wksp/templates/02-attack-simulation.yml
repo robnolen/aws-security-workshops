@@ -11,10 +11,10 @@ Parameters:
       - threat-detection-wksp
     Description: Prefix of Resources created for this workshop.
 
-  #KeyName:
-  # Type: AWS::EC2::KeyPair::KeyName
-  # ConstraintDescription: Must be the name of an existing EC2 KeyPair.
-  # Description: 'Name of an existing EC2 Key Pair.'
+  # KeyName:
+  #   Type: AWS::EC2::KeyPair::KeyName
+  #   ConstraintDescription: Must be the name of an existing EC2 KeyPair.
+  #   Description: 'Name of an existing EC2 Key Pair.'
 
 Metadata: 
   AWS::CloudFormation::Interface:
@@ -28,7 +28,7 @@ Metadata:
     ParameterLabels: 
       ResourceName:
         default: "Resource Prefix"
-      #KeyName: 
+      # KeyName: 
       #  default: "Existing Key Pair"
 
 Mappings:
@@ -661,7 +661,7 @@ Resources:
           - |
             #!/bin/bash
 
-            yum update -y
+            # yum update -y
 
             # Set Region
             aws configure set default.region ${Region}
