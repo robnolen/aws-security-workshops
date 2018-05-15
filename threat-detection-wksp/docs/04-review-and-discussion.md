@@ -57,21 +57,26 @@ In order to prevent charges to your account we recommend cleaning up the infrast
 
 > You will need to manually delete some resources before you delete the CloudFormation stacks so please do the following steps in order.
 
-1.	Delete the IAM Role for the compromised EC2 instance and the Service-Linked Role for Inspector (if you didn't already have this Role created).
+1.	Delete the Inspector objects created for the workshop.
+	* Go to the [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector) console.
+	* Click on **Assessment Targets** in the navigation pane on the left.
+	* Delete all that start with **threat-detection-wksp**.
+
+2.	Delete the IAM Role for the compromised EC2 instance and the Service-Linked Role for Inspector (if you didn't already have this Role created).
 	* Go to [AWS IAM](https://console.aws.amazon.com/iam/) console.
 	* Click on **Roles**
 	* Search for the role named **threat-detection-wksp-compromised-ec2**.
 	* Click the check box next to it and click **Delete**.
 	* Repeat for the second role (**AWSServiceRoleForAmazonInspector**).
 
-2.	Delete all three S3 buckets created by the Module 1 CloudFormation template (the buckets that start with **threat-detection-wksp** and end with **-data**, **-threatlist** and **-logs**)
+3.	Delete all three S3 buckets created by the Module 1 CloudFormation template (the buckets that start with **threat-detection-wksp** and end with **-data**, **-threatlist** and **-logs**)
 	* Go to [Amazon S3](https://s3.console.aws.amazon.com/s3/home?region=us-west-2) console.
 	* Click on the appropiate bucket.
 	* Click **Delete Bucket**.
 	* Copy and paste the name of the bucket (this is an extra verification that you actually want to delete the bucket).
 	* Repeat steps for the other buckets.
 
-3.	Delete Module 1 and 2 CloudFormation stacks (**ThreatDetectionWksp-Env-Setup** and **ThreatDetectionWksp-Attacks**).
+4.	Delete Module 1 and 2 CloudFormation stacks (**ThreatDetectionWksp-Env-Setup** and **ThreatDetectionWksp-Attacks**).
 	* Go to the [AWS CloudFormation](https://us-west-2.console.aws.amazon.com/cloudformation/home?region=us-west-2#/stacks?filter=active) console.
 	* Select the appropiate stack.
 	* Select **Action**.
@@ -80,7 +85,7 @@ In order to prevent charges to your account we recommend cleaning up the infrast
 
 	> You do not need to wait for the first stack to delete before you delete the second one.
 
-4.	Delete the GuardDuty custom threat list and disable GuardDuty (if you didn't already have it configured before the workshop)
+5.	Delete the GuardDuty custom threat list and disable GuardDuty (if you didn't already have it configured before the workshop)
 	* Go to the [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/) console.
 	* Click on **Lists** on the left navigation.
 	* Click the **X** next to the threat list that starts with **Custom-Threat-List**.
@@ -88,7 +93,7 @@ In order to prevent charges to your account we recommend cleaning up the infrast
 	* Click the check box next to **Disable**.
 	* Click **Save Settings**
 
-5.	Delete the manual CloudWatch Event Rule you created and the CloudWatch Logs that were generated.
+6.	Delete the manual CloudWatch Event Rule you created and the CloudWatch Logs that were generated.
 	* Go to the [AWS CloudWatch](https://us-west-2.console.aws.amazon.com/cloudwatch) console.
 	* Click on **Rules** in the navigation pane on the left.
 	* Click the radio button next **threat-detection-wksp-guardduty-finding-maliciousip**.
@@ -101,11 +106,6 @@ In order to prevent charges to your account we recommend cleaning up the infrast
 		* **/aws/lambda/threat-detection-wksp-remediation-nacl**
 		* **/threat-detection-wksp/var/log/secure** 
 		* **/threat-detection-wksp/vpc-ID#/flowlogs**
-
-6.	Delete the Inspector objects created for the workshop.
-	* Go to the [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector) console.
-	* Click on **Assessment Targets** in the navigation pane on the left.
-	* Delete all that start with **threat-detection-wksp**.
 
 7.	Delete the SNS subscription that was created when you subscribed to SNS Topic.
 	* Go to the [AWS SNS](https://us-west-2.console.aws.amazon.com/sns) console.
