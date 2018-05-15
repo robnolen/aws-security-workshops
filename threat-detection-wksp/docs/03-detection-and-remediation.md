@@ -286,9 +286,9 @@ With the EC2 instance access scoped down and the IAM credentials revoked, we nee
 15. Click on the **Permissions** tab.
 16. Remove Public Access based on Config change.
 17. Click on the **Properties** Tab.
-18. Re-enable S3 Default AES-256 encryption based on the Config update and Macie’s earlier alert.
+18. Re-enable S3 Default AES-256 encryption.
 
-With the configuration reestablished we will focus on alerts and automated remediation should the attacker try again. In Module 1 we put some of this in place. This is where the CloudWatch alerts tied to Lambda functions come into play.
+With the configuration reestablished and some additional protections in place, you can focus on alerts and automated remediations in the event of another attack.
 
 After you have remediated the incident and further hardened your environment, you can proceed to the next module.
 
