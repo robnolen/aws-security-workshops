@@ -34,8 +34,8 @@ You’ve received the first alerts from GuardDuty. Now what? Assuming you’re s
 Following security design best practices you already setup your servers to log to CloudWatch. You’ve also setup automated scanning of instances under attack using [AWS Inspector](https://aws.amazon.com/inspector/). Let’s look at Inspector to see if the SSH configuration adheres to best practices to determine what the risk is involved with the brute force attack.
 
 1.  Go to [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector/home?region=us-west-2) in the Amazon Console.
-2.  Click to **Findings** on the left navigation.
-3. Filter down the findings by typing in **Password**.
+2.  Click **Findings** on the left navigation.
+3.  Filter down the findings by typing in **Password**.
 4.  Review the findings.
     ![Inspector Findings](../images/03-inspector-findings.png)
 
