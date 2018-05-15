@@ -184,7 +184,8 @@ Now that the active session from the attacker has been stopped by the update to 
 
 ### Revoke the IAM Role Active Sessions
 
-Now that the attacker can’t SSH into the compromised machine, we need to rotate the AWS IAM credentials and disable their permissions. Before we do that though, let’s revoke all accesses held by the previous credentials.
+Now that the attacker can’t SSH into the compromised instance, you need to revoke all active sessions for the IAM Role associated with that instance.
+
 
 1.  Browse to the [AWS IAM](https://console.aws.amazon.com/iam/home?region=us-west-2) console.
 
@@ -198,7 +199,9 @@ Now that the attacker can’t SSH into the compromised machine, we need to rotat
 
 ### Restart Instance to Rotate Credentials
 
-Now that those credentials won’t work we need to rotate the existing server credentials. In order to change the IAM credentials on the server, we must Stop and Start the server. A simple reboot will not change the keys.  Since you are using AWS Systems Manager for doing administration on your EC2 Instances you can use it to query the metadata to validate that the credentials were rotated.
+Now all active sessions for the compromised instance Role have been invalidated.  This means the attacker can no longer can use those credentials but it also means that your application can't as well.  In order to ensure the availability of your application you need to refresh the credentials on the instance.  
+
+To change the IAM credentials on the instance, you must Stop and Start the server. A simple reboot will not change the keys.  Since you are using AWS Systems Manager for doing administration on your EC2 Instances you can use it to query the metadata to validate that the credentials were rotated.
 
 First verify what the current credentials are.   
 
