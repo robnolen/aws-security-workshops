@@ -35,8 +35,8 @@ Following security design best practices you already setup your servers to log t
 
 1.  Go to [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector/home?region=us-west-2) in the Amazon Console.
 2.  Click to **Findings** on the left navigation.
-3. Filter down the findings by using the **GuardDuty Finding ID** you copied earlier.  The Inspector template that was used for the scan includes this ID in the name.
-4.  Review the findings related to password authentication as shown below.
+3. Filter down the findings by typing in **Password**.
+4.  Review the findings.
     ![Inspector Findings](../images/03-inspector-findings.png)
 
     > Which Inspector [rule packages](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_rule-packages.html) were used for this scan?
