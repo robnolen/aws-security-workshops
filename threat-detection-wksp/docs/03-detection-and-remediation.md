@@ -81,7 +81,7 @@ You can see by these findings that the compromised instance is communicating wit
 
 ### Check if Sensitive Data was Involved
 
-At this point you know how the attacker was able to get into your systems and a general idea of what they did. After reviewing the permissions associated with the IAM Role you realize that it has very permissive policies as it relates to your S3 bucket.  Verify what sort of senstive data is in your bucket and take a closer at your Macie Alerts.
+At this point you know how the attacker was able to get into your systems and a general idea of what they did. After reviewing the permissions associated with the IAM Role of the compromised instance you realize that it has very permissive policies as it relates to your S3 bucket.  Verify what sort of senstive data is in your bucket and take a closer at your Macie Alerts.
 
 1.  Go to the [Amazon Macie](https://mt.us-west-2.macie.aws.amazon.com/) console.
 2.  Look through the latest alerts.
@@ -140,16 +140,7 @@ So at this point you have identified a successful intrusion into your network an
 * The IAM credentials for the server were stolen, published to S3, and used to perform reconnaissance against the account.
 * An S3 bucket was made public and encryption was removed - most likely for data exfiltration.
 
-Now that you've identified the attacker’s actions you need to stop them from performing any additional activities, restore your systems to their previous configurations, and protect your resources so this can’t happen again. For each of the following, develop a remediation plan for using AWS native policies and a DevSecOps approach to alerting and remediation for future attacks.
-
-What remediations should you put in place:
-
-1.  EC2 Brute Force attack
-2.	Malware Infection
-3.  EC2 Credential Theft
-4.  S3 Bucket Policy
-
-> If this is not an AWS sponsored event you can think about what remediations you would put in place and move on to the next section.
+Now that you've identified the attacker’s actions you need to stop them from performing any additional activities, restore your systems to their previous configurations, and protect your resources so this can’t happen again. 
 
 ## Respond and Remediate
 
