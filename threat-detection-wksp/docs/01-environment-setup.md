@@ -4,9 +4,8 @@ In this module you will be configuring all the initial detective and remediation
 
 ### Agenda
 
-1.	Review your current configurations – 5 min
-2.	Run the 1st CloudFormation template – 5 min
-3.	Configure the remaining controls – 20 min
+1.	Run the 1st CloudFormation template – 5 min
+2.	Configure the remaining controls – 15 min
 
 ## Review Current Configurations
 
@@ -19,7 +18,7 @@ When you launch the first CloudFormation template you'll be prompted with questi
 
   	> If you do not see the Inspector Role; you'll answer **No** when prompted if the Inspector Role exists when launching the CloudFormation template.
 
-2.	Go to <a href="https://us-west-2.console.aws.amazon.com/config/home?region=us-west-2" target="_blank">AWS Config</a> (in the us-west-2 region) and see if it is already enabled.
+2.	Go to <a href="https://us-west-2.console.aws.amazon.com/config/home?region=us-west-2" target="_blank">AWS Config</a> (in the us-west-2 - Oregon region) and see if it is already enabled.
   
   	> If you see a **Get Started** button; you'll answer **No** when prompted if Config is enabled when launching the CloudFormation template.
 
@@ -141,21 +140,3 @@ Your environment is now configured and ready for operations.  Below is a diagram
 After you have successfully setup your environment, you can proceed to the next module.
 
 ### **[Module 2 - Attack Simulation](../docs/02-attack-simulation.md)**
-
-## Troubleshooting
- 
-### Macie CloudTrail Log Error
-
-If you previous configured Macie but didn’t delete the CloudTrail for the us-west-2 region, you will receive the following error:
-
-![Macie CloudTrail Error](../images/01-macie-ct-error.png)
- 
-To fix this, perform the following steps:
-
-1.	Go to the [CloudTrail console](https://us-west-2.console.aws.amazon.com/cloudtrail/home?region=us-west-2)
-2.	Click on **Trails**
-3.	Click on the trail named **AWSMacieTrail-DO-NOT-EDIT**
-4.	Click on the trash can under the logging on/off toggle on the right.
-5.	Click **Delete**
-6.	Go back to the [Macie console](https://us-west-2.redirection.macie.aws.amazon.com/) and select your account again.
-
