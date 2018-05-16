@@ -40,7 +40,7 @@ Following security design best practices you already setup your servers to log t
 1.  Go to [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector/home?region=us-west-2) in the Amazon Console.
 2.  Click **Findings** on the left navigation.
     
-    > If you do not see any findings, there may have been an issue with your inspector agent.  Click on **Assessment Templates**, check the template that starts with **threat-detection-wksp**, and click **Run**.  Feel free to continue through this module and check the results later on. 
+    > If you do not see any findings, there may have been an issue with your inspector agent.  Click on **Assessment Templates**, check the template that starts with **threat-detection-wksp**, and click **Run**.  Please allow **15 minutes** for the scan to complete.  Feel free to continue through this module and check the results later on. 
 
 3.  Filter down the findings by typing in **Password**.
 4.  Review the findings.
