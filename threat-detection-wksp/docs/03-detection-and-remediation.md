@@ -267,7 +267,7 @@ With the EC2 instance access scoped down and the IAM credentials revoked, we nee
         {
           "Sid": "Access-to-specific-VPCE-only",
           "Principal": "*",
-          "Action": "s3:*",
+          "Action": "s3:GetObject",
           "Effect": "Deny",
           "Resource": ["arn:aws:s3:::<BUCKETNAME>",
                        "arn:aws:s3:::<BUCKETNAME>/*"],
