@@ -370,9 +370,12 @@ Resources:
   
   ### Malicious Instance
   MaliciousIP:
+    DependsOn:
+      - GatewayAttachment
     Type: AWS::EC2::EIP
     Properties:
       InstanceId: !Ref MaliciousInstance
+      Domain: vpc
   MaliciousInstance:
     Type: AWS::EC2::Instance
     Properties: 
