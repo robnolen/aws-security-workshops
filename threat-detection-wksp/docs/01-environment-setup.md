@@ -106,6 +106,9 @@ GuardDuty is now enabled and continuously monitoring your CloudTrail logs, VPC f
 Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Macie.  Macie is a security service that will continuously monitor data access activity for anomalies and generate alerts when it detects risk of unauthorized access or inadvertent data leaks.
 
 1.	Go to the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console.
+
+	> If you get a *Failed to Fetch* error you may have a script blocker enabled in your browser.
+
 2.	Click **Get Started**.
 3.	Check the box under **Permissions**.
 	
@@ -118,8 +121,6 @@ Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Ma
 Macie is also used for automatically discovering and classifying sensitive data.  Now that Macie is enabled, setup an integration to classify data in your S3 bucket.
 
 1.	In the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console click on **Integrations** on the left navigation.
-
-	> If you get a *Failed to Fetch* error you may have a script blocker enabled in your browser.
 
 2.	Click on **Services** near the top.
 
