@@ -103,7 +103,7 @@ Next lets verify what sort of sensitve data exists in that bucket.
     > You can slide the risk slider to filter data classifications based on risk levels.
 
 4.  Above the risk slider, click the **S3 Public Objects and Buckets** icon. 
-    <img src="../images/03-macie-public-objects-button.png" width="40%">
+    <img src="../images/03-macie-public-objects-button.png" width="60%">
 
 5.  Click the magnifying glass for the bucket listed.
 6.  Verify that all the data is encrypted.
