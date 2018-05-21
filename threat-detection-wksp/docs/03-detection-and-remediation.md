@@ -70,7 +70,7 @@ Based on the findings you see that password authentication is configured on the 
 
     > Do you see any successful attempts to log into the instance?
 
-    > Which users were compromised?
+    > Which linux user was compromised?
 
 
 ### Check the Remaining GuardDuty Findings
@@ -136,9 +136,9 @@ Next you need to track down if someone recently disabled default encryption and 
 15. Filter based on **Event Name and **DeleteBucketEncryption**.
 16. Expand the latest event and click on **View Event** to see the details of the API call.
 
-    > Who was the user who disabled default encryption on the bucket?
+    > Which AWS IAM Role disabled default encryption on the S3 Bucket?
 
-    > Is this the same user seen in your GuardDuty findings?
+    > Is this the same AWS IAM Role seen in your GuardDuty findings?
 
 ## Stop and Evaluate
 
