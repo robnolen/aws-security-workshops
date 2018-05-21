@@ -105,7 +105,6 @@ In order to prevent charges to your account we recommend cleaning up the infrast
 		* **/aws/lambda/threat-detection-wksp-remediation-inspector**
 		* **/aws/lambda/threat-detection-wksp-remediation-nacl**
 		* **/threat-detection-wksp/var/log/secure** 
-		* **/threat-detection-wksp/vpc-ID#/flowlogs**
 
 7.	Delete the SNS subscription that was created when you subscribed to SNS Topic.
 	* Go to the [AWS SNS](https://us-west-2.console.aws.amazon.com/sns) console.
