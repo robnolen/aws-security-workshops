@@ -32,7 +32,9 @@ US West 2 (Oregon) | [![Deploy Module 1 in us-west-2](../images/deploy-to-aws.pn
 
 1. Click the **Deploy to AWS** button above.  This will automatically take you to the console to run the template.  The file for the CloudFormation template (**01-environment-setup.yml**) is also available in the [templates](../templates/) folder if you'd like to download it and manually upload it to create a stack.
 
-2. On the **Specify Details** section enter the necessary parameters as shown below.  Please use the answers you discovered during the *Review Current Configurations*.
+2. On the **Specify Details** section enter the necessary parameters as shown below. 
+	* Enter a valid **Email Address**.
+	* Please use the answers you discovered during the *Review Current Configurations*.
 
 ![Parameters Example](../images/01-specify-details.png)
 
@@ -117,12 +119,14 @@ Macie is also used for automatically discovering and classifying sensitive data.
 
 1.	In the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console click on **Integrations** on the left navigation.
 
+	> If you get a *Failed to Fetch* error you may have a script blocker enabled in your browser.
+
 2.	Click on **Services** near the top.
 
 3.	Select your account (should be the only one) and click **Add** (or **Details** if you already have buckets configured) for Amazon S3.
 
 4.	Click on the paper and pencil on the far right and select the S3 bucket that ends with **“-data”**
-	* Make sure you click both the checkboxes on the left and the right ends of the rows. This ensures both new and existing files get classified.
+	* Make sure you click **both the checkboxes** on the left and the right ends of the row. This ensures both new and existing files get classified.
 	![Macie Bucket Sample](../images/01-macie-bucket-selection.png)
 
 5.	Click **Review and Save**.
