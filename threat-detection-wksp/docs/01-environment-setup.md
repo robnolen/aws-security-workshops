@@ -4,7 +4,7 @@ In this module you will be configuring all the initial detective and remediation
 
 ### Agenda
 
-1.	Run the 1st CloudFormation template – 5 min
+1.	Review current configurations and run the 1st CloudFormation template – 5 min
 2.	Configure the remaining controls – 15 min
 
 ## Review Current Configurations
