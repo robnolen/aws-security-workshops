@@ -48,8 +48,6 @@ Following security design best practices you already setup your servers to log t
 
     > Which Inspector [rule packages](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_rule-packages.html) were used for this scan?
 
-    > What is CVE-2017-5754?
-
 Based on the findings you see that password authentication is configured on the instance with no password complexity restrictions which means the instance is more susceptible to a SSH brute force attack. Let’s look at the CloudWatch logs and create a metric to see if there are any successful attempts.
 
 5.  Go to [CloudWatch logs](https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2#logs:).
@@ -214,29 +212,32 @@ To change the IAM credentials on the instance, you must Stop and Start the serve
 
 First verify what the current credentials are.   
 
-1.  Go back to the [Amazon EC2](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2) console.
+1.  Go to [Managed Instances](https://us-west-2.console.aws.amazon.com/systems-manager/managed-instances?region=us-west-2) within the **AWS Systems Manager** console.
+    
+    > You should see an instance named **threat-detection-wksp: Compromised Instance** with a ping status of **Online**.
 2.  To see the keys currently active on the instance, click on **Run Command** on the left navigation.
 3.  Click **Run a command**.
-4.  Select **AWS-RunShellScript**. The instance in your account should already be selected.
-5.  In **Commands** type:
+4.  For **Command Document** select **AWS-RunShellScript**.
+5.  Under **Targets** check the checkbox next to **threat-detection-wksp: Compromised Instance**.
+6.  Under **Command Parameters** type the following in **Commands**:
 
     ```
     curl http://169.254.169.254/latest/meta-data/iam/security-credentials/threat-detection-wksp-compromised-ec2
     ```
 
-6.  Click **Run**.
-7.  Back at the console click **Output** on the bottom of the screen once the Status is **Success**.
-8.  Click View Output
-9.  Make note of the **AccessKeyId** and **SecretAccessKey**
+7.  Click **Run**.
+8.  Back at the Run Command console, click on the **Command ID** of the command you just ran to see the details.
+9.  Scroll down to **Targets and Outputs** and click on the **Instance ID**.
+10. Expand **Step 1 - Output** and make note of the **AccessKeyID**, **SecretAccessKey**, and **Token**.
 
 Next, you need to stop and restart the Instance.
 
-10. In the EC2 console **Stop** the Instance.
-11. Wait for the Instance State to say **Stopped** and then **Start** the instance.
+11. In the [EC2 console](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:sort=instanceId) **Stop** the Instance named **threat-detection-wksp: Compromised Instance**.
+12. Wait for the Instance State to say **Stopped** and then **Start** the instance.
 
 Lastly, you can need to query the metadata again to validate that the credentials were changed.
 
-12. Repeat the first 9 steps to retrieve the credentials again.
+13. Repeat the first 10 steps to retrieve the credentials again.
 
     > Notice the keys are different.
 
