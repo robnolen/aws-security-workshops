@@ -118,7 +118,7 @@ Since you are already in the Macie service, create a new Basic Alert that will a
     * **Alert title**: *Encryption Removed*
     * **Description**: *Evidence of encryption being removed from a bucket*
     * **Category**: *Data Compliance*
-    * **Query**: *eventNameErrorCode.key::DeleteBucketEncryption*
+    * **Query**: *eventNameErrorCode.key:DeleteBucketEncryption*
 
       > Macie allows you to create queries using the [Apache Lucene Query Parser Syntax](https://docs.aws.amazon.com/macie/latest/userguide/macie-research.html#macie-query).  The query created for this alert uses the Macie field name **eventNameErrorCode.key** which corresponds to the CloudTrail field name **eventName**.
     * **Index**: *CloudTrail Data*
