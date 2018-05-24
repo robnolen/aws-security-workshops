@@ -71,7 +71,7 @@ Below are steps to create this rule through the console but you can also find ou
 	  ],
 	  "detail": {
 		"type": [
-		  "UnauthorizedAccess:EC2/MaliciousIPCaller.Custom "
+		  "UnauthorizedAccess:EC2/MaliciousIPCaller.Custom"
 		]
 	  }
 	}
