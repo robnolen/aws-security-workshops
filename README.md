@@ -1,6 +1,6 @@
 # AWS Security Workshops
 
-Within AWS there are a variety of services that can be used to secure your environments and workloads. This repository contains a collection of security oriented workshops that will guide you through prepared scenarios that represent common use cases and operational tasks and give you hands on experience with a wide range of AWS services.  The workshops closely align with the [Security Perspective](https://d0.awsstatic.com/whitepapers/AWS_CAF_Security_Perspective.pdf) components of our Cloud Adoption Framework, which can be used to help you structure your selection and implementation of controls that are right for your organziation.  Captured below are the high level security components:
+Within AWS there are a variety of services that can be used to secure your environments and workloads. This repository contains a collection of security oriented workshops that will guide you through prepared scenarios that represent common use cases and operational tasks and give you hands on experience with a wide range of AWS services.  The workshops closely align with the [Security Pillar](https://d1.awsstatic.com/whitepapers/architecture/AWS-Security-Pillar.pdf) components of our Well-Architected Framework, which can be used to help you structure your selection and implementation of controls that are right for your organziation.  Captured below are the high level security components:
 
 ![Components](./images/security-components-color.png "Categorization of AWS Security Services")
 
