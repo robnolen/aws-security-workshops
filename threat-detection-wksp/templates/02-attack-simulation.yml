@@ -11,10 +11,10 @@ Parameters:
       - threat-detection-wksp
     Description: Prefix of Resources created for this workshop.
 
-  KeyName:
-    Type: AWS::EC2::KeyPair::KeyName
-    ConstraintDescription: Must be the name of an existing EC2 KeyPair.
-    Description: 'Name of an existing EC2 Key Pair.'
+  # KeyName:
+  #   Type: AWS::EC2::KeyPair::KeyName
+  #   ConstraintDescription: Must be the name of an existing EC2 KeyPair.
+  #   Description: 'Name of an existing EC2 Key Pair.'
 
 Metadata: 
   AWS::CloudFormation::Interface:
@@ -24,12 +24,12 @@ Metadata:
           default: "Resource Configuration"
         Parameters: 
           - ResourceName
-          - KeyName
+          # - KeyName
     ParameterLabels: 
       ResourceName:
         default: "Resource Prefix"
-      KeyName: 
-       default: "Existing Key Pair"
+      # KeyName: 
+      #  default: "Existing Key Pair"
 
 Mappings:
   
@@ -337,7 +337,7 @@ Resources:
           - RegionMap
           - !Ref AWS::Region
           - 'ubuntu'
-      KeyName: !Ref KeyName
+      # KeyName: !Ref KeyName
       NetworkInterfaces: 
         - AssociatePublicIpAddress: 'false'
           DeviceIndex: '0'
@@ -546,7 +546,7 @@ Resources:
     Properties: 
       InstanceType: t2.micro
       IamInstanceProfile: !Ref CompromisedInstanceProfile
-      KeyName: !Ref KeyName
+      # KeyName: !Ref KeyName
       ImageId: 
         Fn::FindInMap: 
           - RegionMap
@@ -572,8 +572,6 @@ Resources:
         Fn::Base64: !Sub 
           - |
             #!/bin/bash
-
-            # yum update -y
 
             # Set Region
             aws configure set default.region ${Region}
