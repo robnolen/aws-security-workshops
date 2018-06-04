@@ -78,12 +78,12 @@ Below are steps to create this rule through the console but you can also find ou
 	```
 	* For *Targets*, click **Add Target**, select **Lambda Function**, and then select **threat-detection-wksp-remediation-nacl**.
 	* Click **Configure Details**
-5.	On the Configure Details screen please use insert the following information
+5.	On the Configure Details screen fill out the **Name** and **Description** (suggestions below).
     * Name: **threat-detection-wksp-guardduty-finding-ec2-maliciousip**
     * Description: **GuardDuty Finding: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom**
-    * Click **Create**.
-6.	Now let’s examine the Lambda function to see what it does.  Open the [Lambda console](https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2)
-7.	Click on the function named **threat-detection-wksp-remediation-nacl**
+6. Click **Create**.
+7.	Now let’s examine the Lambda function to see what it does.  Open the [Lambda console](https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2)
+8.	Click on the function named **threat-detection-wksp-remediation-nacl**
 
 	> What will the function do when invoked?
 
@@ -91,7 +91,7 @@ Below are steps to create this rule through the console but you can also find ou
 
 ## Enable GuardDuty
 
-The next step is to enable Amazon GuardDuty, which will continuously monitor your environment for malicious or unauthorized behavior.
+The next step is to enable Amazon GuardDuty (if you haven't already done so), which will continuously monitor your environment for malicious or unauthorized behavior.
 
 1.	Go to the [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) console.
 
@@ -103,7 +103,7 @@ GuardDuty is now enabled and continuously monitoring your CloudTrail logs, VPC f
 
 ## Enable Macie
 
-Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Macie.  Macie is a security service that will continuously monitor data access activity for anomalies and generate alerts when it detects risk of unauthorized access or inadvertent data leaks.
+Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Macie (if you haven't already done so.)  Macie is a security service that will continuously monitor data access activity for anomalies and generate alerts when it detects risk of unauthorized access or inadvertent data leaks.
 
 1.	Go to the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console.
 
