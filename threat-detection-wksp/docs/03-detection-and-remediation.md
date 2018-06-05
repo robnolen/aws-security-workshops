@@ -4,11 +4,11 @@ Unfortunately, due to a misconfiguration in your environment, a hacker has been 
 
 ### Agenda
 
-1. Detect, Respond, & Remediate – 30 min
+1. Detect, Respond & Remediate – 30 min
 
 ## Find Out What's Happening!
 
-You’ve received the first alerts from GuardDuty. Now what? Assuming you’re still logged into your account, let’s see where these findings are coming from. Since the alert came from GuardDuty, we will check there first.
+You’ve received the first alerts from GuardDuty. Now what? Since the alert came from GuardDuty, we will check there first.
 
 ### Check GuardDuty Findings
 
@@ -17,8 +17,8 @@ You’ve received the first alerts from GuardDuty. Now what? Assuming you’re s
     ![GuardDuty Findings](../images/03-gd-findings.png)
 
     > Don't panic if you don't see all these. The findings generated in Module 2 will take at least 20 minutes to show up in GuardDuty.
-3.  The high severity ![High Severity](../images/03-high-severity.png) **UnauthorizedAccess:EC2/SSHBruteForce** finding is a function of our environment and can be archived with the steps below.
-    * Click on the **Finding**.
+3.  The high severity ![High Severity](../images/03-high-severity.png) **UnauthorizedAccess:EC2/SSHBruteForce** finding is a result of the activity going on in the background to simulate the attack and can be archived with the steps below:
+    * Click on the check box next to the "**UnauthorizedAccess:EC2/SSHBruteForce**" **Finding**.
     * Click on **Actions**.
     * Select **Archive**.  
 
@@ -35,7 +35,7 @@ You’ve received the first alerts from GuardDuty. Now what? Assuming you’re s
 
 ### Check Instance Security Assessment and Logs
 
-Following security design best practices you already setup your servers to log to CloudWatch. You’ve also setup automated scanning of instances under attack using [AWS Inspector](https://aws.amazon.com/inspector/). Let’s look at Inspector to see if the SSH configuration adheres to best practices to determine what the risk is involved with the brute force attack.
+Following security design best practices you already setup your instances to send certain logs to CloudWatch. You’ve also setup a CloudWatch event rule that runs an [AWS Inspector](https://aws.amazon.com/inspector/) scan when GuardDuty detects a particular attack. Let’s look at Inspector findings to see if the SSH configuration adheres to best practices to determine what the risk is for the brute force attack.
 
 1.  Go to [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector/home?region=us-west-2) in the Amazon Console.
 2.  Click **Findings** on the left navigation.
@@ -48,18 +48,18 @@ Following security design best practices you already setup your servers to log t
 
     > Which Inspector [rule packages](https://docs.aws.amazon.com/inspector/latest/userguide/inspector_rule-packages.html) were used for this scan?
 
-Based on the findings you see that password authentication is configured on the instance with no password complexity restrictions which means the instance is more susceptible to a SSH brute force attack. Let’s look at the CloudWatch logs and create a metric to see if there are any successful attempts.
+Based on the findings you see that password authentication is configured on the instance with no password complexity restrictions which means the instance is more susceptible to a SSH brute force attack. Now that we know that let’s look at the CloudWatch logs and create a metric to see if there are any successful SSH logins (to finally answer the question of whether the SSH brute force attack was successful.)
 
 5.  Go to [CloudWatch logs](https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2#logs:).
 6.  Click on the log group **/threat-detection-wksp/var/log/secure**
 7.  If you have multiple log streams, filter using the Instance ID you copied earlier and click on the stream.
-8.  Within the **Filter Events** textbox put the following Filter Pattern: 
+8.  Within the **Filter Events** text-box put the following Filter Pattern: 
 
     ```
     [Mon, day, timestamp, ip, id, msg1= Invalid, msg2 = user, ...]
     ```
 
-    > Do you see any failed attempts to log into the instance?
+    > Do you see any failed (invalid user) attempts to log into the instance?
 9.  Now replace the Filter with one for successful attempts:
 
     ```
@@ -82,18 +82,20 @@ View the following GuardDuty findings and take a note of the resources involved:
 * **UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom**
 * **UnauthorizedAccess:EC2/MaliciousIPCaller.Custom**
 
-You can see by these findings that the compromised instance is communicating with an IP address on your custom threat list and the AWS IAM Role credentials associated with the instance are being used by a malicious actor. 
+You can see by these findings that the compromised instance is communicating with an IP address on your custom threat list and that API calls are being made from a host on your custom threat list. 
 
+> The API calls are being made using AWS IAM temporary security credentials. How could you determine this fact yourself? We are assuming for the sake of the scenario that the temporary security credentials are coming from the IAM Role associated with the compromised instance. Is that actually a fact?
+ 
 ### Check if Sensitive Data was Involved
 
-At this point you know how the attacker was able to get into your systems and a general idea of what they did. After reviewing the permissions associated with the IAM Role of the compromised instance you realize that it has very permissive policies as it relates to your S3 bucket.  Verify what sort of senstive data is in your bucket and take a closer at your Macie Alerts.
+At this point you know how the attacker was able to get into your systems and a general idea of what they did. If you review the permissions associated with the IAM Role attached to the compromised instance you will notice that it has a very permissive policy as it relates to your S3 data bucket.  Verify what sort of sensitive data is in your bucket and take a closer at your Macie Alerts.
 
 1.  Go to the [Amazon Macie](https://mt.us-west-2.macie.aws.amazon.com/) console.
 2.  Look through the latest alerts.
 
     > Do you see any critical alerts?  
 
-Next lets verify what sort of sensitve data exists in that bucket.
+Next lets verify what sort of sensitive data exists in that bucket.
 
 3.  Click **Dashboard** on the left navigation.  You should see the following data classifications:
     ![Macie Classification](../images/03-macie-data.png)
@@ -146,7 +148,7 @@ So at this point you have identified a successful intrusion into your network an
 
 * A SSH brute force Attack against an internet accessible EC2 instance was successful.
 * Malware was put on the EC2 instance and communicated with a known malicious IP address.
-* The IAM credentials for the server were stolen, published to S3, and used to perform reconnaissance against the account.
+* The IAM credentials for the instance were stolen, published to S3, and used to perform reconnaissance against the account.
 * An S3 bucket was made public and encryption was removed - most likely for data exfiltration.
 
 Now that you've identified the attacker’s actions you need to stop them from performing any additional activities, restore your systems to their previous configurations, and protect your resources so this can’t happen again. 
@@ -210,7 +212,7 @@ Now that the attacker can’t SSH into the compromised instance, you need to rev
 
 Now all active sessions for the compromised instance Role have been invalidated.  This means the attacker can no longer can use those credentials but it also means that your application can't as well.  In order to ensure the availability of your application you need to refresh the credentials on the instance.  
 
-To change the IAM credentials on the instance, you must Stop and Start the server. A simple reboot will not change the keys.  Since you are using AWS Systems Manager for doing administration on your EC2 Instances you can use it to query the metadata to validate that the credentials were rotated.
+To change the IAM credentials on the instance, you must Stop and Start the instance. A simple reboot will not change the keys.  Since you are using AWS Systems Manager for doing administration on your EC2 Instances you can use it to query the metadata to validate that the credentials were rotated.
 
 First verify what the current credentials are.   
 
@@ -243,7 +245,7 @@ Lastly, you can need to query the metadata again to validate that the credential
 
     > Notice the keys are different.
 
-    > If you want, try again after rebooting the server. The keys will stay the same.
+    > If you want, try again after rebooting the instance. The keys will stay the same.
 
 This is a good use case for auto-scaling groups and golden-image AMI’s, but that is out of scope for this workshop. Also out of scope is clearing the suspected malware.
 
