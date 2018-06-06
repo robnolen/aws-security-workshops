@@ -16,8 +16,8 @@ You’ve received the first alerts from GuardDuty. Now what? Since the alert cam
 2.  In the navigation pane, click on **Findings**.  You should see all the findings below:
     ![GuardDuty Findings](../images/03-gd-findings.png)
 
-    > Don't panic if you don't see all these. The findings generated in Module 2 will take at least 20 minutes to show up in GuardDuty.
-3.  The high severity ![High Severity](../images/03-high-severity.png) **UnauthorizedAccess:EC2/SSHBruteForce** finding is a result of the activity going on in the background to simulate the attack and can be archived with the steps below:
+    > **Don't panic if all of these findings fail to show up at first. The findings generated will take at least 20 minutes to show up in the GuardDuty console.**
+3.  The high severity ![High Severity](../images/03-high-severity.png) **UnauthorizedAccess:EC2/SSHBruteForce** finding is a result of the activity going on in the background to simulate the attack and can be ignored. You can archive the finding if you choose with the steps below:
     * Click on the check box next to the "**UnauthorizedAccess:EC2/SSHBruteForce**" **Finding**.
     * Click on **Actions**.
     * Select **Archive**.  
@@ -26,7 +26,7 @@ You’ve received the first alerts from GuardDuty. Now what? Since the alert cam
     * After archiving you should have four findings that are associated with this workshop.
 4.  Now let's examine the low severity ![Low Severity](../images/03-low-severity.png) **UnauthorizedAccess:EC2/SSHBruteForce** finding since it was the first one to be detected.
     * Click on the **Finding**.
-    * Review the finding details and affected resources.
+    * Review the **Resource affected** and other sections in the window that popped open on the right.
     * Copy down the **GuardDuty Finding ID** and the **Instance ID**.
 
       > Was the brute force attack successful?
@@ -35,7 +35,7 @@ You’ve received the first alerts from GuardDuty. Now what? Since the alert cam
 
 ### Check Instance Security Assessment and Logs
 
-Following security design best practices you already setup your instances to send certain logs to CloudWatch. You’ve also setup a CloudWatch event rule that runs an [AWS Inspector](https://aws.amazon.com/inspector/) scan when GuardDuty detects a particular attack. Let’s look at Inspector findings to see if the SSH configuration adheres to best practices to determine what the risk is for the brute force attack.
+Following security design best practices you already setup your instances to send certain logs to CloudWatch. You’ve also setup a CloudWatch event rule that runs an [AWS Inspector](https://aws.amazon.com/inspector/) scan when GuardDuty detects a particular attack. Let’s look at Inspector findings to see if the SSH configuration adheres to best practices to determine what the risk is for the brute force attack. We will then examine CloudWatch logs.
 
 1.  Go to [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector/home?region=us-west-2) in the Amazon Console.
 2.  Click **Findings** on the left navigation.
@@ -78,13 +78,14 @@ Now that you have verified that the brute force attack was successful and your i
 > Does it look like you are early in identifying the attack (just intrusion), or has the intruder started performing malicious actions?
 
 View the following GuardDuty findings and take a note of the resources involved:
+
 * **Recon:IAMUser/MaliciousIPCaller.Custom**
 * **UnauthorizedAccess:IAMUser/MaliciousIPCaller.Custom**
 * **UnauthorizedAccess:EC2/MaliciousIPCaller.Custom**
 
 You can see by these findings that the compromised instance is communicating with an IP address on your custom threat list and that API calls are being made from a host on your custom threat list. 
 
-> The API calls are being made using AWS IAM temporary security credentials. How could you determine this fact yourself? We are assuming for the sake of the scenario that the temporary security credentials are coming from the IAM Role associated with the compromised instance. Is that actually a fact?
+> The API calls are being made using AWS IAM temporary security credentials coming from an IAM Role for EC2. How could you determine this fact yourself?
  
 ### Check if Sensitive Data was Involved
 
@@ -105,12 +106,16 @@ Next lets verify what sort of sensitive data exists in that bucket.
 4.  Above the risk slider, click the **S3 Public Objects and Buckets** icon. 
     ![Public Objects Button](../images/03-macie-public-objects-button.png)
 
-5.  Click the magnifying glass for the bucket listed.
-6.  Verify that all the data is encrypted.
+5.  Click the magnifying glass to the left of the bucket name listed.
+6. Check if any of the data in the bucket is considered a high risk
 
-    > Look for the **Object Encryption** field.
+	> Look for the **Object PII priority** field and **Object risk level** field
+	
+6.  Verify if any of the data is unencrypted 
 
-At this point you have identified that there is a bucket with high risk data that has open public read permissions and that certain objects in that bucket are not encrypted.  When you first configured the environment you enabled default encryption for the bucket so this could be an indicator that some one has disabled it. 
+    > Look for the **Object Encryption** field. (Does a portion of the blue bar indicate that encryption is set to none?)
+
+At this point you have identified that there is a bucket with high risk data that has open public read permissions and that certain objects in that bucket are not encrypted.  When you first configured the environment you enabled default encryption for the bucket so this could be an indicator that someone has disabled it. 
 
 Since you are already in the Macie service, create a new Basic Alert that will alert you in the future if default encryption is disabled on any of your buckets. 
 
@@ -135,7 +140,7 @@ Next you need to track down if someone recently disabled default encryption and 
 
 13. Go to the [AWS CloudTrail](https://us-west-2.console.aws.amazon.com/cloudtrail/home?region=us-west-2) console
 14. Click **Event History** on the left navigation.
-15. Filter based on **Event Name and **DeleteBucketEncryption**.
+15. Set the **Filter** to **Event Name** and for the event name enter **DeleteBucketEncryption**. Set the **Time Range** to today.
 16. Expand the latest event and click on **View Event** to see the details of the API call.
 
     > Which AWS IAM Role disabled default encryption on the S3 Bucket?
@@ -147,7 +152,7 @@ Next you need to track down if someone recently disabled default encryption and 
 So at this point you have identified a successful intrusion into your network and specific actions taken against your account. Let’s recap what those are:
 
 * A SSH brute force Attack against an internet accessible EC2 instance was successful.
-* Malware was put on the EC2 instance and communicated with a known malicious IP address.
+* The EC2 instance communicated with a known malicious IP address (possibly indicating that malware was installed.)
 * The IAM credentials for the instance were stolen, published to S3, and used to perform reconnaissance against the account.
 * An S3 bucket was made public and encryption was removed - most likely for data exfiltration.
 
@@ -155,23 +160,23 @@ Now that you've identified the attacker’s actions you need to stop them from p
 
 ## Respond and Remediate
 
-Before we get ahead of ourselves, we must stop any further actions from taking place. This requires removing the foothold in our environment, revoking any active credentials or removing those credentials capabilities, and blocking further actions by the attacker. 
+Before we get ahead of ourselves, we must stop any further actions from taking place. This requires removing the foothold in our environment, revoking any active credentials or removing those credentials' capabilities, and blocking further actions by the attacker. 
 
 ### Verify your Automated Remediation
 
 Based upon your existing work, you’ve implemented the first step by using the CloudWatch Event rule to trigger the Lambda function to update the NACL for the subnet that the instance is located in. Let’s look at what changed.
 
 1.  Go to the [AWS Config](https://us-west-2.console.aws.amazon.com/config/home?region=us-west-2) console.
-2.  On the Settings page you will see the message below.
+2.  You may initially see the following message (if you don't see the message just go on to the next step):
     ![Config Message](../images/03-config-message.png)
 
     Click the **Click Here** button to proceed with using Config without Config Rules
 
 3.  Click **Resources** in the left navigation.
-4.  Since you know the name of the NACL select **Tag** and enter **Name** and **threat-detection-wksp-compromised** for the key pair like shown below:
+4.  We can search here to find configuration changes to the NACL. Select the radio button for **Tag** and enter **Name** for the **Tag key** and **threat-detection-wksp-compromised** for the **Tag value** (this is allowing us to search for the NACL with that name):
     ![Config Key Pair](../images/03-config-keypair.png)
-6.  Click on the Config timeline for the EC2 NetworkAcl.
-7.  Click on **Change**.
+6.  Click on the Network ACL ID in the **Config timeline** column.
+7.  On the next screen click on the arrow next to **Changes** to expand that.
 8.  Evaluate the change to the updated NACL.
 
     > What does the new NACL rule do?
@@ -191,6 +196,7 @@ Now that the active session from the attacker has been stopped by the update to 
 5.  Click **Edit** and delete the inbound SSH rule. You've decided that all administration on EC2 Instances will be done through [AWS Systems Manager](https://aws.amazon.com/systems-manager/) so you no longer need this port open.
 
     > In your initial setup you already installed the SSM Agent on your EC2 Instance.
+6. Click **Save**
 
 
 ### Revoke the IAM Role Active Sessions
@@ -200,39 +206,40 @@ Now that the attacker can’t SSH into the compromised instance, you need to rev
 
 1.  Browse to the [AWS IAM](https://console.aws.amazon.com/iam/home?region=us-west-2) console.
 
-2.  Click **Roles** and the **threat-detection-wksp-compromised-ec2** Role (this is the role attached to the compromised instance).
+2.  Click **Roles** and the **threat-detection-wksp-compromised-ec2** role (this is the role attached to the compromised instance).
 
 3.  Click on the **Revoke sessions** tab.
 
 4.  Click on **Revoke active sessions**.
 
 5.  Click the acknowledgement **check box** and then click **Revoke active sessions**. 
+	> What is the mechanism that is put in place by this step to actually prevent the use of the temp credentials issued by this role? 
 
 ### Restart Instance to Rotate Credentials
 
-Now all active sessions for the compromised instance Role have been invalidated.  This means the attacker can no longer can use those credentials but it also means that your application can't as well.  In order to ensure the availability of your application you need to refresh the credentials on the instance.  
+Now all active sessions for the compromised instance role have been invalidated.  This means the attacker can no longer use those credentials, but it also means that your application that use this role can't as well.  In order to ensure the availability of your application you need to refresh the credentials on the instance.  
 
 To change the IAM credentials on the instance, you must Stop and Start the instance. A simple reboot will not change the keys.  Since you are using AWS Systems Manager for doing administration on your EC2 Instances you can use it to query the metadata to validate that the credentials were rotated.
 
 First verify what the current credentials are.   
 
-1.  Go to [Managed Instances](https://us-west-2.console.aws.amazon.com/systems-manager/managed-instances?region=us-west-2) within the **AWS Systems Manager** console.
+1.  Go to [AWS Systems Manager](https://us-west-2.console.aws.amazon.com/systems-manager/managed-instances?region=us-west-2) console and click **Managed Instances** (found under the Shared Resources section on the left navigation).
     
-    > You should see an instance named **threat-detection-wksp: Compromised Instance** with a ping status of **Online**.
+    > You should see an instance named **threat-detection-wksp: Compromised Instance** with a **Ping status** of **Online**.
 2.  To see the keys currently active on the instance, click on **Run Command** on the left navigation.
-3.  Click **Run a command**.
-4.  For **Command Document** select **AWS-RunShellScript**.
-5.  Under **Targets** check the checkbox next to **threat-detection-wksp: Compromised Instance**.
-6.  Under **Command Parameters** type the following in **Commands**:
+4.  For **Command Document** select **AWS-RunShellScript** 
+	> You may need to scroll through the list or just enter the document name in the search bar.
+5.  Leave the **Document version** at the default. 
+6. Under **Targets** check the checkbox next to **threat-detection-wksp: Compromised Instance**.
+7.  Under **Command Parameters** type the following in **Commands**:
 
     ```
     curl http://169.254.169.254/latest/meta-data/iam/security-credentials/threat-detection-wksp-compromised-ec2
     ```
 
-7.  Click **Run**.
-8.  Back at the Run Command console, click on the **Command ID** of the command you just ran to see the details.
-9.  Scroll down to **Targets and Outputs** and click on the **Instance ID**.
-10. Expand **Step 1 - Output** and make note of the **AccessKeyID**, **SecretAccessKey**, and **Token**.
+7.  Leave all of the other options at their default, scroll to the end and click **Run**.
+8.  Scroll down to the **Targets and outputs** section and click the  **Instance ID** (which should correspond to the instance ID of the compromised instance)
+10. Expand **Step 1 - Output** and make note of the **AccessKeyID**, **SecretAccessKey**, and **Token**. (the command will take a minute or so to run)
 
 Next, you need to stop and restart the Instance.
 
@@ -253,10 +260,10 @@ This is a good use case for auto-scaling groups and golden-image AMI’s, but th
 
 With the EC2 instance access scoped down and the IAM credentials revoked, we need to stop external access to the S3 bucket. Before we restore the previous configuration, we can quickly make the bucket only accessible from inside the VPC. Then we can re-enable encryption.
 
-1.  First, check the configuration of the S3 Endpoint in your environment by going to [Amazon VPC](https://us-west-2.console.aws.amazon.com/vpc/home?region=us-west-2) and clicking on **Endpoints** on the left navigation.
-    * Copy the **Endpoint ID**
-2.  Check the **Policy** on the bottom tab to notice all access is allowed.
-3.  Check the Route Tables to see who is using the Endpoint.
+1.  First, check the configuration of the S3 endpoint in your environment by going to [Amazon VPC](https://us-west-2.console.aws.amazon.com/vpc/home?region=us-west-2) and clicking on **Endpoints** on the left navigation.
+    * Copy the **Endpoint ID** (if there are multiple endpoints, look for the one with the VPC ID that ends in **threat-detection-lab**)
+2.  Click the **Policy** tab and review the policy statement. Notice that all access is allowed.
+3.  Click the **Route Tables** tab to get the **Route Table ID** associated with this endpoint. You can then go to the VPC to see which subnets are associated with this route table and therefore the endpoint. 
     
     > Notice that routing to S3 is through the VPC endpoint
 
@@ -280,7 +287,7 @@ With the EC2 instance access scoped down and the IAM credentials revoked, we nee
                        "arn:aws:s3:::<BUCKETNAME>/*"],
           "Condition": {
             "StringNotEquals": {
-              "aws:sourceVpce": "<VPCENDPOINTNAME>"
+              "aws:sourceVpce": "<VPCENDPOINTID>"
             }
           }
         }
@@ -288,17 +295,17 @@ With the EC2 instance access scoped down and the IAM credentials revoked, we nee
     }
     ```
 
-    > Be sure to replace **<BUCKETNAME>** with the name of the bucket and **<VPCENDPOINTNAME>** with endpoint ID you copied down earlier.
+    > Be sure to replace **<BUCKETNAME>** with the name of the bucket and **<VPCENDPOINTID>** with endpoint ID you copied down earlier.
 
-9.  Click **Save**. Now regardless of the bucket’s Access Control List, if traffic isn’t coming from the VPC Endpoint it will be denied. This also provides more security and better pricing for legitimate traffic.
+9.  Click **Save**. Now regardless of the bucket’s Access Control List, if traffic isn’t coming from the VPC endpoint it will be denied. This also provides more security and better pricing for legitimate traffic.
 10. To quickly restore the previous configuration for this bucket, we start by going to the [AWS Config](https://us-west-2.console.aws.amazon.com/config/home?region=us-west-2) console.
-11. Under **Resources** click on **S3 Buckets**.
+11. Under **Resources** click on **S3 Bucket**.
 12. Click on your Bucket (bucket name starts with **threat-detection-wksp-** and ends in **-data**).
-13. Click on **Change** under the previous configuration in the slider
+13. Click on **Change** under the previous configuration in the slider at the top of the screen
     * Make note of the changes to Permissions
 14. Click on **Manage Resource** in the top right. This will take you to the S3 console.
 15. Click on the **Permissions** tab.
-16. Remove Public Access based on Config change.
+16. Remove Public Access based on Config change you just looked at.
 17. Click on the **Properties** Tab.
 18. Re-enable S3 Default AES-256 encryption.
 
