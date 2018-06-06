@@ -1,6 +1,6 @@
 # Module 1: Environment Build and Configuration
 
-In this module you will be configuring all the initial detective and remediation controls for your environment.  You'll be running the first of two CloudFormation templates which will automate the creation of some of these controls and then you will manaually configure the rest.
+In this module you will be configuring all the initial detective and remediation controls for your environment.  You'll be running the first of two CloudFormation templates which will automate the creation of some of these controls and then you will manually configure the rest.
 
 ### Agenda
 
@@ -9,7 +9,7 @@ In this module you will be configuring all the initial detective and remediation
 
 ## Review Current Configurations
 
-When you launch the first CloudFormation template you'll be prompted with questions regarding whether certain resources are already configured.  Please verify whether you aleady have the following configured in your account:
+When you launch the first CloudFormation template you'll be prompted with questions regarding whether certain resources are already configured.  Please verify whether you already have the following configured in your account:
 
 1.	Go to [AWS IAM](https://console.aws.amazon.com/iam/home?region=us-west-2#/roles) and see if you have the following Roles created:
 	![Roles](../images/01-current-roles.png)
@@ -52,17 +52,17 @@ This will bring you back to the CloudFormation console. You can refresh the page
 
 ## Setup CloudWatch Event Rules and Automatic Remediation
 
-The CloudFormation template you just ran created three [CloudWatch Event Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) for alerting and remediation purposes. The steps below will walk you through creating the final rule.  After which you'll have all the necessary rules in place to receive email notifications and trigger the appropiate AWS Lambda functions for remediations.
+The CloudFormation template you just ran created three [CloudWatch Event Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) for alerting and remediation purposes. The steps below will walk you through creating the final rule.  After this you'll have all the necessary rules in place to receive email notifications and trigger the appropriate AWS Lambda functions for remediations.
 
-Below are steps to create this rule through the console but you can also find out more about doing it programmatically by reviewing the [GuardDuty Documentation](http://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_cloudwatch.html) for example.
+Below are steps to create this rule through the console but you can also find out more about doing it programmatically by reviewing the [GuardDuty Documentation](http://docs.aws.amazon.com/guardduty/latest/ug/guardduty_findings_cloudwatch.html).
 
 1.	Open the [CloudWatch console](https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2)
-2.	In the navigation pane on the left, under **Events**, choose **Rules**
+2.	In the navigation pane on the left, under **Events**, click **Rules**
 
 	> What are the current Rules in place setup to do?
-3.	Choose **Create Rule**
-4.	In the dialog box, add the following is correct: 
-	* Under **Event Pattern** select **Custom Event Pattern** in the drop down.
+3.	Click **Create Rule**
+4.	On the **Create rule** screen do the following: 
+	* Under **Event Pattern** click **Build event pattern to match events by service** and select **Custom event pattern** in the drop down.
 	* Paste in the custom event pattern below:
 	```
 	{
@@ -77,11 +77,11 @@ Below are steps to create this rule through the console but you can also find ou
 	}
 	```
 	* For *Targets*, click **Add Target**, select **Lambda Function**, and then select **threat-detection-wksp-remediation-nacl**.
-	* Click **Configure Details**
-5.	On the Configure Details screen fill out the **Name** and **Description** (suggestions below).
+	* Click **Configure details**
+5.	On the **Configure rule details** screen fill out the **Name** and **Description** (suggestions below).
     * Name: **threat-detection-wksp-guardduty-finding-ec2-maliciousip**
     * Description: **GuardDuty Finding: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom**
-6. Click **Create**.
+6. Click **Create rule**.
 7.	Now let’s examine the Lambda function to see what it does.  Open the [Lambda console](https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2)
 8.	Click on the function named **threat-detection-wksp-remediation-nacl**
 
@@ -112,7 +112,7 @@ Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Ma
 2.	Click **Get Started**.
 3.	Check the box under **Permissions**.
 	
-	> The CloudFormation template you ran eariler created the IAM roles and AWS CloudTrail needed for Macie, which is why you already see the checkmarks next to those items. 
+	> The CloudFormation template you ran earlier created the IAM roles and AWS CloudTrail needed for Macie, which is why you already see the checkmarks next to those items. 
 
 4.	Click **Enable Macie**.
 
@@ -124,9 +124,9 @@ Macie is also used for automatically discovering and classifying sensitive data.
 
 2.	Click on **Services** near the top.
 
-3.	Select your account (should be the only one) and click **Add** (or **Details** if you already have buckets configured) for Amazon S3.
+3.	Select your account (there should be only one) and click **Add** (or **Details** if you already have buckets configured) for Amazon S3.
 
-4.	Click on the paper and pencil on the far right and select the S3 bucket that ends with **“-data”**
+4.	Click on the paper and pencil on the far right and select the S3 bucket that ends with **“-data”** (or just go onto the next step if you don't see the paper and pencil)
 	* Make sure you click **both the checkboxes** on the left and the right ends of the row. This ensures both new and existing files get classified.
 	![Macie Bucket Sample](../images/01-macie-bucket-selection.png)
 
@@ -138,7 +138,7 @@ Macie is now enabled and ready to classify your data and send alerts.
 
 ## Architecture Overview
 
-Your environment is now configured and ready for operations.  Below is a diagram to dipict the detective controls you now have in place.
+Your environment is now configured and ready for operations.  Below is a diagram to depict the detective controls you now have in place.
 
 ![Detective Controls](../images/01-diagram-module1.png)
 
