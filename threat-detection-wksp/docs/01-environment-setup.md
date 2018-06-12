@@ -40,7 +40,7 @@ US West 2 (Oregon) | [![Deploy Module 1 in us-west-2](../images/deploy-to-aws.pn
 
 3. Once you have entered your parameters click **Next**, then **Next** again \(leave everything on this page at the default\).
 
-4. Finally, acknowledge the template will create IAM roles and click **Create**
+4. Finally, acknowledge that the template will create IAM roles and click **Create**.
 
 ![IAM Capabilities](../images/iam-capabilities.png)
 
@@ -87,11 +87,11 @@ Below are steps to create this rule through the console but you can also find ou
 
 	> What will the function do when invoked?
 
-	> What will the other functions do?
+	> What will the **threat-detection-wksp-remediation-inspector** functions do?
 
 ## Enable GuardDuty
 
-The next step is to enable Amazon GuardDuty (if you haven't already done so), which will continuously monitor your environment for malicious or unauthorized behavior.
+The next step is to enable Amazon GuardDuty, which will continuously monitor your environment for malicious or unauthorized behavior.
 
 1.	Go to the [Amazon GuardDuty](https://us-west-2.console.aws.amazon.com/guardduty/home?region=us-west-2) console.
 
@@ -103,7 +103,7 @@ GuardDuty is now enabled and continuously monitoring your CloudTrail logs, VPC f
 
 ## Enable Macie
 
-Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Macie (if you haven't already done so.)  Macie is a security service that will continuously monitor data access activity for anomalies and generate alerts when it detects risk of unauthorized access or inadvertent data leaks.
+Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Macie.  Macie is a security service that will continuously monitor data access activity for anomalies and generate alerts when it detects risk of unauthorized access or inadvertent data leaks.
 
 1.	Go to the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console.
 
