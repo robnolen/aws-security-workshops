@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: '2010-09-09'
 
-Description: This AWS CloudFormation Template configures an environment with the necessary detective controls to support the Threat Detection Workshop.  DO NOT run this template in a corporate or production AWS Account.
+Description: This AWS CloudFormation Template configures an environment with the necessary detective controls to support the Threat Detection Workshop.  DO NOT run this template in a production AWS Account.
 
 Parameters:
   
@@ -391,6 +391,9 @@ Resources:
         - '-'
         - [!Ref ResourceName, 'inspector-role-creation']
       Handler: "index.handler"
+      Environment:
+        Variables:
+          PREFIX: !Ref ResourceName
       Role: 
         Fn::GetAtt: 
           - "LambdaInspectorCreationRole"
@@ -403,18 +406,34 @@ Resources:
           import boto3
           import json
           import httplib
+          import os
            
           def handler(event, context):
 
+            iam = boto3.client('iam')
+            inspector = boto3.client('inspector')
+
             print("log -- Event: %s " % json.dumps(event))
+            target_name = '%s-target-sample' % os.environ['PREFIX']
 
             if event['RequestType'] == 'Create':
               print("log -- Create Event ")
               try:
-                iam = boto3.client('iam')
                 iam.create_service_linked_role(
                     AWSServiceName='inspector.amazonaws.com',
                     Description='Allows Inspecter to access AWS resources to perform security assessments on your behalf.'
+                )
+                group = inspector.create_resource_group(
+                    resourceGroupTags=[
+                        {
+                            'key': 'Name',
+                            'value': 'Test'
+                        },
+                    ]
+                )
+                target = inspector.create_assessment_target(
+                    assessmentTargetName=target_name,
+                    resourceGroupArn=group['resourceGroupArn']
                 )
                 response = sendResponse(event, context, "SUCCESS", { "Message": "Inspector Role successfully created!" })
               except ClientError as e:
@@ -423,11 +442,23 @@ Resources:
             elif event['RequestType'] == 'Update':
               print("log -- Update Event")
               try:
-                iam = boto3.client('iam')
                 iam.create_service_linked_role(
                     AWSServiceName='inspector.amazonaws.com',
                     Description='Allows Inspecter to access AWS resources to perform security assessments on your behalf.'
                 )
+                group = inspector.create_resource_group(
+                    resourceGroupTags=[
+                        {
+                            'key': 'Name',
+                            'value': 'Test'
+                        },
+                    ]
+                )
+                target = inspector.create_assessment_target(
+                    assessmentTargetName=target_name,
+                    resourceGroupArn=group['resourceGroupArn']
+                )
+
                 response = sendResponse(event, context, "SUCCESS", { "Message": "Inspector Role successfully created!" })
               except ClientError as e:
                 print(e)
@@ -501,6 +532,8 @@ Resources:
                 Effect: Allow
                 Action:
                   - iam:CreateServiceLinkedRole
+                  - inspector:CreateAssessmentTarget
+                  - inspector:CreateResourceGroup
                 Resource: '*'
   InspectorCustomResource:
     Condition: CreateInspectorRole
