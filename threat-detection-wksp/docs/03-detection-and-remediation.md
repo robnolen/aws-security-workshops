@@ -16,7 +16,7 @@ You’ve received the first alerts from GuardDuty. Now what? Since the alert cam
 2.  In the navigation pane, click on **Findings**.  You should see all the findings below:
     ![GuardDuty Findings](../images/03-gd-findings.png)
 
-    > **Don't panic if all of these findings fail to show up at first. The findings generated will take at least 20 minutes to show up in the GuardDuty console.**
+    > Don't panic if all of these findings fail to show up at first. The findings generated will take at least 20 minutes to show up in the GuardDuty console.
 3.  The high severity ![High Severity](../images/03-high-severity.png) **UnauthorizedAccess:EC2/SSHBruteForce** finding is a result of the activity going on in the background to simulate the attack and can be ignored. You can archive the finding if you choose with the steps below:
     * Click on the check box next to the "**UnauthorizedAccess:EC2/SSHBruteForce**" **Finding**.
     * Click on **Actions**.
@@ -31,11 +31,9 @@ You’ve received the first alerts from GuardDuty. Now what? Since the alert cam
 
       > Was the brute force attack successful?
 
-      > Are any of the other findings related to the brute force finding?
-
 ### Check Instance Security Assessment and Logs
 
-Following security design best practices you already setup your instances to send certain logs to CloudWatch. You’ve also setup a CloudWatch event rule that runs an [AWS Inspector](https://aws.amazon.com/inspector/) scan when GuardDuty detects a particular attack. Let’s look at Inspector findings to see if the SSH configuration adheres to best practices to determine what the risk is for the brute force attack. We will then examine CloudWatch logs.
+Following security design best practices you already setup your instances to send certain logs to CloudWatch. You’ve also setup a CloudWatch event rule that runs an [AWS Inspector](https://aws.amazon.com/inspector/) scan when GuardDuty detects a particular attack. Let’s look at the Inspector findings to see if the SSH configuration adheres to best practices to determine what the risk is for the brute force attack. We will then examine CloudWatch logs.
 
 1.  Go to [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector/home?region=us-west-2) in the Amazon Console.
 2.  Click **Findings** on the left navigation.

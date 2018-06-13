@@ -19,7 +19,7 @@ US West 2 (Oregon) | [![Deploy Module 2 in us-west-2](../images/deploy-to-aws.pn
 
 2. The name of the stack will be automatically populated but you are free to change it, after which click **Next**, then **Next** again (leave everything on this page at the default).  
 
-3. Finally, acknowledge the template will create IAM roles and click **Create**
+3. Finally, acknowledge that the template will create IAM roles and click **Create**
 
 ![IAM Capabilities](../images/iam-capabilities.png)
 
