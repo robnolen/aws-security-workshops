@@ -23,14 +23,6 @@ Parameters:
      - 'Yes'
     Description: Is AWS Config already enabled in this region?
 
-  MacieRoles:
-    Type: String
-    Default: 'No'
-    AllowedValues: 
-     - 'No'
-     - 'Yes'
-    Description: Have the Amazon Macie IAM Roles been created for this account?
-
   InspectorRole:
     Type: String
     Default: 'No'
@@ -75,10 +67,6 @@ Conditions:
   # Is Config already enabled?
   CreateRecorder:
     !Equals [!Ref ConfigEnabled, 'No']
-
-  # Have Macie Roles been created?
-  CreateMacieRoles:
-    !Equals [!Ref MacieRoles, 'No']
 
   # Has the Inspector Role been created?
   CreateInspectorRole:
@@ -145,39 +133,8 @@ Resources:
               StringEquals:
                 s3:x-amz-acl: "bucket-owner-full-control"
 
-  ### Macie IAM Roles and Data Bucket
-  MacieSetupRole: 
-    Condition: CreateMacieRoles
-    Type: AWS::IAM::Role
-    Properties:
-      RoleName: AWSMacieServiceCustomerSetupRole
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-        - Effect: Allow
-          Principal:
-            Service:
-            - "macie.amazonaws.com"
-          Action:
-          - sts:AssumeRole
-      ManagedPolicyArns:
-      - arn:aws:iam::aws:policy/service-role/AmazonMacieSetupRole
-  MacieServiceRole:
-    Condition: CreateMacieRoles
-    Type: AWS::IAM::Role
-    Properties:
-      RoleName: AWSMacieServiceCustomerServiceRole
-      AssumeRolePolicyDocument:
-        Version: '2012-10-17'
-        Statement:
-        - Effect: Allow
-          Principal:
-            Service:
-            - "macie.amazonaws.com"
-          Action:
-          - sts:AssumeRole
-      ManagedPolicyArns:
-      - arn:aws:iam::aws:policy/service-role/AmazonMacieServiceRole
+  ### Data Bucket
+ 
   DataBucket:
     Type: 'AWS::S3::Bucket'
     Properties:

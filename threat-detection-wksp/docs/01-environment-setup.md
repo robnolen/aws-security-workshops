@@ -1,4 +1,4 @@
-# Module 1: Environment Build and Configuration
+# Module 1: Environment build and configuration
 
 In this module you will be configuring all the initial detective and remediation controls for your environment.  You'll be running the first of two CloudFormation templates which will automate the creation of some of these controls and then you will manually configure the rest.
 
@@ -7,14 +7,12 @@ In this module you will be configuring all the initial detective and remediation
 1.	Review current configurations and run the 1st CloudFormation template – 5 min
 2.	Configure the remaining controls – 15 min
 
-## Review Current Configurations
+## Review current configurations
 
 When you launch the first CloudFormation template you'll be prompted with questions regarding whether certain resources are already configured.  Please verify whether you already have the following configured in your account:
 
-1.	Go to [AWS IAM](https://console.aws.amazon.com/iam/home?region=us-west-2#/roles) and see if you have the following Roles created:
+1.	Go to [AWS IAM](https://console.aws.amazon.com/iam/home?region=us-west-2#/roles) and see if you have the following Role created:
 	![Roles](../images/01-current-roles.png)
-  	
-  	> If you do not see the Macie Roles; you'll answer **No** when prompted if the Macie Roles exist when launching the CloudFormation template.
 
   	> If you do not see the Inspector Role; you'll answer **No** when prompted if the Inspector Role exists when launching the CloudFormation template.
 
@@ -22,7 +20,7 @@ When you launch the first CloudFormation template you'll be prompted with questi
   
   	> If you see a **Get Started** button; you'll answer **No** when prompted if Config is enabled when launching the CloudFormation template.
 
-## Deploy the CloudFormation Template
+## Deploy the CloudFormation template
 
 To initiate the scenario and configure your environment you will need to run the module 1 CloudFormation template: 
 
@@ -50,7 +48,7 @@ This will bring you back to the CloudFormation console. You can refresh the page
 
 5.	You will get an email from SNS asking you to confirm the Subscription. Confirm this so you can receive email alerts from AWS services during the Workshop.
 
-## Setup CloudWatch Event Rules and Automatic Remediation
+## Setup CloudWatch Event rules and automatic remediation
 
 The CloudFormation template you just ran created three [CloudWatch Event Rules](https://docs.aws.amazon.com/AmazonCloudWatch/latest/events/WhatIsCloudWatchEvents.html) for alerting and remediation purposes. The steps below will walk you through creating the final rule.  After this you'll have all the necessary rules in place to receive email notifications and trigger the appropriate AWS Lambda functions for remediations.
 
@@ -110,33 +108,28 @@ Since you plan on storing sensitive data in S3, let’s quickly enable Amazon Ma
 	> If you get a *Failed to Fetch* error you may have a script blocker enabled in your browser.
 
 2.	Click **Get Started**.
-3.	Check the box under **Permissions**.
-	
-	> The CloudFormation template you ran earlier created the IAM roles and AWS CloudTrail needed for Macie, which is why you already see the checkmarks next to those items. 
+
+3.	Macie will create a service-linked role when you enable it. If you would like to see the permissions that the role will have you can click the **View service role permissions**.
 
 4.	Click **Enable Macie**.
 
-## Setup Macie for Data Discovery
+## Setup Macie for data discovery, classification and protection
 
 Macie is also used for automatically discovering and classifying sensitive data.  Now that Macie is enabled, setup an integration to classify data in your S3 bucket.
 
 1.	In the [Amazon Macie](https://us-west-2.redirection.macie.aws.amazon.com/) console click on **Integrations** on the left navigation.
 
-2.	Click on **Services** near the top.
+3.	Find your AWS account ID (there should be only one) and click **Select** 
 
-3.	Select your account (there should be only one) and click **Add** (or **Details** if you already have buckets configured) for Amazon S3.
+4.	Click **Add** then on the next screen click the check box next to the S3 bucket that ends with **“-data”**. Click **Add**
 
-4.	Click on the paper and pencil on the far right and select the S3 bucket that ends with **“-data”** (or just go onto the next step if you don't see the paper and pencil)
-	* Make sure you click **both the checkboxes** on the left and the right ends of the row. This ensures both new and existing files get classified.
-	![Macie Bucket Sample](../images/01-macie-bucket-selection.png)
+5. Leave the options here at the default, click **Review**.
 
-5.	Click **Review and Save**.
+6. On the next screen click **Start Classification**. 
 
-6.	Click the boxes to acknowledge pricing and terms of service and click **Save**.
+6. Finally click **Done**. Macie is now enabled and has begun to discover, classify and protect your data.
 
-Macie is now enabled and ready to classify your data and send alerts.
-
-## Architecture Overview
+## Architecture overview
 
 Your environment is now configured and ready for operations.  Below is a diagram to depict the detective controls you now have in place.
 
