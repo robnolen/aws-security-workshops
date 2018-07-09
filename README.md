@@ -8,7 +8,17 @@ Within AWS there are a variety of services that can be used to secure your envir
 
 > Please review and complete all prerequisites before attempting these workshops.
 
-- [**Threat Detection and Remediation**](./threat-detection-wksp/) - This workshop demonstrates how you can use AWS Security services such Amazon GuardDuty and Amazon Macie to detect malicious and unauthorized threats in an environment. You'll learn how to setup detective controls in your environment, investigate a variety of findings, and put in place automated remediations using AWS Lambda.
+### Service Specific
+
+Service  | Title | Description
+:---: | :---: | :---
+Amazon GuardDuty | [Getting hands on with Amazon GuardDuty](https://github.com/aws-samples/amazon-guardduty-hands-on) | Quickly get hands on experience with Amazon GuardDuty by enabling the detector, generating a variety of findings, and remediating those findings with Lambda functions.
+
+### Solution Specific
+
+Title               | Description
+:---: | :---
+[Threat Detection and Remediation](./threat-detection-wksp/)                           | This workshop demonstrates how you can use AWS Security services such Amazon GuardDuty and Amazon Macie to detect malicious and unauthorized threats in an environment. You'll learn how to setup detective controls in your environment, investigate a variety of findings, and put in place automated remediations using AWS Lambda.
 
 ## Prerequisites
 
