@@ -31,10 +31,10 @@ This will bring you back to the CloudFormation console. You can refresh the page
 
 Below is a diagram of the setup after the module 2 CloudFormation stack is created.
 
-> If you're doing this workshop outside of an AWS sponsored event you can proceed to Module 3.  Please note it will take at least **20 minutes** after the 2nd CloudFormation template has completed before you will start seeing findings.
-
 ![Module 2 Diagram](../images/02-diagram-module2-3.png)
 
-After the presentation, you can proceed to the next module.
+> If you are going through this workshop in a classroom setting then wait till the presentation is over before starting module 3 (the presentation will allow enough time to pass for the attack scenario to complete.)  
+> 
+> If you are going through this workshop outside of a classroom setting you can proceed to Module 3.  Please note it will take at least **20 minutes** after the 2nd CloudFormation template has completed before you will start seeing findings. 
 
 ### **[Module 3 - Detection and Remediation](../docs/03-detection-and-remediation.md)**
