@@ -45,7 +45,6 @@ Metadata:
           default: "Security Services Configuration"
         Parameters: 
           - ConfigEnabled
-          - MacieRoles
           - InspectorRole
 
     ParameterLabels: 
@@ -55,8 +54,6 @@ Metadata:
         default: "Email Address"
       ConfigEnabled: 
         default: "AWS Config"
-      MacieRoles: 
-        default: "Amazon Macie Roles"
       InspectorRole: 
         default: "AWS Inspector Role"
 
