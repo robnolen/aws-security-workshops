@@ -676,6 +676,8 @@ Resources:
             # Create Fake Classified File
             cat <<EOT >> /tmp/memo.pst
             Proprietary Information
+            arn:aws:iam::339394046901:role/aws-security-workshops-easteregg1 (Ex ID: aws-security-workshops)
+            S3: aws-security-workshops-easteregg1a
             Do not share with any other employee.
             EOT
 
