@@ -4,7 +4,7 @@ This workshop is designed to help you get familiar with AWS Security services an
 
 ### Scenario
 
-Your company is new to the cloud and has recently performed a lift-and-shift of your infrastructure for piloting purposes.  You are a systems administrator and have been tasked with maintaining the environment in AWS.  As part of that maintenance you are also responsible for responding to any security event in your environment.
+Your company is new to the cloud and has recently performed a lift-and-shift of your infrastructure for piloting purposes.  You are a systems administrator and have been tasked with security monitoring within your AWS environment.  As part of that maintenance you are also responsible for responding to any security event in your environment.
 
 ### Architecture overview
 
@@ -12,7 +12,7 @@ For this Workshop you will have a single instance setup in the us-west-2 region.
 
 ![Architecture](./images/diagram-basic-arch.png "Lab Workload Architecture")
 
-Before you migrated the application you saw a webinar about AWS security best practices. Because of that webinar, you knew to enable a number of the Security services. 
+Before you migrated the application you saw a webinar about AWS security best practices. Because of that webinar, you knew to enable a number of Security services provided by AWS. 
 
 ### Region
 Please use the **us-west-2 (Oregon)** region for this workshop.
