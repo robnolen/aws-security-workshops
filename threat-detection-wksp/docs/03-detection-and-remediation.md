@@ -228,14 +228,14 @@ First verify what the current credentials are.
 4.  For **Command document** select **AWS-RunShellScript** 
 	> You may need to scroll through the list or just enter the document name in the search bar.
 5.  Leave the **Document version** at the default. 
-6. Under **Targets** check the checkbox next to **threat-detection-wksp: Compromised Instance**.
-7.  Under **Command Parameters** type the following in **Commands**:
+6.  Under **Command Parameters** type the following in **Commands**:
 
     ```
     curl http://169.254.169.254/latest/meta-data/iam/security-credentials/threat-detection-wksp-compromised-ec2
     ```
-
-7.  Leave all of the other options at their default, scroll to the end and click **Run**.
+7. Under **Targets** select **Manually selecting instances** and check the checkbox next to **threat-detection-wksp: Compromised Instance**.
+8. Under **Output options** uncheck the checkbox labeled **Enable writing to an S3 bucket**.
+9.  Leave all of the other options at their default, scroll to the end and click **Run**.
 8.  Scroll down to the **Targets and outputs** section and click the  **Instance ID** (which should correspond to the instance ID of the compromised instance)
 10. Expand **Step 1 - Output** and make note of the **AccessKeyID**, **SecretAccessKey**, and **Token**. (the command will take a minute or so to run)
 
