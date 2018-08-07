@@ -19,6 +19,7 @@ Amazon GuardDuty | [Getting hands on with Amazon GuardDuty](https://github.com/a
 Title               | Description
 :---: | :---
 [Threat Detection and Remediation](./threat-detection-wksp/)                           | This workshop demonstrates how you can use AWS Security services such Amazon GuardDuty and Amazon Macie to detect malicious and unauthorized threats in an environment. You'll learn how to setup detective controls in your environment, investigate a variety of findings, and put in place automated remediations using AWS Lambda.
+[Cloud-powered Forensics](./forensics-wksp/)                           | This workshop demonstrates various techniques to perform practical evidence gathering from AWS sources and simple forensic tasks on Amazon EC2 instances. To orchestrate these tasks we will demonstrate a combination of industry tooling and AWS serverless services like Lambda with AWS Step Functions and managed services like Athena to give you a deeper understanding of the tasks you can and should do to secure critical evidence in case of need.
 
 ## Prerequisites
 
