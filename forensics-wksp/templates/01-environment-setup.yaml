@@ -69,6 +69,10 @@ Conditions:
   # Has the Inspector Role been created?
   CreateInspectorRole:
     !Equals [!Ref InspectorRole, 'No']
+    
+  # Was an email provided?
+  CreateTopicSubscription:
+    !Not [!Equals [!Ref Email, '']]
 
 Resources:
 
@@ -244,9 +248,13 @@ Resources:
     Type: AWS::SNS::Topic
     Properties:
       TopicName: !Ref ResourceName
-      Subscription:
-      - Endpoint: !Ref Email
-        Protocol: Email
+  DetectionSNSTopicSubscription:
+    Type: AWS::SNS::Subscription
+    Condition: CreateTopicSubscription
+    Properties:
+      Endpoint: !Ref Email
+      Protocol: email
+      TopicArn: !Ref DetectionSNSTopic
   DetectionSNSTopicPolicy:
     Type: AWS::SNS::TopicPolicy
     Properties:
