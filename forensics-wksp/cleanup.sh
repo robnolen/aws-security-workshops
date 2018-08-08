@@ -46,9 +46,11 @@ BUCKETS_TO_DELETE=("LogBucket" "DataBucket" "GDThreatListBucket")
 for bucket in "${BUCKETS_TO_DELETE[@]}"
 do
     bucket_desc=$(aws --profile ${PROFILE} --region ${REGION} cloudformation describe-stack-resource --stack-name "BH2018-AwsForensicsWksp-EnvSetup" --logical-resource-id ${bucket})
-    
+
     if [[ -n ${bucket_desc} ]]; then
-        actual_bucket_name=$(python -c "import sys, json;  json.load(${bucket_desc}).get('StackResourceDetail').get('PhysicalResourceId')")
+        actual_bucket_name=$(echo ${bucket_desc} | python -c "import sys, json; print json.load(sys.stdin)['StackResourceDetail']['PhysicalResourceId']")
+        
+        echo ${acutal_bucket_name}
         
         if [[ -n ${actual_bucket_name} ]]; then
             echo "Deleting the S3 bucket ${bucket} (${actual_bucket_name})"
