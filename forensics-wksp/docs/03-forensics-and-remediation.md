@@ -98,15 +98,17 @@ Begin by reading the documentation on this page: https://docs.aws.amazon.com/ath
 3. For Storage Location, select the CloudTrail S3 bucket that starts with "forensics-wksp" and ends in "-logs".
 4. Click "Create table".
 5. Once the table is created, click "Go to Athena" to go to the Athena console.
+6. Make sure the Database is set to "default".
+7. Copy the name of your table, which should be in the format `cloudtrail_logs_forensics_wksp_<account_id>_us_west_2_logs`, by clicking the ellipsis (...) to the right of the table name and selcting "Show properties".
 
-Once at the Athena console, make sure the Database is set to "default" and that the table with name beginning with "cloudtrail\_logs\_forensics\_wksp\_" is present in the list of Tables. Then you are ready to proceed with the forensic queries below.
+For each query below, replace {TABLE} with the name of your table.
 
 1. Identify some more details about the launch of the suspect EC2 instance:
 
 ```sql
 SELECT eventtime, useridentity, awsregion,
        sourceipaddress, useragent, requestparameters
-FROM "default"."cloudtrail_logs"
+FROM "default"."{TABLE}"
 WHERE eventsource = 'ec2.amazonaws.com'
       AND eventname = 'RunInstances'
       AND regexp_like(responseelements, 'i-12345678901234567') limit 1;
@@ -116,7 +118,7 @@ WHERE eventsource = 'ec2.amazonaws.com'
 
 ```sql
 SELECT *
-FROM "default"."cloudtrail_logs"
+FROM "default"."{TABLE}"
 WHERE eventsource = 'ec2.amazonaws.com'
       AND eventname = 'RunInstances'
       AND regexp_like(requestparameters, '\"keyName\":\"suspect-keypair\"');
@@ -126,7 +128,7 @@ WHERE eventsource = 'ec2.amazonaws.com'
 
 ```sql
 SELECT *
-FROM "default"."cloudtrail_logs"
+FROM "default"."{TABLE}"
 WHERE eventsource = 'ec2.amazonaws.com'
       AND eventname = 'RunInstances'
       AND regexp_like(requestparameters, '\"iamInstanceProfile\":{\"name\":\"suspect-instance-profile\"}');
@@ -135,7 +137,7 @@ WHERE eventsource = 'ec2.amazonaws.com'
 
 ```sql
 SELECT *
-FROM "default"."cloudtrail_logs"
+FROM "default"."{TABLE}"
 WHERE useridentity.principalid = 'AIDAJ45Q7YFFAREXAMPLE'
       AND (to_unixtime(now()) - to_unixtime(from_iso8601_timestamp(eventtime)))/(24*60*60) < 2;
 ```
@@ -145,7 +147,7 @@ WHERE useridentity.principalid = 'AIDAJ45Q7YFFAREXAMPLE'
 ```sql
 SELECT eventtime, useridentity, awsregion,
        sourceipaddress, useragent, requestparameters
-FROM "default"."cloudtrail_logs"
+FROM "default"."{TABLE}"
 WHERE eventsource = 'iam.amazonaws.com'
       AND eventname = 'CreateUser'
       AND regexp_like(requestparameters, '\"userName\":\"suspicious-user\"');
