@@ -65,11 +65,11 @@ chmod +x cleanup.sh
 ```
 
 - *Q: I'm using a different AWS CLI profile than the default.*
-- A: The script supports a flag to specify a CLI profile that is configured in your `~/.aws/config` file. Do `./teardown.sh -p PROFILE_NAME`.
+- A: The script supports a flag to specify a CLI profile that is configured in your `~/.aws/config` file. Do `./cleanup.sh -p PROFILE_NAME`. To see all supported options for the clean-up script, do `./cleanup.sh -h`.
 
 ### Manual clean-up instructions
 
-> You will need to manually delete some resources before you delete the CloudFormation stacks so please do the following steps in order.
+These manual clean-up steps can be used in lieu of the automated clean-up script.
 
 1.	Delete the Inspector objects created for the workshop.
 	* Go to the [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector) console.
@@ -126,6 +126,6 @@ chmod +x cleanup.sh
 	* Select the check box next to the subscription that shows your e-mail as the Endpoint and has **forensics-wksp** in the **Subscription ARN**.
 	* Select **Action** and then click **Delete subscriptions**
 
-## Finished!
+## Done!
 
 Congratulations on completing this workshop! This is the workshop's permanent home, so feel free to revisit as often as you'd like.

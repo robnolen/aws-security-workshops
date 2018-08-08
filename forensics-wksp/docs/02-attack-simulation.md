@@ -37,4 +37,4 @@ Below is a diagram of the setup after the Module 2 CloudFormation stack is creat
 > 
 > If you are going through this workshop outside of a classroom setting you can proceed to Module 3.  Please note it will take at least **20 minutes** after the 2nd CloudFormation template has completed before you will start seeing findings. 
 
-### **[Module 3 - Forensics and Remediation](../docs/03-detection-and-remediation.md)**
+### **[Module 3 - Forensics and Remediation](../docs/03-forensics-and-remediation.md)**

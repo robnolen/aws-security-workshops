@@ -85,7 +85,7 @@ Below are steps to create this rule through the console but you can also find ou
 
 	> What will the function do when invoked?
 
-	> What will the **threat-detection-wksp-remediation-inspector** functions do?
+	> What will the **threat-detection-wksp-remediation-inspector** function do?
 
 ## Enable GuardDuty
 

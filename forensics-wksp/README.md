@@ -18,7 +18,7 @@ Before you migrated the application you saw a webinar about AWS security best pr
 Please use the **us-west-2 (Oregon)** region for this workshop.
 
 ### For instructors
-If you would like to teach this workshop to a group of students, the instructions can be found [here.](./docs/workshop-delivery-instructions.md)
+If you would like to teach this workshop to a group of students, the instructions can be found [here](./docs/workshop-delivery-instructions.md).
 
 ### Modules
 1. [Environment Build and Configuration](./docs/01-environment-setup.md)
