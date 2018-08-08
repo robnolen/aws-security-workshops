@@ -81,11 +81,11 @@ Below are steps to create this rule through the console but you can also find ou
     * Description: **GuardDuty Finding: UnauthorizedAccess:EC2/MaliciousIPCaller.Custom**
 6. Click **Create rule**.
 7.	Now let’s examine the Lambda function to see what it does.  Open the [Lambda console](https://us-west-2.console.aws.amazon.com/lambda/home?region=us-west-2)
-8.	Click on the function named **threat-detection-wksp-remediation-nacl**
+8.	Click on the function named **forensics-wksp-remediation-nacl**
 
 	> What will the function do when invoked?
 
-	> What will the **threat-detection-wksp-remediation-inspector** function do?
+	> What will the **forensics-wksp-remediation-inspector** function do?
 
 ## Enable GuardDuty
 

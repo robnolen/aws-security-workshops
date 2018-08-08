@@ -38,7 +38,7 @@ Following security design best practices you already setup your instances to sen
 1.  Go to [Amazon Inspector](https://us-west-2.console.aws.amazon.com/inspector/home?region=us-west-2) in the Amazon Console.
 2.  Click **Findings** on the left navigation.
     
-    > If you do not see any findings after awhile, there may have been an issue with your Inspector agent.  Click on **Assessment Templates**, check the template that starts with **threat-detection-wksp**, and click **Run**.  Please allow **15 minutes** for the scan to complete.  You can also look in **Assessment runs** and check the **status**. Feel free to continue through this module and check the results later on. 
+    > If you do not see any findings after awhile, there may have been an issue with your Inspector agent.  Click on **Assessment Templates**, check the template that starts with **forensics-wksp**, and click **Run**.  Please allow **15 minutes** for the scan to complete.  You can also look in **Assessment runs** and check the **status**. Feel free to continue through this module and check the results later on. 
 
 3.  Filter down the findings by typing in **Password**.
 4.  Review the findings.
@@ -49,7 +49,7 @@ Following security design best practices you already setup your instances to sen
 Based on the findings you see that password authentication is configured on the instance with no password complexity restrictions which means the instance is more susceptible to a SSH brute force attack. Now that we know that let’s look at the CloudWatch logs and create a metric to see if there are any successful SSH logins (to finally answer the question of whether the SSH brute force attack was successful.)
 
 5.  Go to [CloudWatch logs](https://us-west-2.console.aws.amazon.com/cloudwatch/home?region=us-west-2#logs:).
-6.  Click on the log group **/threat-detection-wksp/var/log/secure**
+6.  Click on the log group **/forensics-wksp/var/log/secure**
 7.  If you have multiple log streams, filter using the Instance ID you copied earlier and click on the stream.
 8.  Within the **Filter Events** text-box put the following Filter Pattern: 
 
@@ -103,7 +103,7 @@ Begin by reading the documentation on this page: https://docs.aws.amazon.com/ath
 
 For each query below, replace {TABLE} with the name of your table.
 
-1. Identify some more details about the launch of the suspect EC2 instance:
+1. Identify some more details about the launch of the suspect EC2 instance. Replace the instance ID in this query with the ID of the suspect EC2 instance.
 
 ```sql
 SELECT eventtime, useridentity, awsregion,
@@ -114,7 +114,7 @@ WHERE eventsource = 'ec2.amazonaws.com'
       AND regexp_like(responseelements, 'i-12345678901234567') limit 1;
 ```
 
-2. Identify if any other EC2 instances were launched with the same EC2 key-pair as the suspect EC2 instance:
+2. Identify if any other EC2 instances were launched with the same EC2 key-pair as the suspect EC2 instance. Replace the string "suspect-keypair" with the name of the EC2 key used by the suspect EC2 instance.
 
 ```sql
 SELECT *
@@ -124,7 +124,7 @@ WHERE eventsource = 'ec2.amazonaws.com'
       AND regexp_like(requestparameters, '\"keyName\":\"suspect-keypair\"');
 ```
 
-3. Identify if any other EC2 instances were launched with the same EC2 instance profile as the suspect EC2 instance:
+3. Identify if any other EC2 instances were launched with the same EC2 instance profile as the suspect EC2 instance. replace the string "suspect-instance-profile" with the name of the instance profile, or IAM role, with which the suspect EC2 instance is running.
 
 ```sql
 SELECT *
@@ -132,8 +132,9 @@ FROM "default"."{TABLE}"
 WHERE eventsource = 'ec2.amazonaws.com'
       AND eventname = 'RunInstances'
       AND regexp_like(requestparameters, '\"iamInstanceProfile\":{\"name\":\"suspect-instance-profile\"}');
-  
-4. Identify the last 2 days of activity for the threat actor (e.g. IAM user) whom launched the suspect EC2 instance:
+```
+
+4. Identify the last 2 days of activity for the threat actor (e.g. IAM user) whom launched the suspect EC2 instance. Replace the principal ID string with the actual principal ID of the user that launched the suspect EC2 instance.
 
 ```sql
 SELECT *
@@ -142,7 +143,7 @@ WHERE useridentity.principalid = 'AIDAJ45Q7YFFAREXAMPLE'
       AND (to_unixtime(now()) - to_unixtime(from_iso8601_timestamp(eventtime)))/(24*60*60) < 2;
 ```
  
-5. Identify who created an IAM user involved in suspicious activities:
+5. Identify who created an IAM user involved in suspicious activities. Replace the string "suspicious-user" with the name of the IAM user that made the call to CreateUser. (Hint: try looking for that API call in CloudTrail via the console and examine the raw JSON for the event by clicking View Event).
 
 ```sql
 SELECT eventtime, useridentity, awsregion,
@@ -179,7 +180,7 @@ Based upon your existing work, you’ve implemented the first step by using the 
     Click the **Click Here** button to proceed with using Config without Config Rules
 
 3.  Click **Resources** in the left navigation.
-4.  We can search here to find configuration changes to the NACL. Select the radio button for **Tag** and enter **Name** for the **Tag key** and **threat-detection-wksp-compromised** for the **Tag value** (this is allowing us to search for the NACL with that name):
+4.  We can search here to find configuration changes to the NACL. Select the radio button for **Tag** and enter **Name** for the **Tag key** and **forensics-wksp-compromised** for the **Tag value** (this is allowing us to search for the NACL with that name):
     ![Config Key Pair](../images/03-config-keypair.png)
 6.  Click on the Network ACL ID in the **Config timeline** column.
 7.  On the next screen you should see two **Change** events in the timeline. Click on **Change** for each one to see what occurred.
@@ -193,7 +194,7 @@ Now that the active session from the attacker has been stopped by the update to 
 
 1.  Go to the [Amazon EC2](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2) Console.
 
-2.  Find the running instances with the name **threat-detection-wksp: Compromised Instance**.
+2.  Find the running instances with the name **forensics-wksp: Compromised Instance**.
 
 3.  Under the **Description** tab, click on the Security Group for the compromised instance.
 
@@ -212,7 +213,7 @@ Now that the attacker can’t SSH into the compromised instance, you need to rev
 
 1.  Browse to the [AWS IAM](https://console.aws.amazon.com/iam/home?region=us-west-2) console.
 
-2.  Click **Roles** and the **threat-detection-wksp-compromised-ec2** role (this is the role attached to the compromised instance).
+2.  Click **Roles** and the **forensics-wksp-compromised-ec2** role (this is the role attached to the compromised instance).
 
 3.  Click on the **Revoke sessions** tab.
 
@@ -231,16 +232,16 @@ First verify what the current credentials are.
 
 1.  Go to [AWS Systems Manager](https://us-west-2.console.aws.amazon.com/systems-manager/managed-instances?region=us-west-2) console and click **Managed Instances** (found under the **Shared Resources** section on the left navigation).
     
-    > You should see an instance named **threat-detection-wksp: Compromised Instance** with a **Ping status** of **Online**.
+    > You should see an instance named **forensics-wksp: Compromised Instance** with a **Ping status** of **Online**.
 2.  To see the keys currently active on the instance, click on **Run Command** on the left navigation and then click **Run a Command**.
 4.  For **Command document** select **AWS-RunShellScript** 
 	> You may need to scroll through the list or just enter the document name in the search bar.
 5.  Leave the **Document version** at the default. 
-6. Under **Targets** check the checkbox next to **threat-detection-wksp: Compromised Instance**.
+6. Under **Targets** check the checkbox next to **forensics-wksp: Compromised Instance**.
 7.  Under **Command Parameters** type the following in **Commands**:
 
     ```
-    curl http://169.254.169.254/latest/meta-data/iam/security-credentials/threat-detection-wksp-compromised-ec2
+    curl http://169.254.169.254/latest/meta-data/iam/security-credentials/forensics-wksp-compromised-ec2
     ```
 
 7.  Leave all of the other options at their default, scroll to the end and click **Run**.
@@ -249,7 +250,7 @@ First verify what the current credentials are.
 
 Next, you need to stop and restart the Instance.
 
-11. In the [EC2 console](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:sort=instanceId) **Stop** the Instance named **threat-detection-wksp: Compromised Instance**.
+11. In the [EC2 console](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:sort=instanceId) **Stop** the Instance named **forensics-wksp: Compromised Instance**.
 12. Wait for the Instance State to say **Stopped** and then **Start** the instance.
 
 Lastly, you can need to query the metadata again to validate that the credentials were changed.
@@ -266,4 +267,4 @@ After you have remediated the incident and further hardened your environment, yo
 
 > If you are going through this workshop in a classroom setting then the instructor should start the module 4 presentation soon.
 
-### **[Module 4 - Review and Discussion](../docs/04-review-and-discussion.md)**
+### **[Module 4 - Review and Cleanup](../docs/04-review-and-cleanup.md)**
