@@ -239,12 +239,12 @@ Now all active sessions for the compromised instance role have been invalidated.
 
 To change the IAM credentials on the instance, you must Stop and Start the instance. A simple reboot will not change the keys.  Since you are using AWS Systems Manager for doing administration on your EC2 Instances you can use it to query the metadata to validate that the credentials were rotated.
 
-11. In the [EC2 console](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:sort=instanceId) **Stop** the Instance named **threat-detection-wksp: Compromised Instance**.
-12. Wait for the Instance State to say **Stopped** and then **Start** the instance.
+16. In the [EC2 console](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:sort=instanceId) **Stop** the Instance named **threat-detection-wksp: Compromised Instance**.
+17. Wait for the Instance State to say **Stopped** and then **Start** the instance.
 
 	Lastly, you can need to query the metadata again to validate that the credentials were changed.
 
-13. Repeat the first 10 Systems Manager steps to retrieve the credentials again.
+18. Repeat the first 10 Systems Manager steps to retrieve the credentials again.
 
     > Notice the keys are different.
 
