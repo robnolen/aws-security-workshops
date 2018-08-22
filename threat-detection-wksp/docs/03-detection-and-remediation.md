@@ -196,33 +196,14 @@ Now that the active session from the attacker has been stopped by the update to 
     > In your initial setup you already installed the SSM Agent on your EC2 Instance.
 6. Click **Save**
 
+### Revoke the IAM role active sessions and rotate credentials
 
-### Revoke the IAM role active sessions
+Now that the attacker can’t SSH into the compromised instance, you need to revoke all active sessions for the IAM role associated with that instance.  
 
-Now that the attacker can’t SSH into the compromised instance, you need to revoke all active sessions for the IAM role associated with that instance.
-
-
-1.  Browse to the [AWS IAM](https://console.aws.amazon.com/iam/home?region=us-west-2) console.
-
-2.  Click **Roles** and the **threat-detection-wksp-compromised-ec2** role (this is the role attached to the compromised instance).
-
-3.  Click on the **Revoke sessions** tab.
-
-4.  Click on **Revoke active sessions**.
-
-5.  Click the acknowledgement **check box** and then click **Revoke active sessions**. 
-	> What is the mechanism that is put in place by this step to actually prevent the use of the temp credentials issued by this role? 
-
-### Restart instance to rotate credentials
-
-Now all active sessions for the compromised instance role have been invalidated.  This means the attacker can no longer use those credentials, but it also means that your application that use this role can't as well.  In order to ensure the availability of your application you need to refresh the credentials on the instance.  
-
-To change the IAM credentials on the instance, you must Stop and Start the instance. A simple reboot will not change the keys.  Since you are using AWS Systems Manager for doing administration on your EC2 Instances you can use it to query the metadata to validate that the credentials were rotated.
-
-First verify what the current credentials are.   
+First verify what the current credentials are for the EC2 instance.   
 
 1.  Go to [AWS Systems Manager](https://us-west-2.console.aws.amazon.com/systems-manager/managed-instances?region=us-west-2) console and click **Managed Instances** (found under the **Shared Resources** section on the left navigation).
-    
+
     > You should see an instance named **threat-detection-wksp: Compromised Instance** with a **Ping status** of **Online**.
 2.  To see the keys currently active on the instance, click on **Run Command** on the left navigation and then click **Run a Command**.
 4.  For **Command document** select **AWS-RunShellScript** 
@@ -239,14 +220,31 @@ First verify what the current credentials are.
 8.  Scroll down to the **Targets and outputs** section and click the  **Instance ID** (which should correspond to the instance ID of the compromised instance)
 10. Expand **Step 1 - Output** and make note of the **AccessKeyID**, **SecretAccessKey**, and **Token**. (the command will take a minute or so to run)
 
-Next, you need to stop and restart the Instance.
+	Now revoke the IAM Role session:
+
+1.  Browse to the [AWS IAM](https://console.aws.amazon.com/iam/home?region=us-west-2) console.
+
+2.  Click **Roles** and the **threat-detection-wksp-compromised-ec2** role (this is the role attached to the compromised instance).
+
+3.  Click on the **Revoke sessions** tab.
+
+4.  Click on **Revoke active sessions**.
+
+5.  Click the acknowledgement **check box** and then click **Revoke active sessions**. 
+	> What is the mechanism that is put in place by this step to actually prevent the use of the temp credentials issued by this role? 
+
+#### Restart instance to rotate credentials
+
+Now all active sessions for the compromised instance role have been invalidated.  This means the attacker can no longer use those credentials, but it also means that your application that use this role can't as well.  In order to ensure the availability of your application you need to refresh the credentials on the instance.  
+
+To change the IAM credentials on the instance, you must Stop and Start the instance. A simple reboot will not change the keys.  Since you are using AWS Systems Manager for doing administration on your EC2 Instances you can use it to query the metadata to validate that the credentials were rotated.
 
 11. In the [EC2 console](https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2#Instances:sort=instanceId) **Stop** the Instance named **threat-detection-wksp: Compromised Instance**.
 12. Wait for the Instance State to say **Stopped** and then **Start** the instance.
 
-Lastly, you can need to query the metadata again to validate that the credentials were changed.
+	Lastly, you can need to query the metadata again to validate that the credentials were changed.
 
-13. Repeat the first 10 steps to retrieve the credentials again.
+13. Repeat the first 10 Systems Manager steps to retrieve the credentials again.
 
     > Notice the keys are different.
 
