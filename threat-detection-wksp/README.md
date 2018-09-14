@@ -2,6 +2,9 @@
 
 This workshop is designed to help you get familiar with AWS Security services and learn how to use them to identify and remediate threats in your environment.  You'll be working with services such as Amazon GuardDuty, Amazon Macie, Amazon Inspector, Amazon CloudWatch, AWS Lambda, AWS Systems Manager, AWS Config, and AWS CloudTrail. You will learn how to use these services to set up a notification and remediation pipeline, investigate threats during and after an attack, and  add additional protections in place to improve the security posture of your environment.
 
+### Pre-Requisites
+You should have some level of familiarity with AWS services such as EC2, VPC and S3. Exposure to AWS Lambda and CloudFormation are a bonus. Some experience working with the AWS console is helpful as well.
+
 ### Scenario
 
 Your company is new to the cloud and has recently performed a lift-and-shift of your infrastructure for piloting purposes.  You are a systems administrator and have been tasked with security monitoring within your AWS environment.  As part of that maintenance you are also responsible for responding to any security event in your environment.
